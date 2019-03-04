@@ -1,16 +1,23 @@
 // Import Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700');
 
 // Define fonts for body and headers
-$body-font: "Open Sans", "Helvetica", "sans-serif";
-$headers-font: "Raleway", "Helvetica", "sans-serif";
+$body-font: 'Nunito', 'Helvetica', sans-serif;
+$headers-font: 'Sansation', 'Nunito', 'Helvetica', sans-serif;
+$headers-font-light: 'Sansation Light', 'Nunito', 'Helvetica', sans-serif;
 
-// To use a font file (.woff) uncomment following lines
-// @font-face {
-//   font-family: "Font Name";
-//   src: font-url('FontFile.eot');
-//   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
-//        font-url('FontFile.woff') format('woff'),
-//        font-url('FontFile.ttf') format('truetype')
-// }
-// $my-font: "Font Name";
+@font-face {
+  font-family: "Sansation";
+  src: font-url('sansation/regular/Sansation-Regular-webfont.eot');
+  src: font-url('sansation/regular/Sansation-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+       font-url('sansation/regular/Sansation-Regular-webfont.woff') format('woff'),
+       font-url('sansation/regular/Sansation-Regular-webfont.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: "Sansation Light";
+  src: font-url('sansation/light/Sansation-Light-webfont.eot');
+  src: font-url('sansation/light/Sansation-Light-webfont.eot?#iefix') format('embedded-opentype'),
+       font-url('sansation/light/Sansation-Light-webfont.woff') format('woff'),
+       font-url('sansation/light/Sansation-Light-webfont.ttf') format('truetype')
+}
