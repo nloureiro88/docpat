@@ -10,10 +10,105 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_165002) do
+ActiveRecord::Schema.define(version: 2019_03_04_192526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "subject"
+    t.string "icon_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "doctor_patients", force: :cascade do |t|
+    t.bigint "doctor_id"
+    t.bigint "patient_id"
+    t.boolean "pr_skill", default: false
+    t.boolean "pr_time", default: false
+    t.boolean "pr_help", default: false
+    t.boolean "pr_kind", default: false
+    t.float "pr_calc", default: 0.0
+    t.string "status", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_doctor_patients_on_doctor_id"
+    t.index ["patient_id"], name: "index_doctor_patients_on_patient_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.bigint "topic_id"
+    t.bigint "user_id"
+    t.string "doc_type"
+    t.string "exam_type"
+    t.string "tags"
+    t.string "url"
+    t.string "file_type"
+    t.string "status", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_documents_on_topic_id"
+    t.index ["user_id"], name: "index_documents_on_user_id"
+  end
+
+  create_table "families", force: :cascade do |t|
+    t.string "name"
+    t.string "status", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "family_patients", force: :cascade do |t|
+    t.bigint "family_id"
+    t.bigint "patient_id"
+    t.string "status", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["family_id"], name: "index_family_patients_on_family_id"
+    t.index ["patient_id"], name: "index_family_patients_on_patient_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.bigint "topic_id"
+    t.bigint "user_id"
+    t.string "sc_type"
+    t.string "title"
+    t.string "schedule"
+    t.string "dosage"
+    t.text "notes"
+    t.date "date_start"
+    t.date "date_end"
+    t.string "status", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_schedules_on_topic_id"
+    t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.bigint "patient_id"
+    t.bigint "category_id"
+    t.string "title"
+    t.string "code"
+    t.string "status", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_topics_on_category_id"
+    t.index ["patient_id"], name: "index_topics_on_patient_id"
+  end
+
+  create_table "updates", force: :cascade do |t|
+    t.bigint "topic_id"
+    t.bigint "user_id"
+    t.text "diagnosys"
+    t.string "next_steps"
+    t.string "topic_status", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_updates_on_topic_id"
+    t.index ["user_id"], name: "index_updates_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,7 +124,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_165002) do
     t.text "address"
     t.date "date_birth"
     t.integer "identity_card"
-    t.string "user_type", default: "patient"
+    t.string "user_type"
     t.string "pat_blood"
     t.string "pat_pharma"
     t.string "pat_pharma_email"
@@ -41,4 +136,10 @@ ActiveRecord::Schema.define(version: 2019_03_04_165002) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "documents", "topics"
+  add_foreign_key "documents", "users"
+  add_foreign_key "schedules", "topics"
+  add_foreign_key "schedules", "users"
+  add_foreign_key "updates", "topics"
+  add_foreign_key "updates", "users"
 end
