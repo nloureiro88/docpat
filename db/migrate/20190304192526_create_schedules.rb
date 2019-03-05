@@ -6,7 +6,7 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
       t.string :sc_type
       t.string :sc_title
       t.string :schedule
-      t.string :dosage
+      t.string :dosage, default: ""
       t.text :notes
       t.date :date_start
       t.date :date_end
