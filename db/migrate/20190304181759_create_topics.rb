@@ -4,7 +4,7 @@ class CreateTopics < ActiveRecord::Migration[5.2]
       t.references :patient, index: true
       t.references :category, index: true
       t.string :title
-      t.string :code
+      t.string :subcode
       t.string :status, default: 'active'
 
       t.timestamps
