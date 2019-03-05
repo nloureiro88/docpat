@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :family, only: [:show, :new, :create] do
     member do
       post :add_patient, to: "family#add_patient"
-      get :re_patient, to: "family#rem_patient"
+      get :rem_patient, to: "family#rem_patient"
 
     end
   end
