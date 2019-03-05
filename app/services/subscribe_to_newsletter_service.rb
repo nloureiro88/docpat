@@ -1,0 +1,1 @@
+subscribe_to_newsletter_service.rb
