@@ -1,2 +1,87 @@
-<h1>Topics#indes</h1>
-<p>Find me in app/views/topics/indes.html.erb</p>
+<div class="container topics">
+  <div class="row">
+
+    <h2>Health Topics</h2>
+
+    <div class="action-header">
+      <%= form_tag patient_topics_path, method: :get, class: "search-form" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find a topic by category, name, code, doctor or status"
+        %>
+        <%= button_tag(type: 'submit', class: "btn btn-search") do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+      <% end %>
+
+      <div class="actions">
+        <%= link_to "Add Topic", new_patient_topic_path, class: "btn btn-default" %>
+        <br>
+        <%= link_to "Full Log", patient_path(@patient), class: "btn btn-default" %>
+      </div>
+    </div>
+
+    <div class="row row-container">
+
+      <div class="row row-header">
+        <ul>
+          <li class="col col-1">Category / Topic</li>
+          <li class="col col-2">Last Update</li>
+          <li class="col col-3">Status</li>
+          <li class="col col-4">Info</li>
+        </ul>
+      </div>
+
+      <% @topics.each do |topic| %>
+        <% first_update = topic.updates.first %>
+        <% last_update = topic.updates.last %>
+
+        <div class="topic-show">
+          <ul class="topic-row">
+            <li class="topic-title col col-1">
+              <%= image_tag("category_icons/#{topic.category.icon_url}", size: "48x48", alt: "#{topic.category.subject.capitalize}") %>
+              <p><strong><%= topic.title %></strong> <span>(<%= topic.subcode %>)</span></p>
+            </li>
+
+            <li class="topic-doctor col col-2">
+              <%= image_tag(last_update.user.photo, class: "avatar-md", alt: "Dr. #{last_update.user.first_name} #{last_update.user.last_name}") %>
+              <div class="update">
+                <p><%= "Dr. #{last_update.user.first_name} #{last_update.user.last_name}" %></p>
+                <p><%= last_update.created_at.strftime("%Y-%m-%d") %></p>
+              </div>
+            </li>
+
+            <% case last_update.topic_status %>
+            <% when 'diagnosed' %>
+              <% status_class = 'diagnosed' %>
+            <% when 'under treatment' %>
+              <% status_class = 'under_treatment' %>
+            <% else %>
+              <% status_class = 'cured' %>
+            <% end %>
+
+            <li class="topic-laststatus col col-3">
+              <div class="signal <%= status_class %>"></div>
+              <p class="<%= status_class %>"><%= last_update.topic_status.capitalize %></p>
+            </li>
+
+            <li class="topic-info col col-4">
+              <p><i class="fas fa-list-ul"></i> <strong>  <%= topic.updates.count %></strong> Entries</p>
+              <p><i class="far fa-file-alt"></i> <strong> <%= topic.documents.where(status: 'active').count %></strong> Documents</p>
+              <p><i class="far fa-calendar-alt"></i> <strong> <%= topic.schedules.where(status: 'active').count %></strong> Prescriptions</p>
+            </li>
+
+          </ul>
+
+          <ul class="topic-hidden">
+            <li class="topic-lastupdate col col-1">
+              <p><strong><%= last_update.created_at.strftime("%Y-%m-%d") %>:</strong> <%= last_update.diagnosis %></p>
+            </li>
+          </ul>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
