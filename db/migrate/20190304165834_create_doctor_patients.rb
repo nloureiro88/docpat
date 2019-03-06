@@ -7,8 +7,7 @@ class CreateDoctorPatients < ActiveRecord::Migration[5.2]
       t.boolean :pr_time, default: false
       t.boolean :pr_help, default: false
       t.boolean :pr_kind, default: false
-      t.float :pr_calc, default: 0
-      t.string :status, default: 'active'
+      t.string :status, default: 'created'
 
       t.timestamps
     end

@@ -17,4 +17,26 @@ class User < ApplicationRecord
   has_many :updates, through: :topics
   has_many :documents, through: :topics
   has_many :schedules, through: :topics
+
+  STATUS = ['active', 'inactive']
+
+  validates :first_name, presence: true, allow_blank: false
+  validates :last_name, presence: true, allow_blank: false
+  validates :gender, inclusion: { in: ['male', 'female', 'undefined'] }
+  validates :photo, presence: true, allow_blank: false
+  validates :address, presence: true, allow_blank: false
+  validates :date_birth, presence: true, allow_blank: false
+  validates :identity_card, presence: true, allow_blank: false
+  validates :user_type, inclusion: { in: ['patient', 'doctor'] }
+  validate :val_doc_info
+
+  def val_doc_info
+    return unless user_type == "doctor"
+
+    if doc_number.nil?
+      errors.add("Doctor professional number must be provided")
+    elsif doc_specialties.size < 1
+      errors.add("At least 1 medical specialty must be provided")
+    end
+  end
 end
