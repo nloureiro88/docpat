@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_192526) do
     t.bigint "topic_id"
     t.bigint "user_id"
     t.string "doc_type"
-    t.string "exam_type", default: ""
+    t.string "exam_type"
     t.string "doc_title"
     t.string "tags", default: [], array: true
     t.string "url"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_192526) do
     t.string "dosage"
     t.text "notes"
     t.date "date_start"
-    t.date "date_end"
+    t.date "date_end", default: "9999-12-31"
     t.string "status", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -125,12 +125,12 @@ ActiveRecord::Schema.define(version: 2019_03_04_192526) do
     t.string "photo"
     t.text "address"
     t.date "date_birth"
-    t.bigint "identity_card"
+    t.string "identity_card"
     t.string "user_type"
     t.string "pat_blood"
     t.string "pat_pharma"
     t.string "pat_pharma_email"
-    t.bigint "doc_number"
+    t.string "doc_number"
     t.string "doc_institutions", default: [], array: true
     t.string "doc_specialties", default: [], array: true
     t.string "status", default: "active"
