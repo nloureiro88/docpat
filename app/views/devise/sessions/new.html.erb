@@ -1,4 +1,26 @@
-<h2>Log in</h2>
+<!-- Authentication pages -->
+
+         <!--  <form method='post' action="/example" autocompelete="new-password" role="presentation" class="form">
+            <input name="email" class="fakefield">
+            <label>Email</label>
+            <input type="text" name="email" id='email' placeholder="you@example.com">
+            <label>Password</label>
+            <input type="password" name="password" id='password' placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" autocomplete="off">
+            <button type='submit' class="button button__accent">Log in</button>
+            <a href=""><h6 class="left-align" >Forgot your password?</h6></a>
+          </form> -->
+
+
+<div class="auth">
+    <div class="container">
+      <div class="auth__inner">
+        <div class="auth__media">
+          <%= image_tag('undraw_selfie1_kpqf.svg') %>
+          <!-- <img src="./images/undraw_selfie.svg"> -->
+        </div>
+        <div class="auth__auth">
+          <h1 class="auth__title">Access your account</h1>
+          <p>Fill in your email and password to proceed</p>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs">
@@ -13,8 +35,14 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+    <%= f.button :submit, "Log in", :class => 'button button__accent' %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+    </div>
+      </div>
+    </div>
+  </div>
+<script src='js/app.min.js'></script>
