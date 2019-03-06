@@ -255,7 +255,7 @@ User.where(user_type: 'patient').each do |patient|
     topic = Topic.new(patient: patient,
                       title: topics[code],
                       category: Category.find_by(code: code[0]),
-                      subcode: code[1,2],
+                      subcode: code,
                       status: 'active') # To test with different status
     topic.save!
 
@@ -267,7 +267,7 @@ User.where(user_type: 'patient').each do |patient|
                           user: user_array.sample,
                           diagnosis: Faker::Quote.matz,
                           next_steps: ["Take medicine XYZ", "Start treatment ABC", "New appointment on #{Faker::Date.forward(90)}", "Contact Dr. #{rand_doctor_name}"].sample(rand(1..3)),
-                          topic_status: ["diagnosed", "under treatment", "cured", "inactive"].sample)
+                          topic_status: ["diagnosed", "under treatment", "cured"].sample)
       update.save!
     end
   end
