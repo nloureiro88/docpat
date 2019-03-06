@@ -25,6 +25,7 @@ class User < ApplicationRecord
   validates :gender, inclusion: { in: ['male', 'female', 'undefined'] }
   validates :photo, presence: true, allow_blank: false
   validates :address, presence: true, allow_blank: false
+  validates :date_birth, presence: true, allow_blank: false
   validates :identity_card, presence: true, allow_blank: false
   validates :user_type, inclusion: { in: ['patient', 'doctor'] }
   validate :val_doc_info
