@@ -311,7 +311,7 @@ Topic.all.each do |topic|
                     user: user_array.sample,
                     sc_title: "#{sch_type.capitalize} for #{topic.title}",
                     sc_type: sch_type,
-                    schedule: ["#{rand(1..5)} times a day", "Every #{rand(2..5)} days", "Everyday", "Every week", "Every #{rand(6..12)} hours}"].sample,
+                    schedule: ["#{rand(1..5)} times a day", "Every #{rand(2..5)} days", "Everyday", "Every week", "Every #{rand(6..12)} hours"].sample,
                     dosage: "#{rand(20..120).round(-1)} ml",
                     notes: Faker::Quote.famous_last_words,
                     date_start: rand_date_start,
