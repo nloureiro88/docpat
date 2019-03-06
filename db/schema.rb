@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_192526) do
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
+    t.string "code"
     t.string "subject"
     t.string "icon_url"
     t.datetime "created_at", null: false
@@ -29,8 +30,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_192526) do
     t.boolean "pr_time", default: false
     t.boolean "pr_help", default: false
     t.boolean "pr_kind", default: false
-    t.float "pr_calc", default: 0.0
-    t.string "status", default: "active"
+    t.string "status", default: "created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["doctor_id"], name: "index_doctor_patients_on_doctor_id"
@@ -42,7 +42,8 @@ ActiveRecord::Schema.define(version: 2019_03_04_192526) do
     t.bigint "user_id"
     t.string "doc_type"
     t.string "exam_type"
-    t.string "tags"
+    t.string "doc_title"
+    t.string "tags", default: [], array: true
     t.string "url"
     t.string "file_type"
     t.string "status", default: "active"
@@ -62,7 +63,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_192526) do
   create_table "family_patients", force: :cascade do |t|
     t.bigint "family_id"
     t.bigint "patient_id"
-    t.string "status", default: "active"
+    t.string "status", default: "created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["family_id"], name: "index_family_patients_on_family_id"
@@ -73,12 +74,12 @@ ActiveRecord::Schema.define(version: 2019_03_04_192526) do
     t.bigint "topic_id"
     t.bigint "user_id"
     t.string "sc_type"
-    t.string "title"
+    t.string "sc_title"
     t.string "schedule"
     t.string "dosage"
     t.text "notes"
     t.date "date_start"
-    t.date "date_end"
+    t.date "date_end", default: "9999-12-31"
     t.string "status", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -90,7 +91,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_192526) do
     t.bigint "patient_id"
     t.bigint "category_id"
     t.string "title"
-    t.string "code"
+    t.string "subcode"
     t.string "status", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -101,8 +102,8 @@ ActiveRecord::Schema.define(version: 2019_03_04_192526) do
   create_table "updates", force: :cascade do |t|
     t.bigint "topic_id"
     t.bigint "user_id"
-    t.text "diagnosys"
-    t.string "next_steps"
+    t.text "diagnosis"
+    t.string "next_steps", default: [], array: true
     t.string "topic_status", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -120,17 +121,18 @@ ActiveRecord::Schema.define(version: 2019_03_04_192526) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
+    t.string "gender"
     t.string "photo"
     t.text "address"
     t.date "date_birth"
-    t.integer "identity_card"
+    t.string "identity_card"
     t.string "user_type"
     t.string "pat_blood"
     t.string "pat_pharma"
     t.string "pat_pharma_email"
-    t.integer "doc_number"
-    t.string "doc_institutions"
-    t.string "doc_specialties"
+    t.string "doc_number"
+    t.string "doc_institutions", default: [], array: true
+    t.string "doc_specialties", default: [], array: true
     t.string "status", default: "active"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
