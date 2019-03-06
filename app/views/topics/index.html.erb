@@ -24,14 +24,14 @@
 
     <div class="row row-container">
 
-    <div class="row row-header">
-      <ul>
-        <li class="col col-1">Category / Topic</li>
-        <li class="col col-2">Last Update</li>
-        <li class="col col-3">Status</li>
-        <li class="col col-4">Info</li>
-      </ul>
-    </div>
+      <div class="row row-header">
+        <ul>
+          <li class="col col-1">Category / Topic</li>
+          <li class="col col-2">Last Update</li>
+          <li class="col col-3">Status</li>
+          <li class="col col-4">Info</li>
+        </ul>
+      </div>
 
       <% @topics.each do |topic| %>
         <% first_update = topic.updates.first %>

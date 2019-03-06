@@ -56,6 +56,7 @@
     font-size: 0.8rem;
 
     .row-header {
+      max-width: 100%;
       background-color: $d-blue;
       color: white;
       padding: 0.5rem 1rem;
@@ -79,6 +80,7 @@
 
     .topic-show {
       position: relative;
+      max-width: 100%;
       margin-top: 1.5rem;
       padding: 1rem 0;
       border: 1px solid rgb(230,230,230);
