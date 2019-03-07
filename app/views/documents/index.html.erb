@@ -41,17 +41,27 @@
   </tbody>
 </table>
 
-<!-- <h2>Pic handling</h2>
-<%= cl_image_tag "samples/sheep.jpg", :width=>100, :height=>100, :alt=>"hello"%>
-<%= cl_image_tag "sample.png", :width=>100, :height=>100, :alt=>"hello", :crop=>:fit %>
-<%= cl_image_tag "sample", format: :png %>
 
-<%= cl_image_tag("sheep.jpg", :transformation=>[
+
+<svg width="150" height="150" viewBox="0 0 220 100" xmlns="http://www.w3.org/2000/svg">   <rect class="hover-check" x="00" y="00" width="100" height="100" rx="15" ry="15"/>   <rect class="hover-check" x="120" y="0" width="100" height="100" rx="15" ry="15"/> </svg>
+
+<h1 class="animated infinite bounce delay-2s">Example</h1>
+
+<link rel="stylesheet" href="animate.min.css">
+
+
+
+<!-- <h2>Pic handling</h2>
+<%#= cl_image_tag "samples/sheep.jpg", :width=>100, :height=>100, :alt=>"hello"%>
+<%#= cl_image_tag "sample.png", :width=>100, :height=>100, :alt=>"hello", :crop=>:fit %>
+<%#= cl_image_tag "sample", format: :png %>
+
+<%#= cl_image_tag("sheep.jpg", :transformation=>[
   {:width=>700, :height=>700, :crop=>"fill"},
   {:effect=>"style_transfer", :overlay=>"bike.jpg"}
   ]) %>
 
-  <%= cl_image_tag("bike", :transformation=>[
+  <%#= cl_image_tag("bike", :transformation=>[
   {:height=>700, :width=>700, :crop=>"fill"},
   {:effect=>"style_transfer:preserve_color:40", :overlay=>"sheep"}
   ])
