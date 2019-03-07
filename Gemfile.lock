@@ -108,15 +108,8 @@ GEM
       sassc (>= 1.11)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    http (3.3.0)
-      addressable (~> 2.3)
-      http-cookie (~> 1.0)
-      http-form_data (~> 2.0)
-      http_parser.rb (~> 0.6.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    http-form_data (2.1.1)
-    http_parser.rb (0.6.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.8.0)
@@ -219,11 +212,6 @@ GEM
     shrine (2.16.0)
       content_disposition (~> 1.0)
       down (~> 4.1)
-    shrine-cloudinary (1.0.1)
-      cloudinary (< 2)
-      down (~> 4.4)
-      http (~> 3.2)
-      shrine (~> 2.11)
     simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -307,7 +295,6 @@ DEPENDENCIES
   redis
   sassc-rails
   shrine (~> 2.0)
-  shrine-cloudinary
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)

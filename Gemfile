@@ -5,13 +5,11 @@ ruby '2.5.3'
 
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'nokogiri'
-
+gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
 gem "pundit"
 gem "pg_search"
 gem "shrine", "~> 2.0"
-gem 'cloudinary', '~> 1.9.1'
-gem "shrine-cloudinary"
 gem "data_grid"
 gem "flatpickr"
 
