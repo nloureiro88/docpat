@@ -1,4 +1,4 @@
-.topics .item-row {
+.topics .show-row {
 
   .topic-title {
     align-items: center;
@@ -33,10 +33,23 @@
     }
   }
 
+  .topic-ns {
+    ul {
+      padding-left: 1rem;
+
+      li {
+        list-style: square;
+        list-style-type: square;
+        padding: 0;
+        margin-bottom: 0.2rem;
+      }
+    }
+  }
+
   &:hover {
     .topic-info {
       a {
-        border: 1px solid $l-gray;
+        border: 1px solid rgb(230,230,230);
         border-radius: 5px;
       }
     }

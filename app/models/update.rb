@@ -10,4 +10,15 @@ class Update < ApplicationRecord
   validates :user_id, presence: true, allow_blank: false
   validates :diagnosis, presence: true, allow_blank: false
   validates :topic_status, inclusion: { in: HEALTH_STATUS }
+
+  include PgSearch
+  pg_search_scope :updates_search,
+    against: [:topic_status, :created_at],
+    associated_against: {
+       topic: [:subcode, :title],
+       user: [:first_name, :last_name, :doc_specialties]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
 end

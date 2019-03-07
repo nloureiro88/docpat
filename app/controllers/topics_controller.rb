@@ -4,18 +4,9 @@ class TopicsController < ApplicationController
 
   def index
     if params[:query].present?
-      @topics = policy_scope(Topic).where(patient: @patient, status: "active").order('created_at DESC').global_search(params[:query])
+      @topics = policy_scope(Topic).where(patient: @patient, status: "active").order('created_at DESC').topics_search(params[:query])
     else
       @topics = policy_scope(Topic).where(patient: @patient, status: "active").order('created_at DESC')
-    end
-  end
-
-  def show
-    authorize Topic
-    if params[:query].present?
-      @updates = policy_scope(Topic).updates.where(topic: @topic).order('created_at DESC').update_search(params[:query])
-    else
-      @updates = policy_scope(Topic).updates.where(topic: @topic).order('created_at DESC')
     end
   end
 

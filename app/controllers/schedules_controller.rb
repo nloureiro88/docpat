@@ -1,4 +1,6 @@
 class SchedulesController < ApplicationController
+  before_action :find_patient
+
   def index
   end
 
