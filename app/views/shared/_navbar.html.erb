@@ -1,7 +1,9 @@
-<div class="navbar-wagon">
+
+<div class="navbar-wagon fixed-top">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png", height: 50 %>
+            <h2 style="color:#EA9059;">DocPat</h2>
+    <%#= image_tag "logo.png", height: 50 %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -10,9 +12,12 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Home", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Doctors", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Health Log", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Exams", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Documents", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Prescriptions", "#", class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -48,9 +53,13 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+        <li><%#= link_to "Home", cars_path %></li>
+        <li><%#= link_to "Doctors", root_path %></li>
+        <li><%#= link_to "Health Log", root_path %></li>
+        <li><%#= link_to "Exams", root_path %></li>
+        <li><%#= link_to "Documents", cars_path %></li>
+        <li><%#= link_to "Prescriptions", root_path %></li>
+
       </ul>
     </div>
   </div>

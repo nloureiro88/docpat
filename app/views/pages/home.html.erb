@@ -1,19 +1,5 @@
  <!-- Hero(extended) navbar -->
- <!--  <div class="navbar navbar--extended">
-    <nav class="nav__mobile"></nav>
-    <div class="container">
-      <div class="navbar__inner">
-        <a href="index.html" class="navbar__logo">Logo</a>
-        <nav class="navbar__menu">
-          <ul>
-            <li><a href="#">Option</a></li>
-            <li><a href="#">Option 2</a></li>
-          </ul>
-        </nav>
-        <div class="navbar__menu-mob"><a href="" id='toggle'><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" class=""></path></svg></a></div>
-      </div>
-    </div>
-  </div> -->
+
 <!-- Banner unit -->
   <!-- <div id="banner">
     <div class="video-wrapper"> -->
@@ -24,24 +10,25 @@
             <p>Join DocPat today and be in control of your <br>family’s health history anytime, anyplace, anywhere.</p>
 
             <br>
-
-
     </div>
   </div> -->
-
 <div class="homepage boilerplate">
 
   <!-- Hero unit -->
   <div class="hero">
     <div class="hero__overlay hero__overlay--gradient"></div>
+    <!-- <div class="home-banner"> -->
     <div class="hero__mask"></div>
     <div class="hero__inner">
       <div class="container">
         <div class="hero__content">
           <div class="hero__content__inner" id='navConverter'>
+
             <h1 class="hero__title">DocPat | Your Health - Always</h1>
             <%= image_tag('undraw_medicine_b1ol.svg', :class => 'expanded__image') %>
-            <p class="hero__text">Join DocPat today and be in control of your family’s health history anytime, anyplace, anywhere.</p>
+            <p>
+              <span class="hero__text" id="banner-typed-text"></span>
+            </p>
             <a href="#" class="button button__accent">Register</a>
             <a href="#" class="button hero__button">Learn more</a>
           </div>
@@ -157,4 +144,4 @@
 
 <%= render 'shared/home_footer' %>
 </div>
-<script src='js/app.min.js'></script>
+
