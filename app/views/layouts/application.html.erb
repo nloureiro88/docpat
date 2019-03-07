@@ -8,11 +8,19 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+
   </head>
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+
+<svg width="150" height="150" viewBox="0 0 220 100" xmlns="http://www.w3.org/2000/svg">   <rect class="hover-check" x="00" y="00" width="100" height="100" rx="15" ry="15"/>   <rect class="hover-check" x="120" y="0" width="100" height="100" rx="15" ry="15"/> </svg>
+
+<h1 class="animated infinite bounce delay-2s">Example</h1>
+
+<link rel="stylesheet" href="animate.min.css">
+
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>

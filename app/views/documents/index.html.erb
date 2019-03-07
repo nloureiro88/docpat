@@ -1,2 +1,69 @@
 <h1>Documents#index</h1>
 <p>Find me in app/views/documents/index.html.erb</p>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Documents</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">File</th>
+      <th>File type</th>
+      <th>Description</th>
+      <th>Size</th>
+      <th>Width</th>
+      <th>Height</th>
+      <th>Image data</th>
+      <th>Image data</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @documents.each do |document| %>
+      <% if document.image %>
+        <tr>
+          <td style="width: 40px" ><%= image_tag(document.image_url, size:"40") if document.image_data? %></td>
+          <td style="width: 200px" ><%#= document.image.metadata["filename"] %></td>
+          <td style="width: 50px"><%= document.image.metadata["mime_type"] %></td>
+          <td style="width: 400px"><%= document.topic %></td>
+          <td style="width: 50px"><%= document.image.metadata["size"] %></td>
+          <td style="width: 50px"><%= document.image.metadata["width"] %></td>
+          <td style="width: 50px"><%= document.image.metadata["height"] %></td>
+
+        <!--   <td style="width: 50px"><%#= link_to 'Show', document_path(document) %></td>
+          <td style="width: 50px"><%#= link_to 'Edit', edit_document_path(document) %></td>
+          <td style="width: 50px"><%#= link_to 'Destroy', document_path(document), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- <h2>Pic handling</h2>
+<%= cl_image_tag "samples/sheep.jpg", :width=>100, :height=>100, :alt=>"hello"%>
+<%= cl_image_tag "sample.png", :width=>100, :height=>100, :alt=>"hello", :crop=>:fit %>
+<%= cl_image_tag "sample", format: :png %>
+
+<%= cl_image_tag("sheep.jpg", :transformation=>[
+  {:width=>700, :height=>700, :crop=>"fill"},
+  {:effect=>"style_transfer", :overlay=>"bike.jpg"}
+  ]) %>
+
+  <%= cl_image_tag("bike", :transformation=>[
+  {:height=>700, :width=>700, :crop=>"fill"},
+  {:effect=>"style_transfer:preserve_color:40", :overlay=>"sheep"}
+  ])
+ %>
+
+
+ <%#= require 'cloudinary'
+Cloudinary::Api.resource("sample")
+ %>
+ <h1>XXX:</h1>
+<%# xx = Cloudinary::Api.resource("sample") %>
+<%#= xx.class %>
+ -->
+<br>
+<%#= link_to 'New Post', new_document_path %>
