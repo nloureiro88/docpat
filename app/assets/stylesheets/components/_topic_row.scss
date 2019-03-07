@@ -11,15 +11,19 @@
   .action-header {
     width: 80%;
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
 
     .actions {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
+
+      &.mobile {
+        display: none;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
 
       a {
         font-size: 0.75rem;
@@ -34,11 +38,9 @@
     .search-form {
       display: flex;
       align-items: center;
-      flex-grow: 1;
-      max-width: 40%;
-      margin-right: 20%;
 
       input {
+        border-radius: 5px;
         font-size: 0.75rem;
         color: $l-gray;
       }
@@ -50,13 +52,12 @@
     }
   }
 
-  .row-container {
+  .topic-container {
     width: 80%;
     margin: 3rem auto;
     font-size: 0.8rem;
 
-    .row-header {
-      max-width: 100%;
+    .header-row {
       background-color: $d-blue;
       color: white;
       padding: 0.5rem 1rem;
@@ -68,13 +69,7 @@
         display: flex;
         align-items: center;
         margin: 0;
-
-        .col-1 {width: 35%}
-        .col-2 {width: 25%}
-        .col-3 {width: 20%}
-        .col-4 {width: 7%}
-        .col-5 {width: 7%}
-        .col-6 {width: 7%}
+        padding: 0;
       }
     }
 
@@ -101,52 +96,46 @@
           }
         }
 
-        .col-1 {width: 35%}
-        .col-2 {width: 25%}
-        .col-3 {width: 20%}
-        .col-4 {width: 7%}
-        .col-5 {width: 7%}
-        .col-6 {width: 7%}
-
         .topic-title {
           align-items: center;
           color: $d-blue;
 
           p {
-            padding-left: 1rem;
-          }
-
-          .small {
-            font-size: 0.5rem;
+            padding-left: 0.75rem;
           }
         }
 
         .topic-doctor, .topic-laststatus {
           text-align: center;
           align-items: center;
+          text-align: left;
 
           img {
             margin-right: 1rem;
           }
-
-          .update {
-            text-align: left;
-          }
         }
 
         .signal {
-          height: 20px;
-          width: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 48px;
+          min-width: 24px;
           border-radius: 5px;
           text-align: center;
-          margin-right: 0.5rem;
+          margin-right: 1rem;
+
+          p {
+            color: white;
+            margin: 0;
+          }
 
           &.diagnosed {
             background-color: $red;
           }
 
           &.under_treatment {
-            background-color: $yellow;
+            background-color: $l-orange;
           }
 
           &.cured {
@@ -155,16 +144,29 @@
           }
         }
 
-        .diagnosed {
-          color: $red;
-        }
+        // .diagnosed {
+        //   color: white;
+        // }
 
-        .under_treatment {
-          color: $yellow;
-        }
+        // .under_treatment {
+        //   color: white;
+        // }
 
-        .cured {
-          color: $green;
+        // .cured {
+        //   color: white;
+        // }
+      }
+
+      .topic-info {
+        display: flex;
+        flex-wrap: wrap;
+
+        a {
+          border: 1px solid white;
+          font-size: 0.7rem;
+          padding: 4px;
+          color: $l-gray;
+          margin: 3px;
         }
       }
 
@@ -174,6 +176,7 @@
 
       &:hover {
         padding-bottom: 0;
+
         .topic-hidden {
           display: flex;
           align-items: center;
@@ -182,11 +185,42 @@
           margin: 0;
           margin-top: 1rem;
         }
+
+        .topic-info {
+         a {
+          border: 1px solid $l-gray;
+          border-radius: 5px;
+         }
+        }
       }
     }
 
     .topic-row > li, .topic-hidden > li {
       padding: 1rem;
+    }
+  }
+}
+
+@media(max-width:992px){
+  .website {
+    display: none;
+  }
+
+  .mobile {
+    display: flex;
+  }
+
+  .header-row {
+    display: none;
+  }
+
+  .signal {
+    width: 48px;
+  }
+
+  .topic-info {
+    a {
+      font-size: 1rem;
     }
   }
 }
