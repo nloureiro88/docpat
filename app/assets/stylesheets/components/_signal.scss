@@ -1,12 +1,12 @@
 .signal {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  text-align: center;
   min-height: 48px;
   min-width: 24px;
   border-radius: 5px;
-  text-align: center;
-  margin-right: 1rem;
+  width: 80%;
 
   p {
     color: white;
