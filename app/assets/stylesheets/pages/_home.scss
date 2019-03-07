@@ -1,1 +1,13 @@
-// Specific CSS for your home-page
+.homepage{
+
+  .homepage-search-form{
+    width: 600px;
+    display: flex;
+
+    input {
+      flex: 1 0 450px;
+      height: 100%;
+    }
+  }
+
+}

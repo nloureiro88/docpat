@@ -1,0 +1,73 @@
+
+// #banner {
+//   background-image: linear-gradient(rgba(0,0,0,0.8), rgba(128,128,128,0.9)), url(http://www.knightridercompanion.com/www/wp-content/uploads/2017/04/KARR_SK_WEB.jpg);
+//   color: white;
+//   padding: 150px 0;
+//   background-size: cover;
+//   height: 780px;
+// }
+
+// #banner h1 {
+//   font-size: 75px;
+//   color: #5894B5;
+//   letter-spacing: 1.5px;
+// text-shadow: 0px 15px 5px rgba(0,0,0,0.1),
+//                  10px 20px 5px rgba(0,0,0,0.05),
+//                  -10px 20px 5px rgba(0,0,0,0.05);
+// }
+
+// #banner p {
+//   font-size: 35px;
+//    color: white;
+//   font-weight: 150;
+//   line-height: 1.5;
+//   letter-spacing: 1.5px;
+//   text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+//              0px 8px 13px rgba(0,0,0,0.1),
+//              0px 18px 23px rgba(0,0,0,0.1);
+
+// }
+
+// Possible feature to add, don't delete .video
+
+.video-wrapper {
+  // padding-top: 40vh; // test
+  position: relative;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background-size: cover; // test
+  // background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.9));
+
+  video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+    overflow: hidden;
+  }
+}
+
+.banner-content {
+  position: absolute;
+  z-index: 5;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(rgba(0,0,0,0.8), rgba(128,128,128,0.4))
+  // background: rgba(0,0,0,0.4);
+}

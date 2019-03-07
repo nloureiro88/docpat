@@ -12,4 +12,16 @@ class Topic < ApplicationRecord
   validates :category_id, presence: true, allow_blank: false
   validates :title, presence: true, allow_blank: false, uniqueness: { scope: :patient_id }
   validates :status, inclusion: { in: STATUS }
+
+  include PgSearch
+  pg_search_scope :global_search,
+    against: [ :title, :subcode ],
+    associated_against: {
+       category: [ :subject, :code ]
+       # update: [:topic_status],
+       # user: [:first_name, :last_name]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
 end
