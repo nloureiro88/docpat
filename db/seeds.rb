@@ -289,6 +289,8 @@ Topic.all.each do |topic|
     user_array << doc
   end
 
+  image_json = "{\"id\":\"6b2ac5bb949db46f470cb463791c6985.png\",\"storage\":\"cache\",\"metadata\":{\"filename\":\"Captura de ecra 2019-02-25, as 15.50.17.png\",\"size\":130178,\"mime_type\":\"image/png\",\"width\":1366,\"height\":768}}"
+
   x = rand(1..5)
   x.times do
     doc_type = DOC_TYPES.sample
@@ -300,7 +302,8 @@ Topic.all.each do |topic|
                     tags: ["Important", "Follow-up", "Contact Doctor", "Tommorrow", "To Delete"].sample(rand(1..5)),
                     url: "https://www.lewagon.com",
                     file_type: file_types.sample,
-                    status: ['active', 'inactive'].sample)
+                    status: ['active', 'inactive'].sample,
+                    image_data: image_json)
   end
 
   y = rand(1..5)

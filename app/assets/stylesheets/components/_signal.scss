@@ -1,0 +1,40 @@
+.signal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 24px;
+  border-radius: 5px;
+  text-align: center;
+  margin-right: 1rem;
+
+  p {
+    color: white;
+    margin: 0;
+  }
+
+  &.diagnosed {
+    background-color: $red;
+  }
+
+  &.under_treatment {
+    background-color: $l-orange;
+  }
+
+  &.cured {
+    background-color: $green;
+    color: $green;
+  }
+}
+
+// .diagnosed {
+//   color: white;
+// }
+
+// .under_treatment {
+//   color: white;
+// }
+
+// .cured {
+//   color: white;
+// }
