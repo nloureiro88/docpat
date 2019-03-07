@@ -1,3 +1,5 @@
+
+
 const initUpdateNavbarOnScroll = () => {
   const navbar = document.querySelector('.navbar-wagon');
   if (navbar) {
@@ -9,6 +11,6 @@ const initUpdateNavbarOnScroll = () => {
       }
     });
   }
-};
+}
 
 export { initUpdateNavbarOnScroll };

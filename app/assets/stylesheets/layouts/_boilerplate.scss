@@ -858,7 +858,9 @@
   .hero {
     position: relative;
     width: 100%;
-    background-image: url("../images/hero_image.jpeg");
+    background-image: url('https://images.unsplash.com/photo-1476703993599-0035a21b17a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
+');
+    // background-image: url("../images/hero_image.jpeg");
     box-shadow: 0 4px 11px rgba(124, 146, 169, 0.5);
     background-size: cover;
     background-position: center center;
@@ -877,7 +879,9 @@
     background-color: #6C63FF; }
 
   .hero__overlay--gradient {
-    background: linear-gradient(to right, #5894B5, #8BC7E9); }
+    background: linear-gradient(to right, #5894B5, #8BC7E9);
+    opacity: 0.75;
+     }
 
   .hero__overlay--gradientVertical {
     background: linear-gradient(to bottom, #5894B5, #8BC7E9); }
