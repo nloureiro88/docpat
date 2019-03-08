@@ -47,7 +47,11 @@ class TopicsController < ApplicationController
   end
 
   def deactivate
+    authorize Topic
     @topic.status = "inactive"
+    @topic.save
+
+    redirect_to patient_topics_path(@patient)
   end
 
   private
