@@ -2,24 +2,34 @@ class DocumentsController < ApplicationController
   # before_action :set_document, only: [:show, :edit, :update, :destroy]
 
   def index
-
-    find_patient
-    @topics = Topic.where(patient_id: @patient)
-    @documents = policy_scope(Document).where(@topics)
-
-    # if params[:query].present?
-    #   @documents = policy_scope(Document).where(patient: @patient, status: "active").order('created_at DESC').global_search(params[:query])
-    # else
-    #   @documents = policy_scope(Document).where(patient: @patient, status: "active").order('created_at DESC')
-    # end
-
-  # redirect_to patient_documents_path
+    @patient = User.find(params[:patient_id])
+    if params[:query].present?
+      source_documents = policy_scope(Document).order('created_at DESC').documents_search(params[:query])
+    else
+      source_documents = policy_scope(Document).order('created_at DESC')
+    end
+    @documents = source_documents.select { |doc| doc.topic.status == "active" && doc.topic.patient == @patient }
   end
 
   def show
+    set_document
+    @patient = policy_scope(Document).find(params[:patient_id])
+  end
+
+  def deactivate
     authorize Document
     @document = policy_scope(Document).find(params[:id])
+    @patient = @document.patient
+    #@patient = policy_scope(Document).find(params[:patient_id])
+    #@document[:status] = "mudou"
+    @document.status = !@document.status
+    #@document.save
+    redirect_to patient_topics_path(@patient)
+end
 
+  def download
+    set_document
+    @document.image_url
   end
 
   def new
@@ -27,16 +37,16 @@ class DocumentsController < ApplicationController
     # @document = Document.new
     # @document.user = current_user
     # @document.topic = @topic
-
     # redirect_to new_patient_document_path
   end
+
 
   def edit
   end
 
+
   def create
     @document = Document.new(document_params)
-
     @document.user = current_user
     @document.topic = @topic
 
@@ -51,8 +61,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /documents/1
-  # PATCH/PUT /documents/1.json
   def update
     respond_to do |format|
       if @document.update(document_params)
@@ -65,13 +73,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-def deactivate
-  authorize @document
-  @document.status = !@document.status
-  @document.save
-
-  reditect_to patient_document_path
-end
 
   def destroy
     @document.destroy
@@ -84,17 +85,21 @@ end
 
 private
 
-      # Use callbacks to share common setup or constraints between actions.
       def set_document
-        @document = Document.find(params[:id])
-        #@patient = @topic.patient
+        #authorize Document
+        #@document = Document.find(params[:id])
+        #@patient = @document.patient
+
+        authorize Document
+        @document = policy_scope(Document).find(params[:id])
+        # @patient = policy_scope(Document).find(params[:patient_id])
       end
 
       def find_patient
         @patient = User.find(params[:patient_id])
-      end      # Never trust parameters from the scary internet, only allow the white list through.
+      end
 
-      def document_params
+      def documents_params
         params.require(:document).permit(:topic_id, :user_id, :doc_type, :exam_type, :doc_title, :tags, :url, :file_type, :status, :image)
       end
 end

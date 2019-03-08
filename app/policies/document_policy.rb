@@ -32,4 +32,9 @@ class DocumentPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
+  def deactivate?
+    true
+  end
+
 end
