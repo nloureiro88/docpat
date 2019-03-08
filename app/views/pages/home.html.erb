@@ -24,13 +24,22 @@
         <div class="hero__content">
           <div class="hero__content__inner" id='navConverter'>
 
-            <h1 class="hero__title">DocPat | Your Health - Always</h1>
-            <%= image_tag('undraw_medicine_b1ol.svg', :class => 'expanded__image') %>
-            <p>
+            <h1 class="hero__title" style="font-size: 64px; margin-bottom: 24px">DocPat</h1>
+            <h4 class="hero__title">Your Health - Always</h4>
+            <%#= image_tag('undraw_medicine_b1ol.svg', :class => 'expanded__image') %>
+
+          <p>
               <span class="hero__text" id="banner-typed-text"></span>
             </p>
-            <a href="#" class="button button__accent">Register</a>
-            <a href="#" class="button hero__button">Learn more</a>
+
+
+            <%= link_to t(".sign_up", default: "Register"), new_user_registration_path, class: "button button__accent" %>
+
+            <%= link_to t(".sign_in", default: "Sign In"), new_user_session_path, class: "button hero__button" %>
+
+
+
+
           </div>
         </div>
       </div>
@@ -45,7 +54,7 @@
   <div class="steps landing__section">
     <div class="container">
       <h2>Join DocPat today and be in control of your <br> family’s health history and documentation</h2>
-      <!-- <p>Here's who we can think of, but surely creative people will surprise us.</p> -->
+
     </div>
     <div class="container">
       <div class="steps__inner">
@@ -54,29 +63,29 @@
              <%= image_tag('undraw_doctor_kw5l.svg', :class => 'step__image') %>
 
           </div>
-          <!-- <h4>Global network of doctors - including yours</h4> -->
+
           <p>Access to Global network of doctors - anyplace</p>
-          <!-- <p class="step__text">A landing page for your open source projects. Present your solution, easily create docs.</p> -->
+
         </div>
 
         <div class="step">
           <div class="step__media">
             <%= image_tag('undraw_medicine_b1ol.svg', :class => 'step__image') %>
-            <!-- <img src="./images/undraw_responsive.svg" class="step__image"> -->
+
           </div>
-          <!-- <h4>Health history of your family - anywhere</h4> -->
+
           <p>Health history of your family - anywhere</p>
-          <!-- <p class="step__text">A website for your own freebies. Let the world download and use your artwork.</p> -->
+
         </div>
 
         <div class="step">
           <div class="step__media">
             <%= image_tag('undraw_doctors_hwty.svg', :class => 'step__image') %>
-            <!-- <img src="./images/undraw_creation.svg" class="step__image"> -->
+
           </div>
           <!-- <h4>Medical records of your loved ones - anyplace</h4> -->
           <p>Digital prescriptions and schedules - anytime</p>
-          <!-- <p class="step__text">A great starting point for your web application. Focus on your idea and execution.</p> -->
+
         </div>
       </div>
     </div>
@@ -132,7 +141,8 @@
       <div class="cta__inner">
         <h2 class="cta__title">Get started now</h2>
         <p class="cta__sub cta__sub--center">Join DocPat today and be in control of your <br> family’s health history and documentation.</p>
-        <a href="#" class="button button__accent">Join DocPat Now</a>
+         <%= link_to t(".sign_up", default: "Join DocPat Now"), new_user_registration_path, class: "button button__accent" %>
+        <!-- <a href="#" class="button button__accent">Join DocPat Now</a> -->
       </div>
     </div>
   </div>
