@@ -1,6 +1,6 @@
 .boilerplate {
   // Specific CSS for your home-page
-  // @import url("https://fonts.googleapis.com/css?family=Lato:400");
+  // @import url("https://fonts.googleapis.com/css?family=Nunito:400");
 
   /* Document
      ========================================================================== */
@@ -356,7 +356,7 @@
     margin-right: 8pt; }
 
   html {
-    font-family: "Lato", sans-serif;
+    font-family: "Nunito", sans-serif;
     font-size: 15px;
     color: #666;
     line-height: 1.7;
@@ -436,7 +436,7 @@
     white-space: nowrap;
     cursor: pointer;
     background-color: transparent;
-    border-radius: 30px;
+    border-radius: 5px;
     margin-bottom: 1.3em;
     transition: 0.7s;
     text-align: center;
@@ -516,10 +516,10 @@
     width: 100%;
     transition: 0.7s;
     color: #111;
-    font-family: "Lato", sans-serif;
+    font-family: "Nunito", sans-serif;
     font-weight: 400;
     padding: 10pt 20pt;
-    border-radius: 30px;
+    border-radius: 5px;
     background-color: #f7f7f7;
     margin-bottom: 1.4em;
     display: block; }
@@ -534,10 +534,10 @@
     width: 100%;
     transition: 0.7s;
     color: #111;
-    font-family: "Lato", sans-serif;
+    font-family: "Nunito", sans-serif;
     font-weight: 400;
     padding: 12pt 24pt;
-    border-radius: 30px;
+    border-radius: 5px;
     background-color: #f7f7f7;
     margin-bottom: 1.4em;
     display: block;
@@ -554,12 +554,12 @@
     width: 100%;
     transition: 0.7s;
     color: #111;
-    font-family: "Lato", sans-serif;
+    font-family: "Nunito", sans-serif;
     font-weight: 400;
     padding: 10pt 20pt;
     margin-bottom: 1.4em;
     display: block;
-    border-radius: 30px;
+    border-radius: 5px;
     background-color: #f7f7f7;
     outline: 0;
     -webkit-appearance: none;

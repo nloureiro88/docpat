@@ -1,11 +1,7 @@
-.new {
-  background-color: #E7F6FF;
-}
-
 .old {
-  background-color: rgb(240,240,240);
+  background-color: rgba(250,250,250,0);
 }
 
 .hover {
-  background-color: gradient(180deg, #5692B3 0%, #8BC7E9 100%);
+  background-color: linear-gradient(180deg, #5692B3 0%, #8BC7E9 100%);
 }

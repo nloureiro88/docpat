@@ -5,16 +5,17 @@
   justify-content: flex-start;
   position: fixed;
   top: 70px;
-  padding-top: 70px;
+  padding-top: 50px;
   padding-right: 20px;
+  padding-left: 20px;
   right: 0;
-  width: 140px;
+  width: 160px;
   height: calc(100vh - 70px);
   background-color: rgb(240,240,240);
 
   p {
     color: $l-gray;
-    font-size: 12px;
+    font-size: 0.8rem;
     margin: 6px auto;
     text-align: center;
   }
@@ -51,7 +52,9 @@
     border-top: 1px solid $l-gray;
 
     p:first-child{
+      font-size: 12px;
       margin-bottom: 18px;
+      text-transform: uppercase;
     }
 
     p {
