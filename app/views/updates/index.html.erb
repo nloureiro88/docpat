@@ -1,4 +1,4 @@
-<div class="container list-page updates">
+<div class="container list-page updates content">
   <div class="row">
     <h2>Health Log</h2>
   </div>
@@ -64,11 +64,11 @@
     <div class="header-row">
       <div class="row">
         <ul>
-          <li class="col col-md-3">Category / Topic</li>
-          <li class="col col-md-2">Date</li>
-          <li class="col col-md-3">Updated By</li>
-          <li class="col col-md-2">Status</li>
-          <li class="col col-md-2">Changes</li>
+          <li class="col col-xs-3">Category / Topic</li>
+          <li class="col col-xs-2">Date</li>
+          <li class="col col-xs-3">Updated By</li>
+          <li class="col col-xs-2">Status</li>
+          <li class="col col-xs-2">Changes</li>
         </ul>
       </div>
     </div>
@@ -94,22 +94,23 @@
             <%# end %>
           </div>
 
-          <li class="topic-title col col-xs-12 col-md-3">
-            <%= image_tag("category_icons/#{update.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{update.topic.category.subject.capitalize}") %>
+          <li class="topic-title col col-xs-7 col-sm-5 col-md-3">
+            <%= image_tag("category_icons/#{update.topic.category.icon_url}", size: "40x40", class: "svg-icon desktop", alt: "#{update.topic.category.subject.capitalize}") %>
             <p><strong><%= update.topic.title %></strong>
-            <span class="small">(<%= update.topic.subcode %>)</span></p>
+            <span class="small code">(<%= update.topic.subcode %>)</span></p>
+            <p class="mobile-date"><%= update.created_at.strftime("%d-%m-%Y") %></p>
           </li>
 
-          <li class="update-date col col-xs-12 col-md-2">
+          <li class="update-date col col-md-2">
             <p><%= update.created_at.strftime("%d-%m-%Y") %></p>
           </li>
 
-          <li class="topic-doctor col col-xs-12 col-md-3">
+          <li class="topic-doctor col col-xs-2 col-sm-2 col-md-3">
             <%= image_tag(update.user.photo, class: "avatar-md", alt: "Dr. #{update.user.first_name} #{update.user.last_name}") %>
             <div class="update website">
-              <p><%= "Dr. #{update.user.first_name} #{update.user.last_name}" %></p>
+              <p class="desktop"><%= "Dr. #{update.user.first_name} #{update.user.last_name}" %></p>
               <% if update.user.user_type == "doctor" %>
-                <p class="small"><%= update.user.doc_specialties.join(", ") %></p>
+                <p class="small desktop"><%= update.user.doc_specialties.join(", ") %></p>
               <% end %>
             </div>
           </li>
@@ -123,13 +124,13 @@
             <% status_class = 'cured' %>
           <% end %>
 
-          <li class="topic-laststatus col-xs-6 col-md-2">
+          <li class="topic-laststatus col-xs-2 col-sm-2 col-md-2">
             <div class="signal <%= status_class %>">
-              <p class="<%= status_class %> website"><%= update.topic_status.capitalize %></p>
+              <p class="<%= status_class %> desktop"><%= update.topic_status.capitalize %></p>
             </div>
           </li>
 
-          <li class="update-changes col col-xs-12 col-md-2">
+          <li class="update-changes col col-sm-3 col-md-2">
 
             <% previous_update = update.class.where("id < ?", update.id).select{|up| up.topic_id = update.topic_id}.last %>
 

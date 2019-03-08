@@ -1,5 +1,9 @@
 .updates .show-row {
 
+  .mobile-date {
+    display: none;
+  }
+
   .topic-title {
     align-items: center;
     color: $d-blue;
@@ -38,6 +42,57 @@
 
     img {
       margin-right: 1rem;
+    }
+  }
+
+  @media (max-width: 450px) {
+
+    .topic-laststatus{
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+
+    .index-row {
+      ul > li {
+        padding: 0;
+
+        .code {
+          display: none;
+        }
+      }
+    }
+
+    .update-changes.col {
+      display: none
+    }
+  }
+
+  @media (max-width: 992px) {
+
+    .header-row {
+      display: none;
+    }
+
+    .update-date.col {
+      display: none
+    }
+
+    .topic-title.col {
+      flex-direction: column;
+
+      p {
+        text-align: center;
+      }
+
+      .mobile-date {
+        display: block;
+      }
+    }
+
+    .desktop {
+      display: none;
     }
   }
 }
