@@ -11,6 +11,7 @@
   </head>
   <body class="<%= controller_name %>_<%= action_name %>">
     <%= render 'shared/navbar' unless controller_name == "pages" %>
+    <%= render 'shared/sidebar' unless controller_name == "pages" %>
     <%= render 'shared/flashes' %>
     <div class="wrapper">
       <%= yield %>
