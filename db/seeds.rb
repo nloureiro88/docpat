@@ -112,7 +112,7 @@ end
 
 puts "Creating families..."
 
-families = ['Footinvest', 'Clubhouse', 'Ask Mom', 'Caretaker Helper']
+families = ['Footinvest', 'Clubhouse', 'Ask Mom', 'Caretaker Helper', 'DocPat', 'Habit Tracker']
 
 families.each do |fam|
   Family.create(name: fam, status: 'active') # To test with different status
