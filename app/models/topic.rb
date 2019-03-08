@@ -17,8 +17,8 @@ class Topic < ApplicationRecord
   pg_search_scope :topics_search,
     against: [ :title, :subcode ],
     associated_against: {
-       category: [ :subject, :code ],
-       updates: [:topic_status]
+       category: [ :subject, :code ]
+       # updates: [:topic_status]
        # user: [:first_name, :last_name]
     },
     using: {
