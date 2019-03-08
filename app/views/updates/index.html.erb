@@ -132,16 +132,25 @@
 
           <li class="update-changes col col-sm-3 col-md-2">
 
-            <% previous_update = update.class.where("id < ?", update.id).select{|up| up.topic_id = update.topic_id}.last %>
+            <% previous_update = update.class.where("id < ?", update.id).select{|up| up.topic_id == update.topic_id}.last %>
 
-            <% icon_dia = update.diagnosis != previous_update.diagnosis ? "fas fa-check-circle" : "far fa-circle" %>
-            <p class="small"><i class='<%= icon_dia %>'></i> Analysis</p>
+            <% if previous_update.nil? %>
+              <p class="small"><i class='fas fa-check-circle'></i> Analysis</p>
+              <p class="small"><i class='fas fa-check-circle'></i> Next Steps</p>
+              <p class="small"><i class='fas fa-check-circle'></i> Status</p>
 
-            <% icon_ns = update.next_steps != previous_update.next_steps ? "fas fa-check-circle" : "far fa-circle" %>
-            <p class="small"><i class='<%= icon_ns %>'></i> Next Steps</p>
+            <% else %>
 
-            <% icon_hs = update.topic_status != previous_update.topic_status ? "fas fa-check-circle" : "far fa-circle" %>
-            <p class="small"><i class='<%= icon_hs %>'></i> Status</p>
+              <% icon_dia = update.diagnosis != previous_update.diagnosis ? "fas fa-check-circle" : "far fa-circle" %>
+              <p class="small"><i class='<%= icon_dia %>'></i> Analysis</p>
+
+              <% icon_ns = update.next_steps != previous_update.next_steps ? "fas fa-check-circle" : "far fa-circle" %>
+              <p class="small"><i class='<%= icon_ns %>'></i> Next Steps</p>
+
+              <% icon_hs = update.topic_status != previous_update.topic_status ? "fas fa-check-circle" : "far fa-circle" %>
+              <p class="small"><i class='<%= icon_hs %>'></i> Status</p>
+
+            <% end %>
           </li>
         </ul>
 
