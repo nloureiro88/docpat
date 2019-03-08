@@ -1,12 +1,13 @@
 .signal {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  text-align: center;
   min-height: 48px;
   min-width: 24px;
   border-radius: 5px;
-  text-align: center;
-  margin-right: 1rem;
+  width: 80%;
+  margin-right: 0;
 
   p {
     color: white;
@@ -24,6 +25,13 @@
   &.cured {
     background-color: $green;
     color: $green;
+  }
+}
+
+@media (max-width: 992px) {
+  .signal {
+    width: 48px;
+    height: 48px;
   }
 }
 

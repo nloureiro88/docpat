@@ -33,7 +33,7 @@
       a {
         font-size: 0.75rem;
         padding: 8px;
-        border: 1px solid $l-gray;
+        border: 1px solid rgb(230,230,230);
         border-radius: 5px;
         color: $gray;
         margin: 0 5px;
@@ -45,7 +45,7 @@
       align-items: center;
 
       input {
-        border: 1px solid $l-gray;
+        border: 1px solid rgb(230,230,230);
         border-radius: 5px;
         font-size: 0.75rem;
         color: $gray;
@@ -53,7 +53,7 @@
 
       .btn {
         margin-left: 5px;
-        color: $gray;
+        color: rgb(230,230,230);
       }
     }
   }

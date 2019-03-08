@@ -12,6 +12,7 @@
 // Your CSS partials
 @import "layouts/index";
 @import "components/index";
+@import "components/navbar";
 @import "pages/index";
 
 // Generic styles
@@ -25,10 +26,11 @@ body {
   line-height: 1.3;
 }
 
-.container {
-  margin-top: 2rem;
+.content {
+  padding-top: 120px;
 }
 
 li {
   list-style: none;
 }
+

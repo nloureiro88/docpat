@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'updates/index'
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -20,13 +21,15 @@ Rails.application.routes.draw do
       get :rem_doctor, to: "patients#rem_doctor"
     end
 
-    resources :topics, only: [:index, :show, :new, :create] do
+    resources :topics, only: [:index, :new, :create] do
       member do
         get :refresh, to: "topics#refresh"
         post :log, to: "topics#log"
         get :deactivate, to: "topics#deactivate"
       end
     end
+
+    resources :updates, only: [:index]
 
     resources :schedules, only: [:index, :new, :create, :edit, :update] do
       member do

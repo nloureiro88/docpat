@@ -14,7 +14,7 @@ class Topic < ApplicationRecord
   validates :status, inclusion: { in: STATUS }
 
   include PgSearch
-  pg_search_scope :global_search,
+  pg_search_scope :topics_search,
     against: [ :title, :subcode ],
     associated_against: {
        category: [ :subject, :code ]

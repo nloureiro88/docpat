@@ -1,44 +1,59 @@
 class TopicsController < ApplicationController
   before_action :find_patient
-  before_action :set_topic, only: %i(show refresh log deactivate)
+  before_action :set_topic, only: %i(refresh log deactivate)
 
   def index
     if params[:query].present?
-      @topics = policy_scope(Topic).where(patient: @patient, status: "active").order('created_at DESC').global_search(params[:query])
+      @topics = policy_scope(Topic).where(patient: @patient, status: "active").order('created_at DESC').topics_search(params[:query])
     else
       @topics = policy_scope(Topic).where(patient: @patient, status: "active").order('created_at DESC')
     end
   end
 
-  def show
-    authorize Topic
-    if params[:query].present?
-      @updates = policy_scope(Topic).updates.where(topic: @topic).order('created_at DESC').update_search(params[:query])
-    else
-      @updates = policy_scope(Topic).updates.where(topic: @topic).order('created_at DESC')
-    end
-  end
-
   def new
+    @topic = Topic.new
+    @update = Update.new
   end
 
   def create
+    @topic = Topic.new(topic_params)
+    @topic.patient = @patient
+    @update = Update.new(update_params)
+    @update.topic = @topic
+    @update.user = current_user
+    authorize Topic
+    authorize Update
+    if @topic.save && @update.save
+      redirect_to patient_topics_path(@patient)
+    else
+      render :new
+    end
   end
 
   def refresh
+    @update = Update.where(patient: @patient, topic: @topic).last
   end
 
   def log
+    @update = Update.new(update_params)
+    @update.topic = @topic
+    @update.user = current_user
+    authorize Update
+    if @update.save
+      redirect_to patient_topics_path(@patient)
+    else
+      render :refresh
+    end
   end
 
   def deactivate
+    @topic.status = "inactive"
   end
 
   private
 
   def set_topic
     @topic = Topic.find(params[:id])
-    @patient = @topic.patient
   end
 
   def find_patient
@@ -47,5 +62,9 @@ class TopicsController < ApplicationController
 
   def topic_params
     params.require(:topic).permit(:patient_id, :category_id, :title, :subcode)
+  end
+
+  def update_params
+    params.require(:update).permit(:topic_id, :diagnosis, :next_steps, :topic_status)
   end
 end

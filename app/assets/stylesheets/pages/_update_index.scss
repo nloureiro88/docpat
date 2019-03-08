@@ -1,0 +1,98 @@
+.updates .show-row {
+
+  .mobile-date {
+    display: none;
+  }
+
+  .topic-title {
+    align-items: center;
+    color: $d-blue;
+
+    p {
+      padding-left: 0.75rem;
+    }
+  }
+
+  .update-date {
+    color: $d-blue;
+  }
+
+  .update-changes {
+    flex-direction: column;
+  }
+
+  .topic-ns {
+    ul {
+      padding-left: 1rem;
+
+      li {
+        list-style: square;
+        list-style-type: square;
+        padding: 0;
+        margin-bottom: 0.2rem;
+      }
+    }
+  }
+
+  .topic-doctor, .topic-laststatus {
+    color: $gray;
+    text-align: center;
+    align-items: center;
+    text-align: left;
+
+    img {
+      margin-right: 1rem;
+    }
+  }
+
+  @media (max-width: 450px) {
+
+    .topic-laststatus{
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+
+    .index-row {
+      ul > li {
+        padding: 0;
+
+        .code {
+          display: none;
+        }
+      }
+    }
+
+    .update-changes.col {
+      display: none
+    }
+  }
+
+  @media (max-width: 992px) {
+
+    .header-row {
+      display: none;
+    }
+
+    .update-date.col {
+      display: none
+    }
+
+    .topic-title.col {
+      flex-direction: column;
+
+      p {
+        text-align: center;
+      }
+
+      .mobile-date {
+        display: block;
+      }
+    }
+
+    .desktop {
+      display: none;
+    }
+  }
+}
