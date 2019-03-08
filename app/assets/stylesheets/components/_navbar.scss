@@ -61,12 +61,16 @@
 
 /* Dropdown menu */
 
+.dropdown {
+  padding: 0;
+}
+
 .dropdown > a {
   margin: 0;
   text-decoration: none;
 }
 
-.toggle-info {
+.toggle-info, .toggle-info:active, .toggle-info:visited {
   color: $d-orange;
   font-size: 14px;
   text-decoration: none;
