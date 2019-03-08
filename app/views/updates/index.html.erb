@@ -77,8 +77,8 @@
     <% @updates.each do |update| %>
 
       <% back_class = "" %>
-      <% if update == update.topic.updates.last %>
-        <% back_class = "new" %>
+      <% unless update == update.topic.updates.last %>
+        <% back_class = "old" %>
       <% end %>
 
       <div class='show-row <%= "#{back_class}" %>'>
