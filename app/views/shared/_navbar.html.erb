@@ -2,7 +2,7 @@
 <div class="navbar-wagon fixed-top">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-            <h2 style="color:#EA9059;">DocPat</h2>
+            <h2 style="color:#F6B586;">Doc<span style="color:#8BC7E9">Pat</span></h2>
     <%#= image_tag "logo.png", height: 50 %>
   <% end %>
 
@@ -12,28 +12,30 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Home", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Home", patient_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Doctors", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Health Log", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Health Topics", patient_topics_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Health Log", patient_updates_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Exams", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Documents", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Prescriptions", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Documents", patient_documents_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Prescriptions", patient_schedules_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%= link_to "Welcome, #{current_user.first_name}", patient_schedules_path(@patient), class: "toggle-info dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%#= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to "#" do %>
+              <%= link_to edit_user_registration_path do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
               <% end %>
             </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
-              <% end %>
-            </li>
+            <!-- <li>
+              <%#= link_to "#" do %>
+                <i class="fa fa-cog"></i>  <%#= t(".settings", default: "Settings") %>
+              <#% end %>
+            </li> -->
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
