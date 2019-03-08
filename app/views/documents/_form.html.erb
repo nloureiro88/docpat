@@ -1,3 +1,5 @@
+<%#= form_with(model: document, local: true, :html => {:class => "form-horizontal center"}) do |form| %>
+
 <%= form_with(model: document, local: true, :html => {:class => "form-horizontal center"}) do |form| %>
 
   <% if document.errors.any? %>
@@ -32,10 +34,10 @@
     <%= form.file_field :image, class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+  <!-- <div class="field">
+    <%#= form.label :description %>
+    <%#= form.text_area :description %>
+  </div> -->
 
   <div class="radio">
         <%= form.radio_button true, 'yes', :checked => true %> I will attend.
@@ -46,4 +48,4 @@
   <div class="actions">
     <%= form.submit %>
   </div>
-<% end %>
+<%# end %>

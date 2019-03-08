@@ -38,6 +38,8 @@ Rails.application.routes.draw do
       member do
         get :download, to: "document#download"
         get :deactivate, to: "documents#deactivate"
+        get :show, to: "documents#show"
+        get :edit, to: "documents#edit"
       end
     end
   end

@@ -1,79 +1,157 @@
-<h1>Documents#index</h1>
-<p>Find me in app/views/documents/index.html.erb</p>
+<div class="container list-page docs">
+  <div class="row">
+    <h2>Topic's Documents</h2>
+  </div>
 
-<p id="notice"><%= notice %></p>
+  <div class="row">
+    <div class="action-header">
 
-<h1>Documents</h1>
+      <!-- Mobile action buttons -->
 
+      <div class="mobile">
+         <div class="actions col-xs-12 text-center">
+          <%= link_to "Add Document", new_patient_document_path, class: "btn btn-default" %>
+          <br>
+          <%= link_to "All Documents", patient_documents_path(@documents), class: "btn btn-default" %>
+        </div>
+      </div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="2">File</th>
-      <th>File type</th>
-      <th>Description</th>
-      <th>Size</th>
-      <th>Width</th>
-      <th>Height</th>
-      <th>Image data</th>
-      <th>Image data</th>
-    </tr>
-  </thead>
+      <!-- Search bar -->
 
-  <tbody>
+      <div class="search col-xs-12 col-md-6">
+        <%= form_tag patient_documents_path, method: :get, class: "search-form" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find a document by category, title or doctor"
+          %>
+          <%= button_tag(type: 'submit', class: "btn btn-search") do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+      <!-- Desktop action buttons  -->
+
+      <div class="desktop">
+        <div class="actions col-xs-12 col-md-4 col-md-offset-2">
+          <%= link_to "Add Document", new_patient_document_path, class: "btn btn-default" %>
+          <br>
+          <%= link_to "All Documents", patient_documents_path, class: "btn btn-default" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table container for data -->
+
+  <div class="table-container">
+
+    <!-- Header row -->
+
+    <div class="header-row">
+      <div class="row">
+        <ul>
+          <li class="col col-md-2">Document</li>
+          <li class="col col-md-2">Type</li>
+          <li class="col col-md-5">Title</li>
+          <li class="col col-md-3">Uploaded by</li>
+          <li class="col col-md-2">File_type</li>
+           <li class="col col-md-2">Status</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Each info row -->
     <% @documents.each do |document| %>
-      <% if document.image %>
-        <tr>
-          <td style="width: 40px" ><%= image_tag(document.image_url, size:"40") if document.image_data? %></td>
-          <td style="width: 200px" ><%#= document.image.metadata["filename"] %></td>
-          <td style="width: 50px"><%= document.image.metadata["mime_type"] %></td>
-          <td style="width: 400px"><%= document.topic %></td>
-          <td style="width: 50px"><%= document.image.metadata["size"] %></td>
-          <td style="width: 50px"><%= document.image.metadata["width"] %></td>
-          <td style="width: 50px"><%= document.image.metadata["height"] %></td>
+      <%# first_update = topic.updates.first %>
+      <% last_update = document.topic.updates.last %>
 
-        <!--   <td style="width: 50px"><%#= link_to 'Show', document_path(document) %></td>
-          <td style="width: 50px"><%#= link_to 'Edit', edit_document_path(document) %></td>
-          <td style="width: 50px"><%#= link_to 'Destroy', document_path(document), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-        </tr>
-      <% end %>
+      <div class="show-row">
+        <ul class="item-row row">
+
+          <li class="doc-tumb col-xs-12 col-sm-6 col-md-2">
+            <% if document.image_data? %>
+              <p>
+                <%= image_tag(document.image_url, size:"90", alt: "#{document.doc_type.capitalize}")%>
+              </p>
+            <% end %>
+          </li>
+
+          <li class="doc-title col col-xs-6 col-sm-2 col-md-2">
+            <p><strong><%= document.doc_type %></strong>
+          </li>
+
+          <li class="doc-title col col-xs-6 col-sm-2 col-md-5">
+            <p><strong><%= document.doc_title %></strong>
+          </li>
+
+          <li class="doc-tumb col col-xs-6 col-sm-2 col-md-3">
+            <%= image_tag(document.user.photo, class: "avatar-md") %>
+            <div class="update website">
+                <p><%= "#{document.user.first_name} #{document.user.last_name}" %></p>
+              <span class="small"><%= document.created_at.strftime("%d-%m-%Y") %></span>
+            </div>
+          </li>
+
+          <li class="doc-tumb col-xs-12 col-sm-6 col-md-2">
+            <% if document.image_data? %>
+              <div style="width:50px;">
+                <%= show_svg("file_icons/jpg.svg") %>
+               <span class="small"><%= document.image.metadata["mime_type"] %></span>
+               <span class="small"><%= document.image_data.size %>kb</span>
+              </div>
+            <% end %>
+          </li>
+
+          <% case document.status %>
+          <% when 'inactive' %>
+            <% status_class = 'cured' %>
+          <%# when 'under treatment' %>
+            <%# status_class = 'under_treatment' %>
+          <% else %>
+            <% status_class = 'under_treatment' %>
+          <% end %>
+
+<!--
+          <li class="doc-laststatus col-xs-6 col-sm-2 col-md-2">
+            <div class="signal <%= status_class %>">
+              <p class="<%= status_class %> website"><%= document.status.capitalize %></p>
+            </div>
+          </li> -->
+
+          <li class="doc-info col col-xs-12 col-sm-3 col-md-2">
+
+            <%= link_to patient_document_path(@patient, @document), class: "btn btn-default" do %>
+
+             <i class="fas fa-list-ul"></i><span> <%= document.id %></span><span class="website"> Show</span>
+            <% end %>
+
+            <%= link_to patient_documents_path(), class: "btn btn-default" do %>
+              <i class="far fa-file-alt"></i><span> <%#= @documents.where(status: 'active').count - document.topic.where(status: 'active', doc_type: 'Exam').count %></span><span class="website"> Edit</span>
+            <% end %>
+
+            <%= link_to patient_documents_path(), class: "btn btn-default" do %>
+              <i class="far fa-chart-bar"></i><span> <%#= @documents.where(status: 'active', doc_type: 'Exam').count %></span><span class="website"> Download</span>
+            <% end %>
+
+            <%= link_to patient_documents_path(), class: "btn btn-default" do %>
+              <i class="far fa-calendar-alt"></i><span> <%#= @document.topic.schedules.where(status: 'active').count %></span><span class="website"> Deactivate</span>
+            <% end %>
+          </li>
+
+        </ul>
+
+
+      </div>
     <% end %>
-  </tbody>
-</table>
 
+    </div>
+  </div>
+<!-- </div> -->
 
+<%= link_to 'Edit', edit_document_path(document) %>
+<%= link_to 'New Document', new_patient_document_path %>
 
-<svg width="150" height="150" viewBox="0 0 220 100" xmlns="http://www.w3.org/2000/svg">   <rect class="hover-check" x="00" y="00" width="100" height="100" rx="15" ry="15"/>   <rect class="hover-check" x="120" y="0" width="100" height="100" rx="15" ry="15"/> </svg>
+<%#= link_to 'New Document', new_patient_document_path %>
 
-<h1 class="animated infinite bounce delay-2s">Example</h1>
-
-<link rel="stylesheet" href="animate.min.css">
-
-
-
-<!-- <h2>Pic handling</h2>
-<%#= cl_image_tag "samples/sheep.jpg", :width=>100, :height=>100, :alt=>"hello"%>
-<%#= cl_image_tag "sample.png", :width=>100, :height=>100, :alt=>"hello", :crop=>:fit %>
-<%#= cl_image_tag "sample", format: :png %>
-
-<%#= cl_image_tag("sheep.jpg", :transformation=>[
-  {:width=>700, :height=>700, :crop=>"fill"},
-  {:effect=>"style_transfer", :overlay=>"bike.jpg"}
-  ]) %>
-
-  <%#= cl_image_tag("bike", :transformation=>[
-  {:height=>700, :width=>700, :crop=>"fill"},
-  {:effect=>"style_transfer:preserve_color:40", :overlay=>"sheep"}
-  ])
- %>
-
-
- <%#= require 'cloudinary'
-Cloudinary::Api.resource("sample")
- %>
- <h1>XXX:</h1>
-<%# xx = Cloudinary::Api.resource("sample") %>
-<%#= xx.class %>
- -->
-<br>
-<%#= link_to 'New Post', new_document_path %>

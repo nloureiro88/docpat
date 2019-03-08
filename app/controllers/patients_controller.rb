@@ -1,5 +1,6 @@
 class PatientsController < ApplicationController
   def show
+
   end
 
   def doctors
@@ -16,4 +17,5 @@ class PatientsController < ApplicationController
 
   def rem_doctor
   end
+
 end
