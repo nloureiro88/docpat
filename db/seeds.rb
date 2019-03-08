@@ -18,8 +18,8 @@ Document.destroy_all
 Family.destroy_all
 FamilyPatient.destroy_all
 Schedule.destroy_all
-Topic.destroy_all
 Update.destroy_all
+Topic.destroy_all
 User.destroy_all
 
 # Type lists:
