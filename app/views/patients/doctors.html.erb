@@ -1,2 +1,63 @@
-<h1>Patients#doctors</h1>
-<p>Find me in app/views/patients/doctors.html.erb</p>
+<div class="container list-page doctors content">
+
+  <div class="row">
+    <h2>Doctors</h2>
+  </div>
+
+  <div class="row">
+    <div class="action-header">
+
+      <!-- Mobile header -->
+
+      <div class="mobile">
+         <div class="actions col-xs-12 text-center">
+          <%= link_to "Find a Doctor", doctors_path, class: "btn btn-default" %>
+          <br>
+          <%#= link_to "Health Log", patient_updates_path(@patient), class: "btn btn-default" %>
+        </div>
+      </div>
+
+      <div class="search col-xs-12 col-md-6 mobile">
+        <%= form_tag doctors_patient_path, method: :get, class: "search-form" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find your doctor"
+          %>
+          <%= button_tag(type: 'submit', class: "btn btn-default") do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+      <!-- Desktop header -->
+
+      <div class="search col-xs-12 col-md-6 desktop">
+        <%= form_tag doctors_patient_path, method: :get, class: "search-form" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find your doctor by name, specialty or location"
+          %>
+          <%= button_tag(type: 'submit', class: "btn btn-search") do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="desktop">
+        <div class="actions col-xs-12 col-md-4 col-md-offset-2">
+          <%= link_to "Find a Doctor", doctors_path, class: "btn btn-default" %>
+          <br>
+          <%#= link_to "Health Log", patient_updates_path(@patient), class: "btn btn-default" %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Table container for data -->
+
+  <div class="table-container">
+
+</div>

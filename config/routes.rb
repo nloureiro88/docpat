@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'patients/doctors'
+  get 'patients/add_doctor'
+  get 'patients/rem_doctor'
+  get 'patients/accept_family'
+  get 'patients/rem_family'
   get 'updates/index'
   devise_for :users
   root to: 'pages#home'
@@ -19,6 +24,7 @@ Rails.application.routes.draw do
       get :rem_family, to: "patients#rem_family"
       post :add_doctor, to: "patients#add_doctor"
       get :rem_doctor, to: "patients#rem_doctor"
+      get :doctors, to: "patients#doctors"
     end
 
     resources :topics, only: [:index, :new, :create] do
