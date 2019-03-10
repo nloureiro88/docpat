@@ -2,17 +2,18 @@
   width: 90%;
   margin: 3rem auto;
   margin-top: 2rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.8px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 
   .doctor-card{
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 1.5rem;
     border: 1px solid rgb(230,230,230);
     border-radius: 5px;
-    height: 280px;
+    height: 285px;
     width: 240px;
     margin: 1rem 0;
 
@@ -44,13 +45,24 @@
 
         .doctor-name {
           color: $d-blue;
+          // font-weight: bold;
         }
+
+        // .doctor-main-specialty {
+        //   color: $d-blue;
+        // }
 
         .last-row {
           margin-top: 0.8rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
+
+          .doctor-market {
+            span:first-child {
+              margin-right: 4px;
+            }
+          }
 
           p {
             font-size: 0.6rem;
@@ -67,7 +79,7 @@
       }
 
       .back-block {
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
       }
 
       .doctor-buttons {
@@ -76,8 +88,8 @@
         top: 5px;
         right: 5px;
 
-        a {
-          border: 1px solid rgb(230,230,230);
+        .btn-default {
+          border: none; // 1px solid rgb(230,230,230);
           font-size: 0.7rem;
           padding: 4px;
           color: $gray;
@@ -98,15 +110,16 @@
           flex-wrap: wrap;
           justify-content: center;
           align-content: center;
+          align-content: center;
           margin: 0 auto;
-          padding-top: 10px;
+          padding-top: 8px;
 
           .btn-default {
-            border: 1px solid rgb(230,230,230);
+            border: none; // 1px solid rgb(230,230,230);
             font-size: 0.6rem;
             padding: 4px;
             color: $gray;
-            margin: 3px;
+            margin: 5px;
 
             &.def {
               background-color: transparent;

@@ -62,7 +62,7 @@
     <!-- <div class="row"> -->
 
       <% @doctors.each do |doc| %>
-      <% rel = DoctorPatient.where(doctor: doc, patient: @patient).first %>
+      <% rel = DoctorPatient.where(doctor: doc, patient: @patient).last %>
 
       <div class="doctor-card col-xs-12 col-sm-6 col-md-4">
 
@@ -119,12 +119,12 @@
           </div>
 
           <div class="doctor-buttons">
-            <% if %>
-              <%= link_to "#", class: "btn btn-default praise-toggle" do %>
-                <i class="far fa-heart"></i>
+            <% if rel.praise %>
+              <%= link_to pra_doctor_patient_path(@patient, doc), class: "btn btn-default praise-toggle" do %>
+                <i class="fas fa-heart" style="color: #E1B2BA"></i>
               <% end %>
             <% else %>
-              <%= link_to "#", class: "btn btn-default praise-toggle" do %>
+              <%= link_to pra_doctor_patient_path(@patient, doc), class: "btn btn-default praise-toggle" do %>
                 <i class="far fa-heart"></i>
               <% end %>
             <% end %>

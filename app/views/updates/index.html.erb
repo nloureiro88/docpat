@@ -114,9 +114,9 @@
               <%= image_tag(update.user.photo, class: "avatar-md", alt: "Dr. #{update.user.first_name} #{update.user.last_name}") %>
             </div>
             <div class="update">
-              <p><%= "Dr. #{update.user.first_name} #{update.user.last_name}" %></p>
+              <p class="small"><strong><%= "Dr. #{update.user.first_name} #{update.user.last_name}" %></strong></p>
               <% if update.user.user_type == "doctor" %>
-                <p class="small"><%= update.user.doc_specialties.join(", ") %></p>
+                <p class="small"><%= update.user.doc_specialties[0] %></p>
               <% end %>
             </div>
           </li>

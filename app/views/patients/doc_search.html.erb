@@ -76,6 +76,13 @@
             <div class="last-row">
               <p class="doctor-location smaller"><i class="fas fa-map-marker-alt"></i> <%= doc.address %></p>
               <!-- <p class="doctor-since smaller"><i class="far fa-address-book"></i> <%#= rel.created_at.strftime("%d-%m-%y") %></p> -->
+              <p class="doctor-market smaller">
+                <% pat_count = DoctorPatient.where(doctor: doc, status: 'active').count %>
+                <span><i class="fas fa-user-md"></i> <%= pat_count %></span>
+                <% if pat_count > 0 %>
+                  <span><i class="fas fa-heart"></i> <%= ((DoctorPatient.where(doctor: doc, praise: 'true', status: 'active').count.to_f / pat_count) * 100).to_i %>%</span>
+                <% end %>
+              </p>
             </div>
           </div>
         </div>
