@@ -31,11 +31,16 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :updates, only: [:index]
+    resources :updates, only: [:index] do
+      member do
+        get :read, to: "updates#read"
+      end
+    end
 
     resources :schedules, only: [:index, :new, :create, :edit, :update] do
       member do
         get :deactivate, to: "schedules#deactivate"
+        get :read, to: "schedules#read"
       end
     end
 
@@ -43,6 +48,7 @@ Rails.application.routes.draw do
       member do
         get :download, to: "document#download"
         get :deactivate, to: "documents#deactivate"
+        get :read, to: "documents#read"
       end
     end
   end
