@@ -81,11 +81,11 @@
         <ul class="item-row row">
 
           <div class="hidden-buttons">
-            <%= link_to deactivate_patient_topic_path(@patient, topic), class: "btn btn-default" do %>
-              <i class="far fa-trash-alt"></i>
-            <% end %>
             <%= link_to refresh_patient_topic_path(@patient, topic), class: "btn btn-default" do %>
               <i class="far fa-edit"></i>
+            <% end %>
+            <%= link_to deactivate_patient_topic_path(@patient, topic), class: "btn btn-default" do %>
+              <i class="far fa-trash-alt"></i>
             <% end %>
 
             <% if  %>
