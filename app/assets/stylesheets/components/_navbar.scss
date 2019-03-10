@@ -30,6 +30,7 @@
 
 /* Logo */
 .navbar-wagon-brand {
+  margin-right: 60px;
   &:hover {
     text-decoration: none;
   }
@@ -58,6 +59,7 @@
 .navbar-wagon-item {
   cursor: pointer;
   padding: 0 20px;
+  text-align: center;
 }
 
 /* Navbar link */

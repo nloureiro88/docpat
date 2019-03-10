@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'patients/doctors'
-  get 'patients/add_doctor'
-  get 'patients/rem_doctor'
-  get 'patients/accept_family'
-  get 'patients/rem_family'
-  get 'updates/index'
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -20,11 +14,12 @@ Rails.application.routes.draw do
 
   resources :patients, only: [:show] do
     member do
-      get :accept_family, to: "patients#accept_family"
-      get :rem_family, to: "patients#rem_family"
-      post :add_doctor, to: "patients#add_doctor"
-      get :rem_doctor, to: "patients#rem_doctor"
+      get 'accept_family/:family_id', to: "patients#accept_family", as: :accept_family
+      get 'rem_family/:family_id', to: "patients#rem_family", as: :rem_family
+      get 'add_doctor/:doctor_id', to: "patients#add_doctor", as: :add_doctor
+      get 'rem_doctor/:doctor_id', to: "patients#rem_doctor", as: :rem_doctor
       get :doctors, to: "patients#doctors"
+      get :docsearch, to: "patients#doc_search"
     end
 
     resources :topics, only: [:index, :new, :create] do

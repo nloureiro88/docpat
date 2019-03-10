@@ -1,7 +1,6 @@
 <div class=sidebar>
   <div class="current_user ">
-    <% active_class = @patient == current_user ? "pat-active" : "pat-inactive" %>
-    <%= link_to patient_topics_path(current_user), class: "#{active_class}" do %>
+    <%= dynamic_patient_link(@patient, current_user) do %>
       <%= image_tag(current_user.photo, class: "avatar-md", alt: "
       #{current_user.first_name}") %>
       <p><%= current_user.first_name %></p>

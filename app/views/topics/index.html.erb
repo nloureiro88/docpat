@@ -1,6 +1,6 @@
 <div class="container list-page topics content">
   <div class="row">
-    <h2>Health Topics</h2>
+    <h2>Active Topics</h2>
   </div>
 
   <div class="row">
@@ -89,13 +89,13 @@
             <% end %>
           </div>
 
-          <li class="topic-title col col-xs-12 col-sm-6 col-md-3">
+          <li class="topic-title col col-xs-3">
             <%= image_tag("category_icons/#{topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{topic.category.subject.capitalize}") %>
             <p><strong><%= topic.title %></strong>
             <span class="small">(<%= topic.subcode %>)</span></p>
           </li>
 
-          <li class="topic-doctor col col-xs-6 col-sm-2 col-md-3">
+          <li class="topic-doctor col col-xs-3">
             <%= image_tag(last_update.user.photo, class: "avatar-md", alt: "Dr. #{last_update.user.first_name} #{last_update.user.last_name}") %>
             <div class="update website">
               <p><%= "Dr. #{last_update.user.first_name} #{last_update.user.last_name}" %></p>
@@ -112,13 +112,13 @@
             <% status_class = 'cured' %>
           <% end %>
 
-          <li class="topic-laststatus col-xs-6 col-sm-2 col-md-2 text-center">
+          <li class="topic-laststatus col-xs-2 text-center">
             <div class="signal <%= status_class %>">
               <p class="<%= status_class %> website"><%= last_update.topic_status.capitalize %></p>
             </div>
           </li>
 
-          <li class="topic-info col col-xs-12 col-sm-3 col-md-4">
+          <li class="topic-info col col-xs-4">
 
             <%= link_to patient_updates_path(@patient, query: topic.title), class: "btn btn-default" do %>
               <i class="fas fa-list-ul"></i><span> <%= topic.updates.count %></span><span class="website"> Entries</span>
