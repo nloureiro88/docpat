@@ -33,11 +33,12 @@
       .hidden-buttons {
         display: none;
         a {
-          border: 1px solid rgb(230,230,230);
+          border: none; // 1px solid rgb(230,230,230);
           font-size: 0.7rem;
           padding: 4px;
           color: $gray;
           margin: 3px;
+          z-index: 2;
         }
       }
 

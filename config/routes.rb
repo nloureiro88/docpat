@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get 'rem_family/:family_id', to: "patients#rem_family", as: :rem_family
       get 'add_doctor/:doctor_id', to: "patients#add_doctor", as: :add_doctor
       get 'rem_doctor/:doctor_id', to: "patients#rem_doctor", as: :rem_doctor
+      get 'praise_doctor/:doctor_id', to: "patients#praise_toggle", as: :pra_doctor
       get :doctors, to: "patients#doctors"
       get :docsearch, to: "patients#doc_search"
     end

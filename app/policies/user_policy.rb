@@ -34,4 +34,8 @@ class UserPolicy < ApplicationPolicy
   def rem_doctor?
     true
   end
+
+  def praise_toggle?
+    true
+  end
 end

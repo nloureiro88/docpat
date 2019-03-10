@@ -87,6 +87,12 @@
             <%= link_to deactivate_patient_topic_path(@patient, topic), class: "btn btn-default" do %>
               <i class="far fa-trash-alt"></i>
             <% end %>
+
+            <% if  %>
+
+            <% else %>
+
+            <% end %>
           </div>
 
           <li class="topic-title col col-xs-3">
@@ -96,9 +102,11 @@
           </li>
 
           <li class="topic-doctor col col-xs-3">
-            <%= image_tag(last_update.user.photo, class: "avatar-md", alt: "Dr. #{last_update.user.first_name} #{last_update.user.last_name}") %>
-            <div class="update website">
-              <p><%= "Dr. #{last_update.user.first_name} #{last_update.user.last_name}" %></p>
+            <div class="avatar-container">
+              <%= image_tag(last_update.user.photo, class: "avatar-md", alt: "Dr. #{last_update.user.first_name} #{last_update.user.last_name}") %>
+            </div>
+            <div class="update">
+              <p class="small"><strong><%= "Dr. #{last_update.user.first_name} #{last_update.user.last_name}" %></strong></p>
               <span class="small"><%= last_update.created_at.strftime("%d-%m-%Y") %></span>
             </div>
           </li>
@@ -114,26 +122,26 @@
 
           <li class="topic-laststatus col-xs-2 text-center">
             <div class="signal <%= status_class %>">
-              <p class="<%= status_class %> website"><%= last_update.topic_status.capitalize %></p>
+              <p class="<%= status_class %>"><%= last_update.topic_status.capitalize %></p>
             </div>
           </li>
 
           <li class="topic-info col col-xs-4">
 
             <%= link_to patient_updates_path(@patient, query: topic.title), class: "btn btn-default" do %>
-              <i class="fas fa-list-ul"></i><span> <%= topic.updates.count %></span><span class="website"> Entries</span>
+              <i class="fas fa-list-ul"></i><span> <%= topic.updates.count %></span><span> Entries</span>
             <% end %>
 
             <%= link_to patient_documents_path(@patient, query: topic.title), class: "btn btn-default" do %>
-              <i class="far fa-file-alt"></i><span> <%= topic.documents.where(status: 'active').count - topic.documents.where(status: 'active', doc_type: 'Exam').count %></span><span class="website"> Documents</span>
+              <i class="far fa-file-alt"></i><span> <%= topic.documents.where(status: 'active').count - topic.documents.where(status: 'active', doc_type: 'Exam').count %></span><span> Documents</span>
             <% end %>
 
             <%= link_to patient_documents_path(@patient, query: topic.title), class: "btn btn-default" do %>
-              <i class="far fa-chart-bar"></i><span> <%= topic.documents.where(status: 'active', doc_type: 'Exam').count %></span><span class="website"> Exams</span>
+              <i class="far fa-chart-bar"></i><span> <%= topic.documents.where(status: 'active', doc_type: 'Exam').count %></span><span> Exams</span>
             <% end %>
 
             <%= link_to patient_schedules_path(@patient, query: topic.title), class: "btn btn-default" do %>
-              <i class="far fa-calendar-alt"></i><span> <%= topic.schedules.where(status: 'active').count %></span><span class="website"> Prescriptions</span>
+              <i class="far fa-calendar-alt"></i><span> <%= topic.schedules.where(status: 'active').count %></span><span> Prescriptions</span>
             <% end %>
 
           </li>
