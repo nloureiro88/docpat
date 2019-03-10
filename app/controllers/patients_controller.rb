@@ -46,8 +46,18 @@ class PatientsController < ApplicationController
     authorize User
 
     doc = User.find(params[:doctor_id])
-    rel = DoctorPatient.where(doctor: doc, patient: @patient).first
+    rel = DoctorPatient.where(doctor: doc, patient: @patient).last
     rel.destroy
+
+    redirect_to doctors_patient_path(@patient)
+  end
+
+  def praise_toggle
+    authorize User
+    doc = User.find(params[:doctor_id])
+    rel = DoctorPatient.where(doctor: doc, patient: @patient).last
+    rel.praise = !rel.praise
+    rel.save
 
     redirect_to doctors_patient_path(@patient)
   end

@@ -10,6 +10,8 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
       t.string :url
       t.string :file_type
       t.string :status, default: 'active'
+      t.integer :read_by
+      t.timestamp :read_at
 
       t.timestamps
     end

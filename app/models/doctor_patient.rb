@@ -7,9 +7,6 @@ class DoctorPatient < ApplicationRecord
   validates :doctor_id, presence: true, allow_blank: false
   validates :patient_id, presence: true, allow_blank: false
   validates :patient_id, uniqueness: { scope: :doctor_id }
-  validates_inclusion_of :pr_skill, in: [true, false]
-  validates_inclusion_of :pr_time, in: [true, false]
-  validates_inclusion_of :pr_help, in: [true, false]
-  validates_inclusion_of :pr_kind, in: [true, false]
+  validates_inclusion_of :praise, in: [true, false]
   validates :status, inclusion: { in: STATUS }
 end
