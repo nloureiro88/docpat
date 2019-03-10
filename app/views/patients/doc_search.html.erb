@@ -67,7 +67,9 @@
       <div class="doctor-card col-xs-12 col-sm-6 col-md-4">
 
         <div class="doctor-card-front card">
-          <%= image_tag(doc.photo, class: "avatar-md", alt: "Dr. #{doc.first_name} #{doc.last_name}") %>
+          <div class="avatar-container">
+            <%= image_tag(doc.photo, class: "avatar-md", alt: "Dr. #{doc.first_name} #{doc.last_name}") %>
+          </div>
           <div class="doctor-front-info">
             <p class="doctor-name">Dr. <%= doc.first_name %> <%= doc.last_name %></p>
             <p class="doctor-main-specialty smaller"><%= doc.doc_specialties[0] %></p>

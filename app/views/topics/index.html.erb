@@ -96,7 +96,9 @@
           </li>
 
           <li class="topic-doctor col col-xs-3">
-            <%= image_tag(last_update.user.photo, class: "avatar-md", alt: "Dr. #{last_update.user.first_name} #{last_update.user.last_name}") %>
+            <div class="avatar-container">
+              <%= image_tag(last_update.user.photo, class: "avatar-md", alt: "Dr. #{last_update.user.first_name} #{last_update.user.last_name}") %>
+            </div>
             <div class="update website">
               <p><%= "Dr. #{last_update.user.first_name} #{last_update.user.last_name}" %></p>
               <span class="small"><%= last_update.created_at.strftime("%d-%m-%Y") %></span>

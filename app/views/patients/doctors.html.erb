@@ -67,7 +67,9 @@
       <div class="doctor-card col-xs-12 col-sm-6 col-md-4">
 
         <div class="doctor-card-front card">
-          <%= image_tag(doc.photo, class: "avatar-md", alt: "Dr. #{doc.first_name} #{doc.last_name}") %>
+          <div class="avatar-container">
+            <%= image_tag(doc.photo, class: "avatar-md", alt: "Dr. #{doc.first_name} #{doc.last_name}") %>
+          </div>
           <div class="doctor-front-info">
             <p class="doctor-name">Dr. <%= doc.first_name %> <%= doc.last_name %></p>
             <p class="doctor-main-specialty smaller"><%= doc.doc_specialties[0] %></p>
@@ -117,31 +119,39 @@
           </div>
 
           <div class="doctor-buttons">
-            <%= link_to "#", class: "btn btn-default praise-toggle" do %>
-              <i class="far fa-heart"></i>
+            <% if %>
+              <%= link_to "#", class: "btn btn-default praise-toggle" do %>
+                <i class="far fa-heart"></i>
+              <% end %>
+            <% else %>
+              <%= link_to "#", class: "btn btn-default praise-toggle" do %>
+                <i class="far fa-heart"></i>
+              <% end %>
             <% end %>
+
             <%= link_to rem_doctor_patient_path(@patient, doc), class: "btn btn-default" do %>
               <i class="far fa-trash-alt"></i>
             <% end %>
           </div>
 
-          <div class="praises">
-            <%= link_to "X", class: "praise praise-skill" do %>
-                <i class="fas fa-notes-medical praise praise-<%= rel.pr_skill %>"></i>
-            <% end %>
+          <!-- <div class="praises">
+            <%#= link_to "X", class: "praise praise-skill" do %>
+                <i class="fas fa-notes-medical praise praise-<%#= rel.pr_skill %>"></i>
+            <%# end %>
 
-            <%= link_to "X", class: "praise praise-time" do %>
-                <i class="fas fa-clock praise praise-<%= rel.pr_time %>"></i>
-            <% end %>
+            <%#= link_to "X", class: "praise praise-time" do %>
+                <i class="fas fa-clock praise praise-<%#= rel.pr_time %>"></i>
+            <%# end %>
 
-            <%= link_to "X", class: "praise praise-help" do %>
-                <i class="fas fa-hands-helping praise praise-<%= rel.pr_help %>"></i>
-            <% end %>
+            <%#= link_to "X", class: "praise praise-help" do %>
+                <i class="fas fa-hands-helping praise praise-<%#= rel.pr_help %>"></i>
+            <%# end %>
 
-            <%= link_to "X", class: "praise praise-kind" do %>
-                <i class="fas fa-grin praise praise-<%= rel.pr_kind %>"></i>
-            <% end %>
-          </div>
+            <%#= link_to "X", class: "praise praise-kind" do %>
+                <i class="fas fa-grin praise praise-<%#= rel.pr_kind %>"></i>
+            <%# end %>
+          </div> -->
+
         </div>
       </div>
     <% end %>

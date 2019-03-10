@@ -11,6 +11,8 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
       t.date :date_start
       t.date :date_end, default: Date.new(9999,12,31)
       t.string :status, default: 'active'
+      t.integer :read_by
+      t.timestamp :read_at
 
       t.timestamps
     end

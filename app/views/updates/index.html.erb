@@ -110,7 +110,9 @@
           </li>
 
           <li class="topic-doctor col col-xs-3">
-            <%= image_tag(update.user.photo, class: "avatar-md", alt: "Dr. #{update.user.first_name} #{update.user.last_name}") %>
+            <div class="avatar-container">
+              <%= image_tag(update.user.photo, class: "avatar-md", alt: "Dr. #{update.user.first_name} #{update.user.last_name}") %>
+            </div>
             <div class="update">
               <p><%= "Dr. #{update.user.first_name} #{update.user.last_name}" %></p>
               <% if update.user.user_type == "doctor" %>
