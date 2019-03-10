@@ -9,9 +9,20 @@ class UpdatesController < ApplicationController
     @updates = source_updates.select { |up| up.topic.status == "active" && up.topic.patient == @patient }
   end
 
+  def read
+    authorize Update
+    @patient = User.find(params[:patient_id])
+    @update = Update.find(params[:id])
+    @update.read_at = DateTime.now
+    @update.read_by = current_user.id
+    @update.save
+
+    redirect_to patient_updates_path(@patient)
+  end
+
   private
 
   def updates_params
-    params.require(:update).permit(:topic_id, :user_id, :diagnosis, :next_steps)
+    params.require(:update).permit(:topic_id, :user_id, :diagnosis, :next_steps, :read_at, :read_by)
   end
 end

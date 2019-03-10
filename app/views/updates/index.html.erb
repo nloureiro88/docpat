@@ -76,14 +76,15 @@
     <!-- Each info row -->
     <% @updates.each do |update| %>
 
-      <% back_class = "" %>
-      <% unless update == update.topic.updates.last %>
-        <% back_class = "old" %>
-      <% end %>
-
-      <div class='show-row <%= "#{back_class}" %>'>
+      <div class='show-row'>
 
         <ul class="item-row row">
+
+          <% if update.read_by.nil? %>
+            <%= link_to read_patient_update_path(@patient, update), class: "new-flag" do %>
+              <i class="fas fa-exclamation-circle fa-lg"></i>
+            <% end %>
+          <% end %>
 
           <div class="hidden-buttons">
             <%#= link_to refresh_patient_topic_path(@patient, topic), class: "btn btn-default" do %>
