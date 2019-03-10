@@ -15,6 +15,10 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def doc_search?
+    true
+  end
+
   def accept_family?
     true
   end

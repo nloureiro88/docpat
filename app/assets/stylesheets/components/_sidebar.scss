@@ -97,3 +97,13 @@
     }
   }
 }
+
+@media (max-width: 992px) {
+  .sidebar {
+    display: none;
+  }
+
+  .list-page {
+    padding-right: 1rem;
+  }
+}
