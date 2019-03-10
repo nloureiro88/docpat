@@ -1,6 +1,7 @@
 class UpdatesController < ApplicationController
   def index
     @patient = User.find(params[:patient_id])
+
     if params[:query].present?
       source_updates = policy_scope(Update).order('created_at DESC').updates_search(params[:query])
     else
@@ -17,7 +18,7 @@ class UpdatesController < ApplicationController
     @update.read_by = current_user.id
     @update.save
 
-    redirect_to patient_updates_path(@patient)
+    redirect_to patient_updates_path(@patient, query: params[:query])
   end
 
   private

@@ -108,19 +108,19 @@
 
               <% doctor = "#{doc.first_name} #{doc.last_name}" %>
 
-              <%= link_to patient_updates_path(@patient, query: doctor), class: "btn btn-default" do %>
+              <%= link_to patient_updates_path(@patient, query: doctor), class: "btn btn-default #{"new-item" if doctorNew(doc, @patient)[:updates]}" do %>
                   <i class="fas fa-list-ul"></i><span> <%= doctorActions(doc, @patient)[:updates].count %></span><span> Entries</span>
                 <% end %>
 
-                <%= link_to patient_documents_path(@patient, query: doctor), class: "btn btn-default" do %>
+                <%= link_to patient_documents_path(@patient, query: doctor), class: "btn btn-default #{"new-item" if doctorNew(doc, @patient)[:documents]}" do %>
                   <i class="far fa-file-alt"></i><span> <%= doctorActions(doc, @patient)[:documents].count %></span><span> Documents</span>
                 <% end %>
 
-                <%= link_to patient_documents_path(@patient, query: doctor), class: "btn btn-default" do %>
+                <%= link_to patient_documents_path(@patient, query: doctor), class: "btn btn-default #{"new-item" if doctorNew(doc, @patient)[:exams]}" do %>
                   <i class="far fa-chart-bar"></i><span> <%= doctorActions(doc, @patient)[:exams].count %></span><span> Exams</span>
                 <% end %>
 
-                <%= link_to patient_schedules_path(@patient, query: doctor), class: "btn btn-default" do %>
+                <%= link_to patient_schedules_path(@patient, query: doctor), class: "btn btn-default #{"new-item" if doctorNew(doc, @patient)[:schedules]}" do %>
                   <i class="far fa-calendar-alt"></i><span> <%= doctorActions(doc, @patient)[:schedules].count %></span><span> Prescriptions</span>
                 <% end %>
             </div>
@@ -141,25 +141,6 @@
               <i class="far fa-trash-alt"></i>
             <% end %>
           </div>
-
-          <!-- <div class="praises">
-            <%#= link_to "X", class: "praise praise-skill" do %>
-                <i class="fas fa-notes-medical praise praise-<%#= rel.pr_skill %>"></i>
-            <%# end %>
-
-            <%#= link_to "X", class: "praise praise-time" do %>
-                <i class="fas fa-clock praise praise-<%#= rel.pr_time %>"></i>
-            <%# end %>
-
-            <%#= link_to "X", class: "praise praise-help" do %>
-                <i class="fas fa-hands-helping praise praise-<%#= rel.pr_help %>"></i>
-            <%# end %>
-
-            <%#= link_to "X", class: "praise praise-kind" do %>
-                <i class="fas fa-grin praise praise-<%#= rel.pr_kind %>"></i>
-            <%# end %>
-          </div> -->
-
         </div>
       </div>
     <% end %>
