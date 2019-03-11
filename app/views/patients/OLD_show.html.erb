@@ -1,0 +1,177 @@
+<div class="dash-updates col-xs-6">
+      <div class="dash-title">
+
+        <div class="dash-title-left">
+          <h4>Last Updates</h4>
+
+          <% new_updates = @updates.select{ |update| update.read_at.nil? }.count %>
+          <% if new_updates.positive? %>
+            <h4 class="news"><%= new_updates %></h4>
+          <% end %>
+        </div>
+
+        <div class="dash-title-right">
+            <% if @updates.count.positive? %>
+              <%= link_to "See All", patient_updates_path(@patient), class: "btn btn-default" %>
+            <% end %>
+        </div>
+      </div>
+
+      <div class="dash-table">
+        <% @updates.take(5).each do |update| %>
+          <div class="top-5">
+            <%= link_to patient_updates_path(@patient, query: update.topic.title) do %>
+              <ul style="width: 100%; min-width: 100%;">
+                <li style="width: 12%">
+                  <%= image_tag(update.user.photo, class: "avatar-sm", alt: "#{"Dr. " if update.user.user_type == 'doctor' } #{update.user.first_name} #{update.user.last_name}") %>
+                </li>
+                <li style="width: 13%"><%= "Dr." if update.user.user_type == 'doctor' %> <%= update.user.first_name %> <%= update.user.last_name %>
+                </li>
+                <li style="width: 25%"><%= update.topic.title %></li>
+                <li style="width: 20%"><%= update.topic_status.capitalize %></li>
+                <li style="width: 20%"><%= update.created_at.strftime('%d-%m-%y') %></li>
+                <li style="width: 5%">
+                  <% if update.read_by.nil? %>
+                    <i class="fas fa-exclamation-circle fa-lg"></i>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="dash-exams col-xs-6">
+      <div class="dash-title">
+
+        <div class="dash-title-left">
+          <h4>Last Exams</h4>
+
+          <% new_exams = @exams.select{ |doc| doc.read_at.nil? }.count %>
+          <% if new_exams.positive? %>
+            <h4 class="news"><%= new_exams %></h4>
+          <% end %>
+        </div>
+
+        <div class="dash-title-right">
+            <% if @exams.count.positive? %>
+              <%= link_to "See All", patient_documents_path(@patient), class: "btn btn-default" %>
+            <% end %>
+        </div>
+      </div>
+
+      <div class="dash-table">
+        <% @exams.take(5).each do |exam| %>
+          <div class="top-5">
+            <%= link_to patient_documents_path(@patient, query: exam.doc_title) do %>
+              <ul style="width: 100%; min-width: 100%;">
+                <li style="width: 12%">
+                  <%= image_tag(exam.user.photo, class: "avatar-sm", alt: "#{"Dr. " if exam.user.user_type == 'doctor' } #{exam.user.first_name} #{exam.user.last_name}") %>
+                </li>
+                <li style="width: 13%"><%= "Dr." if exam.user.user_type == 'doctor' %> <%= exam.user.first_name %> <%= exam.user.last_name %>
+                </li>
+                <li style="width: 35%"><%= exam.doc_title %></li>
+                <li style="width: 15%"><%= exam.exam_type %></li>
+                <li style="width: 20%"><%= exam.created_at.strftime('%d-%m-%y') %></li>
+                <li style="width: 5%">
+                  <% if exam.read_by.nil? %>
+                    <i class="fas fa-exclamation-circle fa-lg"></i>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="dash-exams col-xs-6">
+      <div class="dash-title">
+
+        <div class="dash-title-left">
+          <h4>Last Documents</h4>
+
+          <% new_documents = @documents.select{ |doc| doc.read_at.nil? }.count %>
+          <% if new_documents.positive? %>
+            <h4 class="news"><%= new_documents %></h4>
+          <% end %>
+        </div>
+
+        <div class="dash-title-right">
+            <% if @exams.count.positive? %>
+              <%= link_to "See All", patient_documents_path(@patient), class: "btn btn-default" %>
+            <% end %>
+        </div>
+      </div>
+
+      <div class="dash-table">
+        <% @documents.take(5).each do |doc| %>
+          <div class="top-5">
+            <%= link_to patient_documents_path(@patient, query: doc.doc_title) do %>
+              <ul style="width: 100%; min-width: 100%;">
+                <li style="width: 12%">
+                  <%= image_tag(doc.user.photo, class: "avatar-sm", alt: "#{"Dr. " if doc.user.user_type == 'doctor' } #{doc.user.first_name} #{doc.user.last_name}") %>
+                </li>
+                <li style="width: 13%"><%= "Dr." if doc.user.user_type == 'doctor' %> <%= doc.user.first_name %> <%= doc.user.last_name %>
+                </li>
+                <li style="width: 35%"><%= doc.doc_title %></li>
+                <li style="width: 15%"><%= doc.doc_type %></li>
+                <li style="width: 20%"><%= doc.created_at.strftime('%d-%m-%y') %></li>
+                <li style="width: 5%">
+                  <% if doc.read_by.nil? %>
+                    <i class="fas fa-exclamation-circle fa-lg"></i>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="dash-exams col-xs-6">
+      <div class="dash-title">
+
+        <div class="dash-title-left">
+          <h4>Last Schedules</h4>
+
+          <% new_schedules = @schedules.select{ |sc| sc.read_at.nil? }.count %>
+          <% if new_schedules.positive? %>
+            <h4 class="news"><%= new_schedules %></h4>
+          <% end %>
+        </div>
+
+        <div class="dash-title-right">
+            <% if @exams.count.positive? %>
+              <%= link_to "See All", patient_schedules_path(@patient), class: "btn btn-default" %>
+            <% end %>
+        </div>
+      </div>
+
+      <div class="dash-table">
+        <% @schedules.take(5).each do |sc| %>
+          <div class="top-5">
+            <%= link_to patient_schedules_path(@patient, query: sc.sc_title) do %>
+              <ul style="width: 100%; min-width: 100%;">
+                <li style="width: 12%">
+                  <%= image_tag(sc.user.photo, class: "avatar-sm", alt: "#{"Dr. " if sc.user.user_type == 'doctor' } #{sc.user.first_name} #{sc.user.last_name}") %>
+                </li>
+                <li style="width: 13%"><%= "Dr." if sc.user.user_type == 'doctor' %> <%= sc.user.first_name %> <%= sc.user.last_name %>
+                </li>
+                <li style="width: 35%"><%= sc.sc_title %></li>
+                <li style="width: 15%"><%= sc.sc_type %></li>
+                <li style="width: 20%"><%= sc.created_at.strftime('%d-%m-%y') %></li>
+                <li style="width: 5%">
+                  <% if sc.read_by.nil? %>
+                    <i class="fas fa-exclamation-circle fa-lg"></i>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
