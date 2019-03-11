@@ -17,9 +17,10 @@
     padding-bottom: 0.2rem;
   }
 
-  .dash-profile, .dash-topics, .dash-top-doctors, .dash-family {
+  .dash-profile, .dash-topics, .dash-doctors {
     border-radius: 5px;
-    min-height: 40vh;
+    min-height: 35vh;
+    height: 35vh;
     padding: 1.5rem;
   }
 
@@ -30,46 +31,87 @@
   }
 
   .dash-doctors {
-    display: none; // Until a solution is found for topics
-    border-radius: 5px;
-    min-height: 20vh;
-    padding: 2rem;
-  }
-
-  .dash-updates, .dash-exams, .dash-documents, .dash-schedules {
-    border-radius: 5px;
-    min-height: 20vh;
-    padding: 2rem;
-  }
-
-  .dash-title {
-    display: flex;
-    align-item: center;
-    justify-content: space-between;
-    border-bottom: 1px dotted rgb(230,230,230);
-    padding-bottom: 0.4rem;
-
-    .dash-title-left {
+    .doctor-head {
       display: flex;
+      flex-direction: row;
       align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dotted rgb(230,230,230);
+      padding-bottom: 0.2rem;
 
-      .news {
-        color: white;
-        background-color: $l-blue;
-        border-radius: 5px;
-        padding: 4px;
-        margin-left: 6px;
+      h3 {
+        padding: 0;
+        border: 0;
+      }
+
+      .btn-default {
+        margin: 0;
+        padding: 0;
+        color: $l-gray;
+        border: none;
+        // border-color: rgb(240,240,240);
+        // border-radius: 5px;
+        font-size: 12px;
       }
     }
 
-    .dash-title-right {
-      .btn-default {
+    .doctor-list {
+      font-size: 12px;
+      height: 100%;
+      width: 100%;
+      overflow-y: scroll;
+
+      a {
+        text-decoration: none;
+        color: $gray;
+      }
+
+      p {
         margin: 0;
-        color: $l-gray;
-        border-color: rgb(240,240,240);
-        border-radius: 5px;
-        padding: 3px 6px;
-        font-size: 12px;
+
+        &.name {
+          color: $d-blue;
+        }
+
+        &.smaller {
+          font-size: 10px;
+        }
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+
+        li {
+          margin: 0;
+          padding: 0.8rem;
+        }
+      }
+    }
+  }
+
+
+  .dash-family {
+    border-radius: 5px;
+    min-height: 40vh;
+    height: 40vh;
+    padding: 1.5rem;
+
+    .family-list {
+      font-size: 12px;
+      height: 100%;
+      width: 100%;
+      overflow-y: scroll;
+
+      .family-name {
+
+      }
+
+      ul {
+        display: flex;
+        align-items: center;
       }
     }
   }
@@ -93,3 +135,37 @@
     }
   }
 }
+
+// FOR OLD VIEW
+
+  // .dash-title {
+  //   display: flex;
+  //   align-item: center;
+  //   justify-content: space-between;
+  //   border-bottom: 1px dotted rgb(230,230,230);
+  //   padding-bottom: 0.4rem;
+
+  //   .dash-title-left {
+  //     display: flex;
+  //     align-items: center;
+
+  //     .news {
+  //       color: $l-blue;
+  //       // background-color: ;
+  //       border-radius: 5px;
+  //       padding: 4px;
+  //       margin-left: 6px;
+  //     }
+  //   }
+
+  //   .dash-title-right {
+  //     .btn-default {
+  //       margin: 0;
+  //       color: $l-gray;
+  //       border-color: rgb(240,240,240);
+  //       border-radius: 5px;
+  //       padding: 3px 6px;
+  //       font-size: 12px;
+  //     }
+  //   }
+  // }
