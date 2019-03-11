@@ -71,7 +71,7 @@
           <% doc_style = rel.status == 'created' ? "grayscale-doc" : "" %>
 
           <div class="avatar-container">
-            <%= image_tag(doc.photo, class: "avatar-md #{doc_style}", alt: "Dr. #{doc.first_name} #{doc.last_name}") %>
+            <%= cl_image_tag(doc.photo, class: "avatar-md #{doc_style}", alt: "Dr. #{doc.first_name} #{doc.last_name}") %>
           </div>
 
           <div class="doctor-front-info">

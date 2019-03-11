@@ -4,6 +4,7 @@ class PatientsController < ApplicationController
   # before_action :set_family, only: %i(accept_family rem_family)
 
   def show
+    authorize User
   end
 
   def doctors
@@ -65,6 +66,10 @@ class PatientsController < ApplicationController
   private
 
   def find_patient
+    if params[:id].nil?
+    @patient = current_user
+    else
     @patient = User.find(params[:id])
+    end
   end
 end
