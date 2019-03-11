@@ -129,7 +129,7 @@
               <i class="far fa-file-alt"></i><span> <%= topic.documents.where(status: 'active').count - topic.documents.where(status: 'active', doc_type: 'Exam').count %></span><span class="website"> Documents</span>
             <% end %>
 
-            <%= link_to patient_documents_path(@patient, query: topic.title), class: "btn btn-default" do %>
+            <%= link_to index_ex_patient_documents_path(@patient, query: topic.title), class: "btn btn-default" do %>
               <i class="far fa-chart-bar"></i><span> <%= topic.documents.where(status: 'active', doc_type: 'Exam').count %></span><span class="website"> Exams</span>
             <% end %>
 

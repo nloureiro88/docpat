@@ -44,6 +44,10 @@ Rails.application.routes.draw do
         get :show, to: "documents#show"
         get :edit, to: "documents#edit"
       end
+      collection do
+         get :index_ex, to: "documents#index_ex"
+      end
+
     end
   end
 

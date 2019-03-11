@@ -1,2 +1,45 @@
-<h1>Doctors#index</h1>
-<p>Find me in app/views/doctors/index.html.erb</p>
+<div class="container list-page updates content">
+  <div class="row">
+    <h2>Doctors#index</h2>
+  </div>
+
+  <div class="row">
+    <div class="action-header">
+
+      <!-- Mobile action buttons -->
+
+      <div class="mobile">
+         <div class="actions col-xs-12 text-center">
+          <%= link_to "Patients", "#", class: "btn btn-default" %>
+        </div>
+      </div>
+
+      <!-- Search bar -->
+
+      <div class="search col-xs-12 col-md-6">
+        <%= form_tag doctors_path, method: :get, class: "search-form" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find a document by category, title or doctor"
+          %>
+          <%= button_tag(type: 'submit', class: "btn btn-search") do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+      <!-- Desktop action buttons  -->
+
+      <div class="desktop">
+        <div class="actions col-xs-12 col-md-4 col-md-offset-2">
+          <%#= link_to "New/Add Schedule", new_patient_schedule_path(@patient), class: "btn btn-default" %>
+          <br>
+          <%#= link_to "Back to Topics", patient_topics_path(@patient), class: "btn btn-default" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= @patient = current_user %>
+
+</div>

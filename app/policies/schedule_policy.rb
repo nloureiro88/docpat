@@ -1,4 +1,4 @@
-class DocumentPolicy < ApplicationPolicy
+class SchedulePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -6,10 +6,6 @@ class DocumentPolicy < ApplicationPolicy
   end
 
   def index?
-    true
-  end
-
-  def index_ex?
     true
   end
 
