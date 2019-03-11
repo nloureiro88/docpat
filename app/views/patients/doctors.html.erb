@@ -109,7 +109,7 @@
               <% doctor = "#{doc.first_name} #{doc.last_name}" %>
 
               <%= link_to patient_updates_path(@patient, query: doctor), class: "btn btn-default #{"new-item" if doctorNew(doc, @patient)[:updates]}" do %>
-                  <i class="fas fa-list-ul"></i><span> <%= doctorActions(doc, @patient)[:updates].count %></span><span> Entries</span>
+                  <i class="fas fa-list-ul"></i><span> <%= doctorActions(doc, @patient)[:updates].count %></span><span> Updates</span>
                 <% end %>
 
                 <%= link_to patient_documents_path(@patient, query: doctor), class: "btn btn-default #{"new-item" if doctorNew(doc, @patient)[:documents]}" do %>

@@ -106,7 +106,7 @@
             <div class="doctor-inputs">
 
               <p class="btn-default def">
-                <i class="fas fa-list-ul"></i><span> <%= Update.where(user: doc).select{|u| u.topic.status == "active"}.count %></span><span> Entries</span>
+                <i class="fas fa-list-ul"></i><span> <%= Update.where(user: doc).select{|u| u.topic.status == "active"}.count %></span><span> Updates</span>
               </p>
 
               <p class="btn-default def">

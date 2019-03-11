@@ -1,0 +1,95 @@
+.dash-page {
+  .mobile {
+    display: none;
+  }
+
+  h3, h4 {
+    font-family: $body-font;
+    margin: 0;
+    color: #C5C5C5;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  h3 {
+    border-bottom: 1px dotted rgb(230,230,230);
+    padding-bottom: 0.2rem;
+  }
+
+  .dash-profile, .dash-topics, .dash-top-doctors, .dash-family {
+    border-radius: 5px;
+    min-height: 40vh;
+    padding: 1.5rem;
+  }
+
+  .dash-profile {
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+  }
+
+  .dash-doctors {
+    display: none; // Until a solution is found for topics
+    border-radius: 5px;
+    min-height: 20vh;
+    padding: 2rem;
+  }
+
+  .dash-updates, .dash-exams, .dash-documents, .dash-schedules {
+    border-radius: 5px;
+    min-height: 20vh;
+    padding: 2rem;
+  }
+
+  .dash-title {
+    display: flex;
+    align-item: center;
+    justify-content: space-between;
+    border-bottom: 1px dotted rgb(230,230,230);
+    padding-bottom: 0.4rem;
+
+    .dash-title-left {
+      display: flex;
+      align-items: center;
+
+      .news {
+        color: white;
+        background-color: $l-blue;
+        border-radius: 5px;
+        padding: 4px;
+        margin-left: 6px;
+      }
+    }
+
+    .dash-title-right {
+      .btn-default {
+        margin: 0;
+        color: $l-gray;
+        border-color: rgb(240,240,240);
+        border-radius: 5px;
+        padding: 3px 6px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .top-5 {
+    font-size: 12px;
+
+    ul {
+      padding: 0.4rem 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+
+      li {
+        padding: 0.5rem;
+
+        i {
+          color: $l-blue;
+        }
+      }
+    }
+  }
+}

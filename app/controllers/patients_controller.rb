@@ -4,6 +4,12 @@ class PatientsController < ApplicationController
   # before_action :set_family, only: %i(accept_family rem_family)
 
   def show
+    authorize User
+
+    @updates = @patient.updates.order('created_at DESC').select{ |up| up.topic.status == "active" }
+    @documents = @patient.documents.order('created_at DESC').where(status: "active").select { |doc| doc.doc_type != "Exam" }
+    @exams = @patient.documents.order('created_at DESC').where(status: "active").select { |doc| doc.doc_type == "Exam" }
+    @schedules = @patient.schedules.order('created_at DESC').where(status: "active")
 
   end
 

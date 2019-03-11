@@ -11,7 +11,7 @@
   </head>
   <body class="<%= controller_name %>_<%= action_name %>">
     <%= render 'shared/navbar' unless controller_name == "pages" %>
-    <%= render 'shared/sidebar' if ['patients', 'topics', 'updates', 'documents', 'schedules'].include?(controller_name) %>
+    <%= render 'shared/sidebar' if ['patients', 'topics', 'updates', 'documents', 'schedules'].include?(controller_name) && !(controller_name == "patients" && action_name == "show") %>
     <%= render 'shared/flashes' %>
     <div class="wrapper">
       <%= yield %>
