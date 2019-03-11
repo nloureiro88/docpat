@@ -112,7 +112,7 @@ end
 
 puts "Creating families..."
 
-families = ['Footinvest', 'Clubhouse', 'Ask Mom', 'Caretaker Helper']
+families = ['Footinvest', 'Clubhouse', 'Ask Mom', 'Caretaker Helper', 'DocPat', 'Habit Tracker']
 
 families.each do |fam|
   Family.create(name: fam, status: 'active') # To test with different status
@@ -218,18 +218,15 @@ User.where(user_type: 'patient').each do |patient|
 
   x = rand(4..8)
   x.times do
-    pr_skill = rand(0..1).zero?
-    pr_time = rand(0..1).zero?
-    pr_help = rand(0..1).zero?
-    pr_kind = rand(0..1).zero?
+    # pr_skill = rand(0..1).zero?
+    # pr_time = rand(0..1).zero?
+    # pr_help = rand(0..1).zero?
+    # pr_kind = rand(0..1).zero?
     doctor = User.where(user_type: 'doctor').sample
 
     DoctorPatient.create(patient: patient,
                          doctor: doctor,
-                         pr_skill: pr_skill,
-                         pr_time: pr_time,
-                         pr_help: pr_help,
-                         pr_kind: pr_kind,
+                         praise: rand(0..1).zero?,
                          status: 'active') # To test with different status
   end
 end

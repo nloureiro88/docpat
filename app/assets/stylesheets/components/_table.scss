@@ -1,15 +1,15 @@
 .table-container {
-  width: 80%;
+  width: 90%;
   margin: 3rem auto;
   font-size: 0.8rem;
 
   .header-row {
-    background-color: $d-blue;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: 1px solid rgb(230,230,230);
-    box-shadow: 1px 1px 1px rgb(230,230,230);
-    border-radius: 5px;
+    color: #C5C5C5;
+    padding: 0.75rem;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    border-bottom: 1px solid rgb(230,230,230);
 
     ul {
       display: flex;
@@ -21,27 +21,24 @@
 
   .show-row {
     position: relative;
-    margin-top: 1.5rem;
-    padding: 1rem 0;
-    border: 1px solid rgb(230,230,230);
-    box-shadow: 1px 1px 1px rgb(230,230,230);
-    border-radius: 5px;
+    border-bottom: 1px solid rgb(230,230,230);
 
     .item-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      padding: 0 1rem;
       margin-bottom: 0;
+      padding: 0.75em;
 
       .hidden-buttons {
         display: none;
         a {
-          border: 1px solid rgb(230,230,230);
+          border: none; // 1px solid rgb(230,230,230);
           font-size: 0.7rem;
           padding: 4px;
           color: $gray;
           margin: 3px;
+          z-index: 2;
         }
       }
 
@@ -58,7 +55,6 @@
     }
 
     &:hover {
-      padding-bottom: 0;
 
       .hidden-buttons {
         display: flex;
@@ -70,11 +66,10 @@
       .hidden-row {
         display: flex;
         align-items: flex-start;
-        padding: 1rem;
+        padding: 0.5rem;
         background-color: rgb(245,245,245);
         border-top: 1px solid white;
         margin: 0;
-        margin-top: 1rem;
       }
     }
 

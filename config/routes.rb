@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'updates/index'
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -15,10 +14,13 @@ Rails.application.routes.draw do
 
   resources :patients, only: [:show] do
     member do
-      get :accept_family, to: "patients#accept_family"
-      get :rem_family, to: "patients#rem_family"
-      post :add_doctor, to: "patients#add_doctor"
-      get :rem_doctor, to: "patients#rem_doctor"
+      get 'accept_family/:family_id', to: "patients#accept_family", as: :accept_family
+      get 'rem_family/:family_id', to: "patients#rem_family", as: :rem_family
+      get 'add_doctor/:doctor_id', to: "patients#add_doctor", as: :add_doctor
+      get 'rem_doctor/:doctor_id', to: "patients#rem_doctor", as: :rem_doctor
+      get 'praise_doctor/:doctor_id', to: "patients#praise_toggle", as: :pra_doctor
+      get :doctors, to: "patients#doctors"
+      get :docsearch, to: "patients#doc_search"
     end
 
     resources :topics, only: [:index, :new, :create] do
@@ -29,11 +31,16 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :updates, only: [:index]
+    resources :updates, only: [:index] do
+      member do
+        get :read, to: "updates#read"
+      end
+    end
 
     resources :schedules, only: [:index, :new, :create, :edit, :update] do
       member do
         get :deactivate, to: "schedules#deactivate"
+        get :read, to: "schedules#read"
       end
     end
 
@@ -41,8 +48,11 @@ Rails.application.routes.draw do
       member do
         get :download, to: "document#download"
         get :deactivate, to: "documents#deactivate"
+
         get :show, to: "documents#show"
         get :edit, to: "documents#edit"
+        get :read, to: "documents#read"
+
       end
       collection do
          get :index_ex, to: "documents#index_ex"

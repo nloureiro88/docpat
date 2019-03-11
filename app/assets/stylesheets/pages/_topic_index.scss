@@ -10,7 +10,6 @@
   }
 
   .topic-doctor, .topic-laststatus {
-    color: $gray;
     text-align: center;
     align-items: center;
     text-align: left;
@@ -24,12 +23,16 @@
     display: flex;
     flex-wrap: wrap;
 
-    a {
+    .btn-default {
       border: 1px solid white;
       font-size: 0.7rem;
       padding: 4px;
       color: $gray;
-      margin: 3px;
+      margin: 4px;
+
+      &.new-item {
+        color: white;
+      }
     }
   }
 
@@ -48,7 +51,7 @@
 
   &:hover {
     .topic-info {
-      a {
+      .btn-default {
         border: 1px solid rgb(230,230,230);
         border-radius: 5px;
       }

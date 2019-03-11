@@ -30,6 +30,13 @@ class User < ApplicationRecord
   validates :user_type, inclusion: { in: ['patient', 'doctor'] }
   validate :val_doc_info
 
+  include PgSearch
+  pg_search_scope :doctor_search,
+    against: [:first_name, :last_name, :doc_specialties, :doc_institutions, :address],
+    using: {
+      tsearch: { prefix: true }
+    }
+
   def val_doc_info
     return unless user_type == "doctor"
 

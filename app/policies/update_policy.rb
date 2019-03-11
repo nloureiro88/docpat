@@ -8,4 +8,8 @@ class UpdatePolicy < ApplicationPolicy
   def index?
     true
   end
+
+  def read?
+    true
+  end
 end

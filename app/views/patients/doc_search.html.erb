@@ -1,7 +1,7 @@
 <div class="container list-page doctors content">
 
   <div class="row">
-    <h2>My Doctors</h2>
+    <h2>Find Doctor</h2>
   </div>
 
   <div class="row">
@@ -11,14 +11,14 @@
 
       <div class="mobile">
          <div class="actions col-xs-12 text-center">
-          <%= link_to "Find Doctor", docsearch_patient_path, class: "btn btn-default" %>
+          <%= link_to "My Doctors", doctors_patient_path(@patient), class: "btn btn-default" %>
           <br>
           <%#= link_to "Health Log", patient_updates_path(@patient), class: "btn btn-default" %>
         </div>
       </div>
 
       <div class="search col-xs-12 col-md-6 mobile">
-        <%= form_tag doctors_patient_path, method: :get, class: "search-form" do %>
+        <%= form_tag docsearch_patient_path, method: :get, class: "search-form" do %>
           <%= text_field_tag :query,
             params[:query],
             class: "form-control",
@@ -33,7 +33,7 @@
       <!-- Desktop header -->
 
       <div class="search col-xs-12 col-md-6 desktop">
-        <%= form_tag doctors_patient_path, method: :get, class: "search-form" do %>
+        <%= form_tag docsearch_patient_path, method: :get, class: "search-form" do %>
           <%= text_field_tag :query,
             params[:query],
             class: "form-control",
@@ -47,7 +47,7 @@
 
       <div class="desktop">
         <div class="actions col-xs-12 col-md-4 col-md-offset-2">
-          <%= link_to "Find Doctor", docsearch_patient_path, class: "btn btn-default" %>
+          <%= link_to "My Doctors", doctors_patient_path(@patient), class: "btn btn-default" %>
           <br>
           <%#= link_to "Health Log", patient_updates_path(@patient), class: "btn btn-default" %>
         </div>
@@ -62,28 +62,27 @@
     <!-- <div class="row"> -->
 
       <% @doctors.each do |doc| %>
-      <% rel = DoctorPatient.where(doctor: doc, patient: @patient).last %>
+      <%# rel = DoctorPatient.where(doctor: doc, patient: @patient).first %>
 
       <div class="doctor-card col-xs-12 col-sm-6 col-md-4">
 
         <div class="doctor-card-front card">
-
-          <% doc_style = rel.status == 'created' ? "grayscale-doc" : "" %>
-
           <div class="avatar-container">
-            <%= image_tag(doc.photo, class: "avatar-md #{doc_style}", alt: "Dr. #{doc.first_name} #{doc.last_name}") %>
+            <%= image_tag(doc.photo, class: "avatar-md", alt: "Dr. #{doc.first_name} #{doc.last_name}") %>
           </div>
-
           <div class="doctor-front-info">
-            <p class="doctor-name <%= doc_style %>">Dr. <%= doc.first_name %> <%= doc.last_name %></p>
+            <p class="doctor-name">Dr. <%= doc.first_name %> <%= doc.last_name %></p>
             <p class="doctor-main-specialty smaller"><%= doc.doc_specialties[0] %></p>
             <div class="last-row">
               <p class="doctor-location smaller"><i class="fas fa-map-marker-alt"></i> <%= doc.address %></p>
-              <% if rel.status == 'created' %>
-                <p>Invite sent</p>
-              <% else %>
-                <p class="doctor-since smaller"><i class="far fa-address-book"></i> <%= rel.updated_at.strftime("%d-%m-%y") %></p>
-              <% end %>
+              <!-- <p class="doctor-since smaller"><i class="far fa-address-book"></i> <%#= rel.created_at.strftime("%d-%m-%y") %></p> -->
+              <p class="doctor-market smaller">
+                <% pat_count = DoctorPatient.where(doctor: doc, status: 'active').count %>
+                <span><i class="fas fa-user-md"></i> <%= pat_count %></span>
+                <% if pat_count > 0 %>
+                  <span><i class="fas fa-heart"></i> <%= ((DoctorPatient.where(doctor: doc, praise: 'true', status: 'active').count.to_f / pat_count) * 100).to_i %>%</span>
+                <% end %>
+              </p>
             </div>
           </div>
         </div>
@@ -106,39 +105,27 @@
           <div class="card-back-actions">
             <div class="doctor-inputs">
 
-              <% doctor = "#{doc.first_name} #{doc.last_name}" %>
+              <p class="btn-default def">
+                <i class="fas fa-list-ul"></i><span> <%= Update.where(user: doc).select{|u| u.topic.status == "active"}.count %></span><span> Entries</span>
+              </p>
 
-              <%= link_to patient_updates_path(@patient, query: doctor), class: "btn btn-default #{"new-item" if doctorNew(doc, @patient)[:updates]}" do %>
-                  <i class="fas fa-list-ul"></i><span> <%= doctorActions(doc, @patient)[:updates].count %></span><span> Entries</span>
-                <% end %>
+              <p class="btn-default def">
+                <i class="far fa-file-alt"></i><span> <%= Document.where(user: doc, status: "active").select{|d| d.topic.status == "active"}.count - Document.where(user: doc, status: "active", doc_type: "Exam").select{|d| d.topic.status == "active"}.count %></span><span> Documents</span>
+              </p>
 
-                <%= link_to patient_documents_path(@patient, query: doctor), class: "btn btn-default #{"new-item" if doctorNew(doc, @patient)[:documents]}" do %>
-                  <i class="far fa-file-alt"></i><span> <%= doctorActions(doc, @patient)[:documents].count %></span><span> Documents</span>
-                <% end %>
+              <p class="btn-default def">
+                <i class="far fa-chart-bar"></i><span> <%= Document.where(user: doc, status: "active", doc_type: "Exam").select{|d| d.topic.status == "active"}.count %></span><span> Exams</span>
+              </p>
 
-                <%= link_to patient_documents_path(@patient, query: doctor), class: "btn btn-default #{"new-item" if doctorNew(doc, @patient)[:exams]}" do %>
-                  <i class="far fa-chart-bar"></i><span> <%= doctorActions(doc, @patient)[:exams].count %></span><span> Exams</span>
-                <% end %>
-
-                <%= link_to patient_schedules_path(@patient, query: doctor), class: "btn btn-default #{"new-item" if doctorNew(doc, @patient)[:schedules]}" do %>
-                  <i class="far fa-calendar-alt"></i><span> <%= doctorActions(doc, @patient)[:schedules].count %></span><span> Prescriptions</span>
-                <% end %>
+              <p class="btn-default def">
+                <i class="far fa-calendar-alt"></i><span> <%= Schedule.where(user: doc, status: "active").select{|s| s.topic.status == "active"}.count %></span><span> Prescriptions</span>
+              </p>
             </div>
           </div>
 
           <div class="doctor-buttons">
-            <% if rel.praise %>
-              <%= link_to pra_doctor_patient_path(@patient, doc), class: "btn btn-default praise-toggle" do %>
-                <i class="fas fa-heart" style="color: #E1B2BA"></i>
-              <% end %>
-            <% else %>
-              <%= link_to pra_doctor_patient_path(@patient, doc), class: "btn btn-default praise-toggle" do %>
-                <i class="far fa-heart"></i>
-              <% end %>
-            <% end %>
-
-            <%= link_to rem_doctor_patient_path(@patient, doc), class: "btn btn-default" do %>
-              <i class="far fa-trash-alt"></i>
+            <%= link_to add_doctor_patient_path(@patient, doc), class: "btn btn-default" do %>
+              <i class="fas fa-plus"></i>
             <% end %>
           </div>
         </div>

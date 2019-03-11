@@ -26,10 +26,7 @@ ActiveRecord::Schema.define(version: 2019_03_06_164316) do
   create_table "doctor_patients", force: :cascade do |t|
     t.bigint "doctor_id"
     t.bigint "patient_id"
-    t.boolean "pr_skill", default: false
-    t.boolean "pr_time", default: false
-    t.boolean "pr_help", default: false
-    t.boolean "pr_kind", default: false
+    t.boolean "praise", default: false
     t.string "status", default: "created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,6 +44,8 @@ ActiveRecord::Schema.define(version: 2019_03_06_164316) do
     t.string "url"
     t.string "file_type"
     t.string "status", default: "active"
+    t.integer "read_by"
+    t.datetime "read_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "image_data"
@@ -82,6 +81,8 @@ ActiveRecord::Schema.define(version: 2019_03_06_164316) do
     t.date "date_start"
     t.date "date_end", default: "9999-12-31"
     t.string "status", default: "active"
+    t.integer "read_by"
+    t.datetime "read_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["topic_id"], name: "index_schedules_on_topic_id"
@@ -106,6 +107,8 @@ ActiveRecord::Schema.define(version: 2019_03_06_164316) do
     t.text "diagnosis"
     t.string "next_steps", default: [], array: true
     t.string "topic_status", default: "active"
+    t.integer "read_by"
+    t.datetime "read_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["topic_id"], name: "index_updates_on_topic_id"

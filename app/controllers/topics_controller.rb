@@ -47,7 +47,21 @@ class TopicsController < ApplicationController
   end
 
   def deactivate
+    authorize Topic
     @topic.status = "inactive"
+    @topic.save
+
+    @topic.documents.each do |item|
+      item.status = "inactive"
+      item.save
+    end
+
+    @topic.schedules.each do |item|
+      item.status = "inactive"
+      item.save
+    end
+
+    redirect_to patient_topics_path(@patient)
   end
 
   private

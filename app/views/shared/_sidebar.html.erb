@@ -1,0 +1,25 @@
+<div class=sidebar>
+  <div class="current_user ">
+    <%= dynamic_patient_link(@patient, current_user) do %>
+      <%= image_tag(current_user.photo, class: "avatar-md", alt: "
+      #{current_user.first_name}") %>
+      <p><%= current_user.first_name %></p>
+    <% end %>
+  </div>
+
+  <% families = current_user.families.order(:name) %>
+
+  <% families.each do |fm| %>
+    <div class="sidebar-family">
+      <p class="sidebar-family-name"><strong><%= fm.name %></strong></p>
+      <% fm.patients.order(:first_name).select{ |patient| patient.id != current_user.id }.each do |pat| %>
+        <%= dynamic_patient_link(@patient, pat) do %>
+          <%= image_tag(pat.photo, class: "avatar-md", alt: "
+            #{pat.first_name}") %>
+          <p><%= pat.first_name %></p>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>

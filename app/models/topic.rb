@@ -18,7 +18,7 @@ class Topic < ApplicationRecord
     against: [ :title, :subcode ],
     associated_against: {
        category: [ :subject, :code ]
-       # update: [:topic_status],
+       # updates: [:topic_status]
        # user: [:first_name, :last_name]
     },
     using: {
