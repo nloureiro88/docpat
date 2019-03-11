@@ -129,7 +129,7 @@
           <li class="topic-info col col-xs-4">
 
             <%= link_to patient_updates_path(@patient, query: topic.title), class: "btn btn-default #{"new-item" if topicNew(topic)[:updates]}" do %>
-              <i class="fas fa-list-ul"></i><span> <%= topicActions(topic)[:updates].count %></span><span> Entries</span>
+              <i class="fas fa-list-ul"></i><span> <%= topicActions(topic)[:updates].count %></span><span> Updates</span>
             <% end %>
 
             <%= link_to patient_documents_path(@patient, query: topic.title), class: "btn btn-default #{"new-item" if topicNew(topic)[:documents]}" do %>
