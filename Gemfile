@@ -9,9 +9,7 @@ gem 'nokogiri'
 gem 'carrierwave', '~> 1.2'
 gem "pundit"
 gem "pg_search"
-gem "shrine", "~> 2.0"
 gem 'cloudinary', '~> 1.9.1'
-gem "shrine-cloudinary"
 gem "data_grid"
 gem "flatpickr"
 
