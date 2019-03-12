@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2019_03_06_164316) do
     t.datetime "read_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "image_data"
+    t.string "file"
     t.index ["topic_id"], name: "index_documents_on_topic_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
