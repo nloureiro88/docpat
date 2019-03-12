@@ -49,6 +49,7 @@ filepath_pharmas = './db/csv/pharmas.csv'
 
 # Creating docs Array:
 
+
 puts "Creating docs array..."
 
 file_types = []
