@@ -33,6 +33,10 @@ class SchedulePolicy < ApplicationPolicy
     true
   end
 
+  def read?
+    true
+  end
+
   def deactivate?
     true
   end
