@@ -76,9 +76,11 @@
           <li class="topic-title col col-xs-7 col-sm-5 col-md-4">
             <% if document.file? %>
               <%= cl_image_tag(document.file.url,  size: "40x40", class: "svg-icon desktop")%>
-              <p><strong><%= document.doc_title %></strong>
-              <span class="small code">(<%= document.doc_title %>)</span></p>
-              <p class="mobile-date"><%= document.created_at.strftime("%d-%m-%Y") %></p>
+              <p><strong><%= document.doc_title %></strong><br>
+              <span class="small code"><%= document.doc_type %></span><br>
+              <span class="small code"><%= document.file_type %></span><br>
+              <span class="small code">(<%= document.updated_at.strftime("%d-%m-%Y") %>)</span>
+              <span class="mobile-date">(<%= document.created_at.strftime("%d-%m-%Y") %>)</span></p>
             <% end %>
           </li>
 
@@ -144,11 +146,15 @@
                   <i class="far fa-calendar-alt"></i><span class="small"> Deactivate</span>
                 <% end %></p>
 
-                <p><%= link_to patient_documents_path do %>
+            <% end %>
+
+                <p><%= link_to patient_document_path(@patient, document), method: :delete do %>
                   <i class="far fa-calendar-alt"></i><span class="small"> Delete</span>
                 <% end %></p>
+
+                </p>
               </li>
-            <% end %>
+
         </ul>
 
       </div>

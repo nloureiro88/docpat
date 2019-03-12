@@ -1,34 +1,59 @@
-<div class="container list-page updates content">
+<div class="boilerplate">
+  <div class="auth">
+    <div class="container">
+      <div class="auth__inner">
 
-  <div class="row">
+         <div class="auth__auth">
+          <h1 class="auth__title">New Document</h1>
+          <p>Please upload file and specify both the document's title and type</p>
 
-    <div class="form-label-group custom-select form-select">
+            <%= simple_form_for [@patient, @document], class: "simple_form", url: patient_documents_path, html: { method: :post } do |f| %>
 
-      <%= simple_form_for [@patient, @document], class: "simple_form", url: patient_documents_path, html: { method: :post } do |f| %>
-        <%= render 'shared/errors', object: @document %>
-        <%= f.error_notification %>
-        <%= f.input :doc_title %>
-        <%= f.input :file %>
-        <%= f.input :file_cache, as: :hidden %>
+            <%#= render 'shared/errors', object: @document %>
+             <%= f.error_notification %>
 
-        <%= f.button :submit, class: "btn-primary" %>
-        <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
-        <% end %>
+              <div class="form-inputs">
+                <%= f.input :doc_title,
+                            label: "Document Title",
+                            required: true,
+                            autofocus: true,
+                            input_html: { autocomplete: "document title" } %>
+                <%= f.input :doc_type,
+                            label: "Document Type",
+                            required: true,
+                            collection:
+                            ['Exam', 'Consultation report', 'Procedure report', 'Discharge report', 'Medical notes',
+                            'Prescription', 'Invoice', 'Insurance', 'Other'],
+                            input_html: { autocomplete: "Exam"}%>
+                <%# if @document.doc_type == 'Exam' %>
+                  <%= f.input :exam_type,
+                              label: "Exam Type",
+                              required: false,
+                              input_html: { autocomplete: "Exam descritpion" } %>
+                <%# end %>
+                <%= f.input :tags,
+                            label: "Document Tags",
+                            required: false,
+                            input_html: { autocomplete: "exam keywords" } %>
+                <%= f.input :file, label: "Document File" %>
+                <%= f.input :file_cache, as: :hidden %>
 
-        <%#= f.input :id %>
-        <%#= f.input :topic_id %>
-        <%#= f.input :user_id %>
-        <%#= f.input :doc_type %>
-        <%#= f.text_field :exam_type%>
-        <%#= f.input :tags %>
-        <%#= f.input :url %>
-        <%#= f.input :file_type %>
-        <%#= f.input :status %>
-        <%#= f.input :created_at %>
-        <%#= f.input :updated_at %>
-        <%#= f.text_area :image_data %>
-        <%#= f.input :image_data %>
+              </div>
 
+              <div class="form-actions">
+                  <%= f.button :submit, "Upload", :class => 'button button__accent' %>
+                  <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
+
+
+              </div>
+
+              <%#= f.button :submit, class: "btn-primary" %>
+              <%#= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
+            <% end %>
+
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
