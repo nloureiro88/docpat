@@ -81,7 +81,7 @@
           </li>
 
           <li class="topic-doctor col col-xs-2 col-sm-2 col-md-2" style="margin:0px;">
-            <%= cl_image_tag(document.user.photo, class: "avatar-md", alt: "Dr. #{document.user.first_name} #{document.user.last_name}") %>
+            <%= cl_image_tag(document.user.photo, class: "avatar-md") %>
             <div class="update website">
               <p class="desktop"><%= "Dr. #{document.user.first_name} #{document.user.last_name}" %></p>
               <% if document.user.user_type == "doctor" %>
@@ -134,7 +134,7 @@
               <p><%= link_to deactivate_patient_document_path(@patient,document), class: "" do %>
                 <i class="far fa-calendar-alt"></i><span> <%#= @document.topic.schedules.where(status: 'active').count %></span><span class="small"> Deactivate</span>
               <% end %></p>
-               <p><%= link_to delete_patient_document_path(@patient, document), class: "" do %>
+               <p><%= link_to patient_documents_path, class: "" do %>
                 <i class="far fa-calendar-alt"></i><span> <%#= @document.topic.schedules.where(status: 'active').count %></span><span class="small"> Delete</span>
               <% end %></p>
 

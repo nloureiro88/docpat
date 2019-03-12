@@ -62,21 +62,21 @@ end
     authorize Topic
 
 
-    if @document.save
-      redirect_to patient_documents_path(@patient.id)
-    else
-       render :new
-    end
+    #if @document.save
+    #  redirect_to patient_documents_path(@patient.id)
+    #else
+    #   render :new
+    #end
 
-    # respond_to do |format|
-    #    if @document.save
-    #      format.html { redirect_to @document, notice: 'Document was successfully created.' }
-    #      format.json { render :show, status: :created, location: @document }
-    #    else
-    #      format.html { render :new }
-    #      format.json { render json: @document.errors, status: :unprocessable_entity }
-    #    end
-    #  end
+    respond_to do |format|
+        if @document.save
+          format.html { redirect_to patient_documents_path, notice: 'Document was successfully created.' }
+          format.json { render :show, status: :created, location: @document }
+        else
+          format.html { render :new }
+          format.json { render json: @document.errors, status: :unprocessable_entity }
+        end
+    end
 
   end
 
@@ -112,6 +112,7 @@ end
 
   def destroy
     @patient = @document.patient
+    @document = policy_scope(Document).find(params[:id])
     @document.destroy
     respond_to do |format|
       format.html { redirect_to patient_documents_path, notice: 'Document was successfully destroyed.' }
@@ -134,7 +135,5 @@ private
 
       def document_params
         params.require(:document).permit(:topic_id, :user_id, :doc_type, :exam_type, :doc_title, :tags, :url, :file_type, :status, :image_data)
-
-
       end
 end
