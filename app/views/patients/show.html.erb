@@ -7,7 +7,7 @@
       <div class="dash-profile">
         <div class="patient-card">
           <div class="avatar-container">
-            <%= image_tag(@patient.photo, class: "avatar-md", alt: "#{@patient.first_name} #{@patient.last_name}") %>
+            <%= cl_image_tag(@patient.photo, class: "avatar-md", alt: "#{@patient.first_name} #{@patient.last_name}") %>
           </div>
 
           <div class="patient-info">
