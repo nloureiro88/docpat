@@ -44,7 +44,7 @@
             <%= link_to doctors_patient_path(@patient, query: doctor_name) do %>
               <ul>
                 <li style="width: 25%">
-                  <%= image_tag(doctor.photo, class: "avatar-sm", alt: "#{"Dr. " if doctor.user_type == 'doctor' } #{doctor.first_name} #{doctor.last_name}") %>
+                  <%= cl_image_tag(doctor.photo, class: "avatar-sm", alt: "#{"Dr. " if doctor.user_type == 'doctor' } #{doctor.first_name} #{doctor.last_name}") %>
                 </li>
                 <li style="width: 75%">
                   <p class="name">Dr. <%= doctor.first_name %> <%= doctor.last_name %></p>
@@ -94,7 +94,7 @@
               <%= link_to patient_updates_path(@patient, query: update.topic.title) do %>
                 <ul style="width: 100%; min-width: 100%;">
                   <li style="width: 12%">
-                    <%= image_tag(update.user.photo, class: "avatar-sm", alt: "#{"Dr. " if update.user.user_type == 'doctor' } #{update.user.first_name} #{update.user.last_name}") %>
+                    <%= cl_image_tag(update.user.photo, class: "avatar-sm", alt: "#{"Dr. " if update.user.user_type == 'doctor' } #{update.user.first_name} #{update.user.last_name}") %>
                   </li>
                   <li style="width: 13%"><%= "Dr." if update.user.user_type == 'doctor' %> <%= update.user.first_name %> <%= update.user.last_name %>
                   </li>
@@ -140,7 +140,7 @@
               <%= link_to patient_documents_path(@patient, query: exam.doc_title) do %>
                 <ul style="width: 100%; min-width: 100%;">
                   <li style="width: 12%">
-                    <%= image_tag(exam.user.photo, class: "avatar-sm", alt: "#{"Dr. " if exam.user.user_type == 'doctor' } #{exam.user.first_name} #{exam.user.last_name}") %>
+                    <%= cl_image_tag(exam.user.photo, class: "avatar-sm", alt: "#{"Dr. " if exam.user.user_type == 'doctor' } #{exam.user.first_name} #{exam.user.last_name}") %>
                   </li>
                   <li style="width: 13%"><%= "Dr." if exam.user.user_type == 'doctor' %> <%= exam.user.first_name %> <%= exam.user.last_name %>
                   </li>
@@ -184,7 +184,7 @@
               <%= link_to patient_documents_path(@patient, query: doc.doc_title) do %>
                 <ul style="width: 100%; min-width: 100%;">
                   <li style="width: 12%">
-                    <%= image_tag(doc.user.photo, class: "avatar-sm", alt: "#{"Dr. " if doc.user.user_type == 'doctor' } #{doc.user.first_name} #{doc.user.last_name}") %>
+                    <%= cl_image_tag(doc.user.photo, class: "avatar-sm", alt: "#{"Dr. " if doc.user.user_type == 'doctor' } #{doc.user.first_name} #{doc.user.last_name}") %>
                   </li>
                   <li style="width: 13%"><%= "Dr." if doc.user.user_type == 'doctor' %> <%= doc.user.first_name %> <%= doc.user.last_name %>
                   </li>
@@ -228,7 +228,7 @@
               <%= link_to patient_schedules_path(@patient, query: sc.sc_title) do %>
                 <ul style="width: 100%; min-width: 100%;">
                   <li style="width: 12%">
-                    <%= image_tag(sc.user.photo, class: "avatar-sm", alt: "#{"Dr. " if sc.user.user_type == 'doctor' } #{sc.user.first_name} #{sc.user.last_name}") %>
+                    <%= cl_image_tag(sc.user.photo, class: "avatar-sm", alt: "#{"Dr. " if sc.user.user_type == 'doctor' } #{sc.user.first_name} #{sc.user.last_name}") %>
                   </li>
                   <li style="width: 13%"><%= "Dr." if sc.user.user_type == 'doctor' %> <%= sc.user.first_name %> <%= sc.user.last_name %>
                   </li>
