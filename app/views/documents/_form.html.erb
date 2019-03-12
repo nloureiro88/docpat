@@ -1,6 +1,12 @@
-<%= form_with(model: [@patient, @document] local: true, :html => {:class => "form-horizontal center"}) do |form| %>
+<div class="container list-page updates content">
 
-<%#= form_with model: @document do |form| %>
+  <div class="row">
+
+    <div class="form-label-group custom-select form-select">
+
+<%#= form_with(model: @document local: true, :html => {:class => "form-horizontal center"}) do |form| %>
+<%= form_with model: @document do |form| %>
+<%#= simple_form_for [@patient, @document], class: "simple_form", url: patient_documents_path, html: { method: :post } do |f| %>
 
   <div class="field">
     <!--  document.image or form.object -->
@@ -15,7 +21,7 @@
     <% end %>
 
     <%= form.label :image, class:"col-md-4 control-label"  %>
-    <%#= form.text_area :image_data %>
+    <%= form.text_area :image_data %>
 
     <!-- LOST THE CACHE IMAGE WITH CLOUDINARY -->
     <%#= form.hidden_field :image, value: form.object.cached_image_data %>
@@ -32,4 +38,9 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+    </div>
+  </div>
+</div>
+
 

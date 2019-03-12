@@ -1,193 +1,193 @@
-$theme-colors: ( "bootstrap": #563d7c, "simpleform": #00617f );
-@import "bootstrap";
-@import "bootstrap";
+// $theme-colors: ( "bootstrap": #563d7c, "simpleform": #00617f );
+// @import "bootstrap";
+// @import "bootstrap";
 
-// App sections
-//@import "application/breadcrumb";
-//@import "application/example";
-//@import "application/flash";
-//@import "application/footer";
-//@import "application/header";
-// @import "application/jumbotron";
+// // App sections
+// //@import "application/breadcrumb";
+// //@import "application/example";
+// //@import "application/flash";
+// //@import "application/footer";
+// //@import "application/header";
+// // @import "application/jumbotron";
 
-// Components
-@import "components/alert";
-//@import "components/icon";
+// // Components
+// @import "components/alert";
+// //@import "components/icon";
 
-// Syntax highlight
-//@import "dracula/pygments/dracula";
+// // Syntax highlight
+// //@import "dracula/pygments/dracula";
 
-// simple_form helpers
-// @import "simple_form-bootstrap/simple_form-bootstrap";
+// // simple_form helpers
+// // @import "simple_form-bootstrap/simple_form-bootstrap";
 
 
-//Esterisco
-abbr[title] {
-  text-decoration: none;
-}
-
-// apply primary button style to buttons with only `btn` class
-[class="btn"] {
-  @extend .btn-primary;
-}
-
-// optional vertical & horizontal form spacing
-.form-check-inline {
-  .form-check-label {
-    &.collection_check_boxes,
-    &.collection_radio_buttons {
-      margin-right: .265625rem;
-    }
-  }
-}
-
-// optional custom form spacing
-.custom-control-inline {
-  .custom-control-label {
-    &.collection_check_boxes,
-    &.collection_radio_buttons {
-      margin-right: .265625rem;
-    }
-  }
-}
-
-// required custom form radio button fix
-.form-group.radio_buttons {
-  > .custom-control {
-  //  @extend .custom-radio;
-  }
-}
-
-// required custom form check box fix
-.form-group.check_boxes {
-  > .custom-control {
-  //  @extend .custom-checkbox;
-  }
-}
-
-// extracted from:
-// https://getbootstrap.com/docs/4.3/examples/floating-labels/
-
-// $sf-floating-input-padding-x: $input-padding-x !default;
-//$sf-floating-input-padding-y: $input-padding-y * 2 !default;
-
-.form-label-group {
-  position: relative;
-  margin-bottom: 1rem;
-
-  font-size: 12px;
-}
-
-.form-label-group > input,
-.form-label-group > .custom-select:not([multiple]) {
-  height: 3.125rem;
-}
-
-.form-label-group > input,
-.form-label-group > select,
-// .form-label-group > label {
-//   padding: $sf-floating-input-padding-y $sf-floating-input-padding-x;
+// //Esterisco
+// abbr[title] {
+//   text-decoration: none;
 // }
 
-.form-label-group {
-  > label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    margin-bottom: 0; /* Override default `<label>` margin */
-    line-height: 1.5;
-    color: #495057;
-    cursor: text; /* Match the input under the label */
-    border: 1px solid transparent;
-    border-radius: .25rem;
-    transition: all .1s ease-in-out;
-    user-select: none;
+// // apply primary button style to buttons with only `btn` class
+// [class="btn"] {
+//   @extend .btn-primary;
+// }
 
-  }
+// // optional vertical & horizontal form spacing
+// .form-check-inline {
+//   .form-check-label {
+//     &.collection_check_boxes,
+//     &.collection_radio_buttons {
+//       margin-right: .265625rem;
+//     }
+//   }
+// }
 
-  select,
-  input {
-    &::placeholder {
-      color: transparent;
-    }
+// // optional custom form spacing
+// .custom-control-inline {
+//   .custom-control-label {
+//     &.collection_check_boxes,
+//     &.collection_radio_buttons {
+//       margin-right: .265625rem;
+//     }
+//   }
+// }
 
-    &:not(:placeholder-shown) {
-      //padding-top: $sf-floating-input-padding-y + $sf-floating-input-padding-y * (2 / 3);
-      //padding-bottom: $sf-floating-input-padding-y / 3;
+// // required custom form radio button fix
+// .form-group.radio_buttons {
+//   > .custom-control {
+//   //  @extend .custom-radio;
+//   }
+// }
 
-      ~ label {
-        //padding-top: $sf-floating-input-padding-y / 3;
-        //padding-bottom: $sf-floating-input-padding-y / 3;
-        font-size: 12px;
-        color: #777;
-      }
-    }
-  }
+// // required custom form check box fix
+// .form-group.check_boxes {
+//   > .custom-control {
+//   //  @extend .custom-checkbox;
+//   }
+// }
 
-  .custom-select,
-  select.form-control {
-    ~ label {
-      width: auto;
-      padding-right: 0;
-      padding-bottom: 0;
-    }
-  }
+// // extracted from:
+// // https://getbootstrap.com/docs/4.3/examples/floating-labels/
 
-  select[multiple] {
-    ~ label {
-      background-color: $input-bg;
-     // padding: 0 0 0 $sf-floating-input-padding-x;
-      //margin-top: $input-border-width;
-      // f margin-left: $input-border-width * 2;
-      width: 99%;
-    }
-  }
-}
+// // $sf-floating-input-padding-x: $input-padding-x !default;
+// //$sf-floating-input-padding-y: $input-padding-y * 2 !default;
+
+// .form-label-group {
+//   position: relative;
+//   margin-bottom: 1rem;
+
+//   font-size: 12px;
+// }
+
+// .form-label-group > input,
+// .form-label-group > .custom-select:not([multiple]) {
+//   height: 3.125rem;
+// }
+
+// .form-label-group > input,
+// .form-label-group > select,
+// // .form-label-group > label {
+// //   padding: $sf-floating-input-padding-y $sf-floating-input-padding-x;
+// // }
+
+// .form-label-group {
+//   > label {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     display: block;
+//     width: 100%;
+//     margin-bottom: 0; /* Override default `<label>` margin */
+//     line-height: 1.5;
+//     color: #495057;
+//     cursor: text; /* Match the input under the label */
+//     border: 1px solid transparent;
+//     border-radius: .25rem;
+//     transition: all .1s ease-in-out;
+//     user-select: none;
+
+//   }
+
+//   select,
+//   input {
+//     &::placeholder {
+//       color: transparent;
+//     }
+
+//     &:not(:placeholder-shown) {
+//       //padding-top: $sf-floating-input-padding-y + $sf-floating-input-padding-y * (2 / 3);
+//       //padding-bottom: $sf-floating-input-padding-y / 3;
+
+//       ~ label {
+//         //padding-top: $sf-floating-input-padding-y / 3;
+//         //padding-bottom: $sf-floating-input-padding-y / 3;
+//         font-size: 12px;
+//         color: #777;
+//       }
+//     }
+//   }
+
+//   .custom-select,
+//   select.form-control {
+//     ~ label {
+//       width: auto;
+//       padding-right: 0;
+//       padding-bottom: 0;
+//     }
+//   }
+
+//   select[multiple] {
+//     ~ label {
+//       background-color: $input-bg;
+//      // padding: 0 0 0 $sf-floating-input-padding-x;
+//       //margin-top: $input-border-width;
+//       // f margin-left: $input-border-width * 2;
+//       width: 99%;
+//     }
+//   }
+// }
 
 
-/* Fallback for Edge */
-@supports (-ms-ime-align: auto) {
-  .form-label-group {
-    > label {
-      display: none;
-    }
-    input::-ms-input-placeholder {
-      color: #777;
-    }
-  }
-}
+// /* Fallback for Edge */
+// @supports (-ms-ime-align: auto) {
+//   .form-label-group {
+//     > label {
+//       display: none;
+//     }
+//     input::-ms-input-placeholder {
+//       color: #777;
+//     }
+//   }
+// }
 
-/* Fallback for IE */
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .form-label-group {
-    > label {
-      display: none;
-    }
-    input:-ms-input-placeholder {
-      color: #777;
-    }
-  }
-}
+// /* Fallback for IE */
+// @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+//   .form-label-group {
+//     > label {
+//       display: none;
+//     }
+//     input:-ms-input-placeholder {
+//       color: #777;
+//     }
+//   }
+// }
 
-.custom-select,
-.form-control {
-  &.date,
-  &.datetime,
-  &.time {
-    &:first-of-type { margin-left: 0 !important; }
-    &:last-of-type { margin-right: 0 !important; }
-  }
-}
+// .custom-select,
+// .form-control {
+//   &.date,
+//   &.datetime,
+//   &.time {
+//     &:first-of-type { margin-left: 0 !important; }
+//     &:last-of-type { margin-right: 0 !important; }
+//   }
+// }
 
-.custom-select {
-  &[multiple],
-  &:only-child {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-}
+// .custom-select {
+//   &[multiple],
+//   &:only-child {
+//     margin-left: 0 !important;
+//     margin-right: 0 !important;
+//   }
+// }
 
 
 

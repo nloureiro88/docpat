@@ -112,20 +112,20 @@
           <% end %>
 
 <!-- Status -->
-          <!-- <li class="doc-laststatus col-xs-6 col-sm-2 col-md-2 style="margin:0px;">
+          <li class="doc-laststatus col-xs-6 col-sm-2 col-md-2 style="margin:0px;">
             <div class="signal <%= status_class %>" style="margin:0px;">
               <p class="<%= status_class %> website" style="margin:0px;"><%= document.status.capitalize %></p>
             </div>
-          </li> -->
+          </li>
 
 
           <li class="update-changes col col-sm-3 col-md-2">
 
-              <p><%= link_to patient_document_path(@patient,document), class: "" do %>
+              <p><%= link_to patient_documents_path(@patient,document), class: "" do %>
                 <i class="fas fa-list-ul"></i><span></span><span class="small"> Show</span>
               <% end %></p>
 
-              <p><%= link_to edit_patient_document_path(@patient, document), class: "" do %>
+              <p><%= link_to patient_documents_path(@patient, document), class: "" do %>
                 <i class="far fa-file-alt"></i><span> <%#= @documents.where(status: 'active').count - document.topic.where(status: 'active', doc_type: 'Exam').count %></span><span class="small"> Edit</span>
               <% end %></p>
               <p><%= link_to document.image_url, class: "" do %>

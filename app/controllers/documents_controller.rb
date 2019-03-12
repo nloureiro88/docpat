@@ -31,11 +31,15 @@ def index_ex
     authorize Document
     @document = policy_scope(Document).find(params[:id])
     @patient = @document.patient
-    #@patient = policy_scope(Document).find(params[:patient_id])
-    #@document[:status] = "mudou"
-    @document.status = !@document.status
-    #@document.save
-    redirect_to patient_topics_path(@patient)
+    case @document.status
+      when 'inactive'
+        @document.status = "active"
+      else
+        @document.status = "inactive"
+    end
+    @document.save
+    redirect_to patient_documents_path(@patient)
+    #redirect_to patient_topics_path(@patient)
 end
 
   def download
@@ -46,23 +50,23 @@ end
   end
 
   def new
-
     @document = Document.new
-
-
+    authorize Document
   end
 
   def create
     @document = Document.new(document_params)
     @document.user = current_user
-    @document.topic = @topic
+    @document.topic = Topic.where(patient: current_user).first
+    @patient = @document.topic.patient
     authorize Topic
-    authorize Update
+
+
     if @document.save
-       redirect_to back root #patient_documents_path(@patient)
-     else
+      redirect_to patient_documents_path(@patient.id)
+    else
        render :new
-     end
+    end
 
     # respond_to do |format|
     #    if @document.save
@@ -128,7 +132,7 @@ private
       end
 
       def document_params
-        params.require(:document).permit(:topic_id, :user_id, :doc_type, :exam_type, :doc_title, :tags, :url, :file_type, :status, :image)
+        params.require(:document).permit(:topic_id, :user_id, :doc_type, :exam_type, :doc_title, :tags, :url, :file_type, :status, :image_data)
 
 
       end
