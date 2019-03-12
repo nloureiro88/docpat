@@ -5,16 +5,12 @@ class PatientsController < ApplicationController
 
   def show
     authorize User
-
-
     @families = @patient.families.order(:name).select { |fam| FamilyPatient.where(patient: @patient, family: fam).last.status == 'active' }
-
     @doctors = @patient.doctors.select { |doc| DoctorPatient.where(doctor: doc, patient: @patient).last.status == "active" }
     # @updates = @patient.updates.order('created_at DESC').select{ |up| up.topic.status == "active" }
     # @documents = @patient.documents.order('created_at DESC').where(status: "active").select { |doc| doc.doc_type != "Exam" }
     # @exams = @patient.documents.order('created_at DESC').where(status: "active").select { |doc| doc.doc_type == "Exam" }
     # @schedules = @patient.schedules.order('created_at DESC').where(status: "active")
-
   end
 
   def doctors
@@ -76,7 +72,11 @@ class PatientsController < ApplicationController
   private
 
   def find_patient
+    if params[:id].nil?
+    @patient = current_user
+    else
     @patient = User.find(params[:id])
+    end
   end
 
 end

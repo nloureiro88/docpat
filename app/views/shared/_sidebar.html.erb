@@ -1,7 +1,7 @@
 <div class=sidebar>
   <div class="current_user ">
     <%= dynamic_patient_link(@patient, current_user) do %>
-      <%= image_tag(current_user.photo, class: "avatar-md", alt: "
+      <%= cl_image_tag(current_user.photo, class: "avatar-md", alt: "
       #{current_user.first_name}") %>
       <p><%= current_user.first_name %></p>
     <% end %>
@@ -14,7 +14,7 @@
       <p class="sidebar-family-name"><strong><%= fm.name %></strong></p>
       <% fm.patients.order(:first_name).select{ |patient| patient.id != current_user.id }.each do |pat| %>
         <%= dynamic_patient_link(@patient, pat) do %>
-          <%= image_tag(pat.photo, class: "avatar-md", alt: "
+          <%= cl_image_tag(pat.photo, class: "avatar-md", alt: "
             #{pat.first_name}") %>
           <p><%= pat.first_name %></p>
         <% end %>

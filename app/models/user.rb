@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  mount_uploader :photo, PhotoUploader
+
   has_many :prel, foreign_key: 'patient_id', class_name: 'DoctorPatient'
   has_many :drel, foreign_key: 'doctor_id', class_name: 'DoctorPatient'
 

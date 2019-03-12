@@ -1,8 +1,13 @@
 <div class="boilerplate">
 
+  <div class="auth">
+    <div class="container">
+      <div class="auth__inner">
+        <div class="auth__auth">
+
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :patch }) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
@@ -19,6 +24,8 @@
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "last_name" }%>
+      <%= f.input :photo %>
+      <%= f.input :photo_cache, as: :hidden %>
       <%= f.input :password,
                   hint: "leave it blank if you don't want to change it",
                   required: false,
@@ -71,4 +78,7 @@
 
   <%= link_to "Back", :back %>
 
+</div>
+</div>
+</div>
 </div>

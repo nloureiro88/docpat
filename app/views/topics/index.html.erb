@@ -103,7 +103,7 @@
 
           <li class="topic-doctor col col-xs-3">
             <div class="avatar-container">
-              <%= image_tag(last_update.user.photo, class: "avatar-md", alt: "Dr. #{last_update.user.first_name} #{last_update.user.last_name}") %>
+              <%= cl_image_tag(last_update.user.photo, class: "avatar-md", alt: "Dr. #{last_update.user.first_name} #{last_update.user.last_name}") %>
             </div>
             <div class="update">
               <p class="small"><strong><%= "Dr. #{last_update.user.first_name} #{last_update.user.last_name}" %></strong></p>
