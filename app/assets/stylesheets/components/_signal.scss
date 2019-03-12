@@ -28,6 +28,18 @@
   }
 }
 
+.signal-short-cured{
+  color: $green;
+}
+
+.signal-short-diagnosed{
+  color: $red;
+}
+
+.signal-short-under{
+  color: $l-orange;
+}
+
 @media (max-width: 992px) {
   .signal {
     width: 48px;

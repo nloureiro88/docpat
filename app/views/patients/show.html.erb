@@ -28,9 +28,6 @@
             <h3>Doctors</h3>
 
             <div class="doctor-head-icons">
-              <%#= link_to docsearch_patient_path(@patient), class: "btn btn-default" do %>
-                <!-- <i class="fas fa-plus fa-lg"></i> -->
-              <%# end %>
               <%= link_to doctors_patient_path(@patient), class: "btn btn-default" do %>
                 <i class="fas fa-search-plus fa-lg"></i>
               <% end %>
@@ -49,11 +46,6 @@
                   <li style="width: 75%">
                     <p class="name">Dr. <%= doctor.first_name %> <%= doctor.last_name %></p>
                     <p><%= doctor.doc_specialties[0] %></p>
-                  <!-- </li> -->
-                  <!-- li style="width: 35%">
-                    <p class="smaller"><i class="fas fa-map-marker-alt"></i> <%#= doctor.address %></p>
-                    <p class="smaller"><i class="far fa-address-book"></i> <%#= rel.updated_at.strftime("%d-%m-%y") %></p>
-                  </li> -->
                 </ul>
               <% end %>
             <% end %>
@@ -80,9 +72,8 @@
                   <% new_updates = pat_updates.select{ |update| update.read_at.nil? } %>
                   <% if new_updates.count.positive? %>
                     <h4 class="news"><%= new_updates.count %> New</h4>
-                    <h4> / </h4>
                   <% end %>
-                  <h4><%= pat_updates.count %></h4>
+                  <h4><%= "/ " if new_updates.count.positive? %><%= pat_updates.count %></h4>
               </div>
 
               <div class="dash-title-right">
@@ -106,7 +97,7 @@
                     <li class="highlight" style="width: 18%"><%= "Dr." if update.user.user_type == 'doctor' %> <%= update.user.first_name %> <%= update.user.last_name %>
                     </li>
                     <li style="width: 30%"><strong><%= update.topic.title %></strong></li>
-                    <li style="width: 25%"><%= update.topic_status.capitalize %></li>
+                    <li style="width: 25%"><i class="fas fa-circle signal-short-<%= update.topic_status.split.first %>"></i> <%= update.topic_status.capitalize %></li>
                     <li style="width: 15%"><%= update.created_at.strftime('%d-%m-%y') %></li>
                   </ul>
                 <% end %>
@@ -125,9 +116,8 @@
                 <% new_exams = pat_exams.select{ |doc| doc.read_at.nil? } %>
                 <% if new_exams.count.positive? %>
                   <h4 class="news"><%= new_exams.count %> New</h4>
-                  <h4> / </h4>
                 <% end %>
-                <h4><%= pat_exams.count %></h4>
+                <h4><%= "/ " if new_exams.count.positive? %><%= pat_exams.count %></h4>
               </div>
 
               <div class="dash-title-right">
@@ -170,9 +160,8 @@
                 <% new_documents = pat_documents.select{ |doc| doc.read_at.nil? } %>
                 <% if new_documents.count.positive? %>
                   <h4 class="news"><%= new_documents.count %> New</h4>
-                  <h4> / </h4>
                 <% end %>
-                <h4><%= pat_documents.count %></h4>
+                <h4><%= "/ " if new_documents.count.positive? %><%= pat_documents.count %></h4>
               </div>
 
               <div class="dash-title-right">
@@ -213,9 +202,8 @@
                 <% new_schedules = pat_schedules.select{ |sc| sc.read_at.nil? } %>
                 <% if new_schedules.count.positive? %>
                   <h4 class="news"><%= new_schedules.count %> New</h4>
-                  <h4> / </h4>
                 <% end %>
-                <h4><%= pat_schedules.count %></h4>
+                <h4><%= "/ " if new_schedules.count.positive? %><%= pat_schedules.count %></h4>
               </div>
 
               <div class="dash-title-right">

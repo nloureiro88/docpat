@@ -304,7 +304,7 @@ Topic.all.each do |topic|
                     url: "https://www.lewagon.com",
                     file_type: file_types.sample,
                     status: ['active', 'inactive'].sample,
-                    image_data: image_json)
+                    file: "https://www.lewagon.com")
   end
 
   y = rand(1..5)
