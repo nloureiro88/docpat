@@ -4,9 +4,7 @@ class Document < ApplicationRecord
 
   delegate :patient, to: :topic, allow_nil: true
 
-  include DocumentUploader::Attachment.new(:image)
-  # The JSON field should be named: image_data
-  # adds an `image` virtual attribute
+  mount_uploader :file, DocumentUploader
 
   DOC_TYPES = ['Exam', 'Consultation report', 'Procedure report', 'Discharge report', 'Medical notes', 'Prescription', 'Invoice', 'Insurance', 'Other']
   EXAM_TYPES = ['Sensitivity test', 'Microbiological / immunological test', 'Blood test', 'Urine test', 'Faeces test', 'Histological / exfoliative cytology',

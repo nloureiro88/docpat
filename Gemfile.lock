@@ -55,8 +55,6 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.6.0)
-      public_suffix (>= 2.0.2, < 4.0)
     arel (9.0.0)
     autoprefixer-rails (9.4.9)
       execjs
@@ -79,7 +77,6 @@ GEM
       rest-client
     coderay (1.1.2)
     concurrent-ruby (1.1.4)
-    content_disposition (1.0.0)
     crass (1.0.4)
     data_grid (0.0.2)
       fastercsv
@@ -96,8 +93,6 @@ GEM
     dotenv-rails (2.7.1)
       dotenv (= 2.7.1)
       railties (>= 3.2, < 6.1)
-    down (4.8.0)
-      addressable (~> 2.5)
     equatable (0.5.0)
     erubi (1.8.0)
     execjs (2.7.0)
@@ -108,15 +103,8 @@ GEM
       sassc (>= 1.11)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    http (3.3.0)
-      addressable (~> 2.3)
-      http-cookie (~> 1.0)
-      http-form_data (~> 2.0)
-      http_parser.rb (~> 0.6.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    http-form_data (2.1.1)
-    http_parser.rb (0.6.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.8.0)
@@ -162,7 +150,6 @@ GEM
       pry (~> 0.10)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    public_suffix (3.0.3)
     puma (3.12.0)
     pundit (2.0.1)
       activesupport (>= 3.0.0)
@@ -216,14 +203,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    shrine (2.16.0)
-      content_disposition (~> 1.0)
-      down (~> 4.1)
-    shrine-cloudinary (1.0.1)
-      cloudinary (< 2)
-      down (~> 4.4)
-      http (~> 3.2)
-      shrine (~> 2.11)
     simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -306,8 +285,6 @@ DEPENDENCIES
   rails (= 5.2.2)
   redis
   sassc-rails
-  shrine (~> 2.0)
-  shrine-cloudinary
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
