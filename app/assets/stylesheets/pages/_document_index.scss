@@ -1,0 +1,44 @@
+.docs .item-row {
+
+  .doc-title {
+    align-items: center;
+    color: $d-blue;
+
+    p {
+      padding-left: 0.75rem;
+    }
+  }
+
+  .doc-tumb, .doc-laststatus {
+    color: $gray;
+    text-align: center;
+    align-items: center;
+    text-align: left;
+
+    img {
+      margin-right: 1rem;
+    }
+  }
+
+  .doc-info {
+    display: flex;
+    flex-wrap: wrap;
+
+    a {
+      border: 1px solid white;
+      font-size: 0.7rem;
+      padding: 4px;
+      color: $gray;
+      margin: 3px;
+    }
+  }
+
+  &:hover {
+    .doc-info {
+      a {
+        border: 1px solid $l-gray;
+        border-radius: 5px;
+      }
+    }
+  }
+}

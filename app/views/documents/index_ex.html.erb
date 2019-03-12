@@ -35,11 +35,11 @@
 
       <div class="desktop">
         <div class="actions col-xs-12 col-md-4 col-md-offset-2">
-          <%= link_to "Add Document", new_patient_document_path, class: "btn btn-default" %>
+          <%= link_to "Add Exam", new_patient_document_path, class: "btn btn-default" %>
           <br>
-          <%= link_to "All Documents", patient_documents_path, class: "btn btn-default" %>
+          <%= link_to "All Exams", index_ex_patient_documents_path(@patient), class: "btn btn-default" %>
           <br>
-           <%= link_to "Back to Topics", patient_topics_path(@patient), class: "btn btn-default" %>
+          <%= link_to "Back to Topics", patient_topics_path(@patient), class: "btn btn-default" %>
 
         </div>
       </div>
@@ -55,8 +55,8 @@
     <div class="header-row">
       <div class="row">
         <ul>
-          <li class="col col-md-5">Document</li>
-
+          <li class="col col-md-2">Document</li>
+          <li class="col col-md-4">Title</li>
           <li class="col col-md-3">Uploaded by</li>
           <li class="col col-md-2">File_type</li>
            <li class="col col-md-2">Status</li>
@@ -65,13 +65,15 @@
     </div>
 
     <!-- Each info row -->
-    <% @documents.each do |document| %>
 
+
+    <%=  @documents = @documents.select { |doc| doc.doc_type == "Exam" }%>
+    <% @documents.each do |document| %>
 
       <div class="show-row">
         <ul class="item-row row">
 
-          <li class="topic-title col col-xs-7 col-sm-5 col-md-5">
+          <li class="topic-title col col-xs-7 col-sm-5 col-md-4">
             <% if document.image_data? %>
               <%= image_tag(document.image_url,  size: "40x40", class: "svg-icon desktop", alt: "#{document.doc_type.capitalize}")%>
               <p><strong><%= document.doc_type %></strong>
@@ -112,20 +114,20 @@
           <% end %>
 
 <!-- Status -->
-          <li class="doc-laststatus col-xs-6 col-sm-2 col-md-2 style="margin:0px;">
+          <!-- <li class="doc-laststatus col-xs-6 col-sm-2 col-md-2 style="margin:0px;">
             <div class="signal <%= status_class %>" style="margin:0px;">
               <p class="<%= status_class %> website" style="margin:0px;"><%= document.status.capitalize %></p>
             </div>
-          </li>
+          </li> -->
 
 
           <li class="update-changes col col-sm-3 col-md-2">
 
-              <p><%= link_to patient_documents_path(@patient,document), class: "" do %>
+              <p><%= link_to patient_document_path(@patient,document), class: "" do %>
                 <i class="fas fa-list-ul"></i><span></span><span class="small"> Show</span>
               <% end %></p>
 
-              <p><%= link_to patient_documents_path(@patient, document), class: "" do %>
+              <p><%= link_to edit_patient_document_path(@patient, document), class: "" do %>
                 <i class="far fa-file-alt"></i><span> <%#= @documents.where(status: 'active').count - document.topic.where(status: 'active', doc_type: 'Exam').count %></span><span class="small"> Edit</span>
               <% end %></p>
               <p><%= link_to document.image_url, class: "" do %>
@@ -146,4 +148,3 @@
   </div>
 
 <!-- </div> -->
-

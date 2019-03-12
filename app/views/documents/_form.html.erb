@@ -1,21 +1,17 @@
-<%= form_with(model: document, local: true, :html => {:class => "form-horizontal center"}) do |form| %>
+<div class="container list-page updates content">
 
-  <% if document.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+  <div class="row">
 
-      <ul>
-        <% document.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <div class="form-label-group custom-select form-select">
+
+<%#= form_with(model: @document local: true, :html => {:class => "form-horizontal center"}) do |form| %>
+<%= form_with model: @document do |form| %>
+<%#= simple_form_for [@patient, @document], class: "simple_form", url: patient_documents_path, html: { method: :post } do |f| %>
 
   <div class="field">
     <!--  document.image or form.object -->
-    <% if document.image.present? %>
-      <%= image_tag document.image_url, style: 'height:300px; width:auto;' %>
+    <% if form.image.present? %>
+      <%= image_tag form.object.image_url, style: 'height:300px; width:auto;' %>
       <div>
         <%= label_tag 'remove' do %>
           Remove image
@@ -25,25 +21,26 @@
     <% end %>
 
     <%= form.label :image, class:"col-md-4 control-label"  %>
-    <%#= form.text_area :image_data %>
+    <%= form.text_area :image_data %>
 
     <!-- LOST THE CACHE IMAGE WITH CLOUDINARY -->
     <%#= form.hidden_field :image, value: form.object.cached_image_data %>
+
     <%= form.file_field :image, class:"form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.label :doc_title %>
+    <%= form.text_area :doc_title %>
   </div>
-
-  <div class="radio">
-        <%= form.radio_button true, 'yes', :checked => true %> I will attend.
-        <br />
-        <%= form.radio_button true, 'no', :checked => false %> I will not attend.
-      </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+    </div>
+  </div>
+</div>
+
+
