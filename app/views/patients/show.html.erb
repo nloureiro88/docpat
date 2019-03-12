@@ -94,7 +94,7 @@
         </button>
 
         <div class="dash-table collapse" id="dash-table-update">
-          <% pat_updates.take(5).each do |update| %>
+          <% new_updates.each do |update| %>
             <div class="show-new">
               <%= link_to patient_updates_path(@patient, query: update.topic.title) do %>
                 <ul style="width: 100%; min-width: 100%;">
@@ -139,7 +139,7 @@
         </button>
 
         <div class="dash-table collapse" id="dash-table-exams">
-          <% pat_exams.take(5).each do |exam| %>
+          <% new_exams.each do |exam| %>
             <div class="show-new">
               <%= link_to patient_documents_path(@patient, query: exam.doc_title) do %>
                 <ul style="width: 100%; min-width: 100%;">
@@ -182,7 +182,7 @@
         </button>
 
         <div class="dash-table collapse" id="dash-table-documents">
-          <% pat_documents.take(5).each do |doc| %>
+          <% new_documents.each do |doc| %>
             <div class="show-new">
               <%= link_to patient_documents_path(@patient, query: doc.doc_title) do %>
                 <ul style="width: 100%; min-width: 100%;">
@@ -225,7 +225,7 @@
         </button>
 
         <div class="dash-table collapse" id="dash-table-schedules">
-          <% pat_schedules.take(5).each do |sc| %>
+          <% new_schedules.each do |sc| %>
             <div class="show-new">
               <%= link_to patient_schedules_path(@patient, query: sc.sc_title) do %>
                 <ul style="width: 100%; min-width: 100%;">
