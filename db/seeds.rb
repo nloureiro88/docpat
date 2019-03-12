@@ -22,7 +22,7 @@ Update.destroy_all
 Topic.destroy_all
 User.destroy_all
 
-puts 'Cleaning up Cloudinary via API'
+puts 'Cleaning up Cloudinary via API...'
 Cloudinary::Api.delete_all_resources
 
 # Type lists:
