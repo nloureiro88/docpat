@@ -71,14 +71,20 @@
       <div class="show-row">
         <ul class="item-row row">
 
+<!-- TUMB => Eliminar... -->
+
           <li class="topic-title col col-xs-7 col-sm-5 col-md-4">
             <% if document.file? %>
               <%= cl_image_tag(document.file.url,  size: "40x40", class: "svg-icon desktop")%>
-              <p><strong><%= document.file.url.split(".").last %></strong>
-              <span class="small code">(<%= document.doc_title %>)</span></p>
-              <p class="mobile-date"><%= document.created_at.strftime("%d-%m-%Y") %></p>
+              <p><strong><%= document.doc_title %></strong><br>
+              <span class="small code"><%= document.doc_type %></span><br>
+              <span class="small code"><%= document.file_type %></span><br>
+              <span class="small code">(<%= document.updated_at.strftime("%d-%m-%Y") %>)</span>
+              <span class="mobile-date">(<%= document.created_at.strftime("%d-%m-%Y") %>)</span></p>
             <% end %>
           </li>
+
+<!-- DOC TYPE -->
 
           <li class="topic-doctor col col-xs-2 col-sm-2 col-md-2" style="margin:0px;">
             <%= cl_image_tag(document.user.photo, class: "avatar-md") %>
@@ -90,17 +96,23 @@
             </div>
           </li>
 
-          <li class="topic-doctor col col-xs-2 col-sm-2 col-md-2 style="margin:0px;">
+<!-- DOC TYPE -->
+
+          <li class="topic-doctor col col-xs-2 col-sm-2 col-md-2" style="margin:0px;">
             <% if document.file? %>
-              <div  class="avatar-md">
-                <%= cl_image_tag("#{document.file.url.split(".").last}.svg", class: "avatar-md") %>
-                <%#= show_svg("file_icons/#{document.file.url.split(".").last}.svg") %>
+              <div  class="avatar-md" style="align-items: center">
+                <%#= cl_image_tag("#{document.file.url.split(".").last}.svg", class: "avatar-md") %>
+                <p style="">
+                <%= show_svg("file_icons/#{document.file.url.split(".").last}.svg") %>
+                </p>
               </div>
-              <div class="update website">
-               <span class="desktop"><%= document.file.url.split(".").last %></span>
-              </div>
+             <!--  <div class="update website">
+               <span class="desktop"><%#= document.file.url.split(".").last %></span>
+              </div> -->
             <% end %>
           </li>
+
+<!-- Status -->
 
           <% case document.status %>
           <% when 'inactive' %>
@@ -111,44 +123,37 @@
             <% status_class = 'under_treatment' %>
           <% end %>
 
-<!-- Status -->
-
-
           <li class="doc-laststatus col-xs-6 col-sm-2 col-md-2 style="margin:0px;">
             <div class="signal <%= status_class %>" style="margin:0px;">
               <p class="<%= status_class %> website" style="margin:0px;"><%= document.status.capitalize %></p>
             </div>
           </li>
 
-
-
+<!-- CRUD -->
             <% x = document.file.url || nil %>
             <% if x.present?  %>
 
+              <li class="update-changes col col-sm-3 col-md-2">
+                <p><%= link_to document.file.url, target: '_blank' do %>
+                  <i class="fas fa-list-ul"></i><span></span><span class="small"> Show</span>
+                <% end %></p>
 
-             <li class="update-changes col col-sm-3 col-md-2">
-                <p><%= link_to document.file.url, class: "", target: '_blank' do %>
-                <i class="fas fa-list-ul"></i><span></span><span class="small"> Show</span>
-              <% end %></p>
-
-                 <p><%= link_to x.sub('upload/','upload/fl_attachment/'), class: "" do %>
+                <p><%= link_to x.sub('upload/','upload/fl_attachment/') do %>
                   <i class="fas fa-list-ul"></i><span></span><span class="small"> Download</span>
                 <% end %></p>
 
+                <p><%= link_to deactivate_patient_document_path(@patient,document) do %>
+                  <i class="far fa-calendar-alt"></i><span class="small"> Deactivate</span>
+                <% end %></p>
 
+            <% end %>
 
+                <p><%= link_to patient_document_path(@patient, document), method: :delete do %>
+                  <i class="far fa-calendar-alt"></i><span class="small"> Delete</span>
+                <% end %></p>
 
-
-
-              <p><%= link_to deactivate_patient_document_path(@patient,document), class: "" do %>
-                <i class="far fa-calendar-alt"></i><span> <%#= @document.topic.schedules.where(status: 'active').count %></span><span class="small"> Deactivate</span>
-              <% end %></p>
-               <p><%= link_to patient_documents_path, class: "" do %>
-                <i class="far fa-calendar-alt"></i><span> <%#= @document.topic.schedules.where(status: 'active').count %></span><span class="small"> Delete</span>
-              <% end %></p>
-
-      <% end %>
-          </li>
+                </p>
+              </li>
 
         </ul>
 

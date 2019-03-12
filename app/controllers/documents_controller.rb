@@ -23,8 +23,6 @@ def index_ex
   end
 
   def show
-    set_document
-    @patient = policy_scope(Document).find(params[:patient_id])
   end
 
   def deactivate
@@ -39,14 +37,9 @@ def index_ex
     end
     @document.save
     redirect_to patient_documents_path(@patient)
-    #redirect_to patient_topics_path(@patient)
-end
+  end
 
   def download
-    set_document
-    @document.image_url
-    #require 'open-uri'
-    File.write '@document.image_data.metadata.filename', open(@document.image_url).read
   end
 
   def new
@@ -61,7 +54,6 @@ end
     @patient = @document.topic.patient
     authorize Topic
 
-
     #if @document.save
     #  redirect_to patient_documents_path(@patient.id)
     #else
@@ -71,55 +63,40 @@ end
     respond_to do |format|
         if @document.save
           format.html { redirect_to patient_documents_path, notice: 'Document was successfully created.' }
-          format.json { render :show, status: :created, location: @document }
+          #format.json { render :show, status: :created, location: @document }
         else
           format.html { render :new }
-          format.json { render json: @document.errors, status: :unprocessable_entity }
+          #format.json { render json: @document.errors, status: :unprocessable_entity }
         end
     end
 
   end
 
-  def edit
-    # authorize Document
-    @document = policy_scope(Document).find(params[:id])
-    @patient = @document.patient
-    authorize Document
-
-    respond_to do |format|
-       if @document.update(document_params)
-         format.html { redirect_to @document, notice: 'Document was successfully updated.' }
-    #    format.json { render :show, status: :ok, location: @document }
-       else
-         format.html { render :edit }
-         format.json { render json: @document.errors, status: :unprocessable_entity }
-       end
-     end
-  end
 
   def update
     respond_to do |format|
       if @document.update(document_params)
         format.html { redirect_to @document, notice: 'Document was successfully updated.' }
-        format.json { render :show, status: :ok, location: @document }
+        #format.json { render :show, status: :ok, location: @document }
       else
         format.html { render :edit }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
+        #format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
   end
 
 
   def destroy
-    @patient = @document.patient
+    #@patient = @document.patient
+    authorize Document
     @document = policy_scope(Document).find(params[:id])
     @document.destroy
     respond_to do |format|
       format.html { redirect_to patient_documents_path, notice: 'Document was successfully destroyed.' }
-      format.json { head :no_content }
+      #format.json { head :no_content }
     end
+    #redirect_to patient_document_path
   end
-
 
 private
 
