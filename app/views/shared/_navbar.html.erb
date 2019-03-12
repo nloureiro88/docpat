@@ -16,8 +16,8 @@
       <!-- Links when logged in -->
       <%= link_to "Home", patient_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Doctors", doctors_patient_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Active Topics", patient_topics_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Health Log", patient_updates_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Health Topics", patient_topics_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Updates", patient_updates_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Exams", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Documents", patient_documents_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Prescriptions", patient_schedules_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
@@ -64,7 +64,7 @@
           <li><%= link_to "Home", patient_path(@patient) %></li>
           <li><%= link_to "Doctors", doctors_patient_path(@patient) %></li>
           <li><%= link_to "Health Topics", patient_topics_path(@patient) %></li>
-          <li><%= link_to "Health Log", patient_updates_path(@patient) %></li>
+          <li><%= link_to "Updates", patient_updates_path(@patient) %></li>
           <li><%= link_to "Exams", "#" %></li>
           <li><%= link_to "Documents", patient_documents_path(@patient) %></li>
           <li><%= link_to "Prescriptions", patient_schedules_path(@patient) %></li>

@@ -24,26 +24,26 @@ class TopicsController < ApplicationController
     authorize Topic
     authorize Update
     if @topic.save && @update.save
-      redirect_to patient_topics_path(@patient)
+      redirect_to patient_topics_path(@patient, query: params[:query])
     else
       render :new
     end
   end
 
   def refresh
-    @update = Update.where(patient: @patient, topic: @topic).last
+    # @update = Update.where(patient: @patient, topic: @topic).last
   end
 
   def log
-    @update = Update.new(update_params)
-    @update.topic = @topic
-    @update.user = current_user
-    authorize Update
-    if @update.save
-      redirect_to patient_topics_path(@patient)
-    else
-      render :refresh
-    end
+    # @update = Update.new(update_params)
+    # @update.topic = @topic
+    # @update.user = current_user
+    # authorize Update
+    # if @update.save
+    #   redirect_to patient_topics_path(@patient, query: params[:query])
+    # else
+    #   render :refresh
+    # end
   end
 
   def deactivate
@@ -61,7 +61,7 @@ class TopicsController < ApplicationController
       item.save
     end
 
-    redirect_to patient_topics_path(@patient)
+    redirect_to patient_topics_path(@patient, query: params[:query])
   end
 
   private
