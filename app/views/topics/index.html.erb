@@ -103,7 +103,7 @@
 
           <li class="topic-doctor col col-xs-3">
             <div class="avatar-container">
-              <%= image_tag(last_update.user.photo, class: "avatar-md", alt: "Dr. #{last_update.user.first_name} #{last_update.user.last_name}") %>
+              <%= cl_image_tag(last_update.user.photo, class: "avatar-md", alt: "Dr. #{last_update.user.first_name} #{last_update.user.last_name}") %>
             </div>
             <div class="update">
               <p class="small"><strong><%= "Dr. #{last_update.user.first_name} #{last_update.user.last_name}" %></strong></p>
@@ -129,19 +129,24 @@
           <li class="topic-info col col-xs-4">
 
             <%= link_to patient_updates_path(@patient, query: topic.title), class: "btn btn-default #{"new-item" if topicNew(topic)[:updates]}" do %>
+
               <i class="fas fa-list-ul"></i><span> <%= topicActions(topic)[:updates].count %></span><span> Updates</span>
+
             <% end %>
 
             <%= link_to patient_documents_path(@patient, query: topic.title), class: "btn btn-default #{"new-item" if topicNew(topic)[:documents]}" do %>
               <i class="far fa-file-alt"></i><span> <%= topicActions(topic)[:documents].count %></span><span> Documents</span>
             <% end %>
 
-            <%= link_to patient_documents_path(@patient, query: topic.title), class: "btn btn-default #{"new-item" if topicNew(topic)[:exams]}" do %>
+
+
+            <%= link_to index_ex_patient_documents_path(@patient, query: topic.title), class: "btn btn-default #{"new-item" if topicNew(topic)[:exams]}" do %>
               <i class="far fa-chart-bar"></i><span> <%= topicActions(topic)[:exams].count %></span><span> Exams</span>
             <% end %>
 
             <%= link_to patient_schedules_path(@patient, query: topic.title), class: "btn btn-default #{"new-item" if topicNew(topic)[:schedules]}" do %>
               <i class="far fa-calendar-alt"></i><span> <%= topicActions(topic)[:schedules].count %></span><span> Prescriptions</span>
+
             <% end %>
 
           </li>

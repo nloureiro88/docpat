@@ -1,0 +1,35 @@
+<div class="container list-page updates content">
+
+  <div class="row">
+
+    <div class="form-label-group custom-select form-select">
+
+      <%= simple_form_for [@patient, @document], class: "simple_form", url: patient_documents_path, html: { method: :post } do |f| %>
+        <%= f.error_notification %>
+
+        <%#= f.input :id %>
+        <%#= f.input :topic_id %>
+        <%#= f.input :user_id %>
+        <%#= f.input :doc_type %>
+        <%#= f.text_field :exam_type%>
+        <%= f.input :doc_title %>
+        <%#= f.input :tags %>
+        <%#= f.input :url %>
+        <%#= f.input :file_type %>
+        <%#= f.input :status %>
+        <%#= f.input :created_at %>
+        <%#= f.input :updated_at %>
+        <%= f.label :image, class:"col-md-4 control-label"  %>
+        <%= f.text_area :image_data %>
+        <%= f.input :image_data %>
+
+        <%= f.hidden_field :image, value: f.object.cached_image_data %>
+        <%= f.file_field :image, class:"form-control" %>
+
+        <%= f.button :submit, class: "btn-primary" %>
+        <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
+        <% end %>
+
+    </div>
+  </div>
+</div>

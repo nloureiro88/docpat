@@ -1,106 +1,139 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
+  # before_action :set_document, only: [:show, :edit, :update, :destroy]
 
-    # GET /documents
-    # GET /documents.json
-    def index
-       # authorize @documents
+  def index
+    @patient = User.find(params[:patient_id])
+    if params[:query].present?
+      source_documents = policy_scope(Document).order('created_at DESC').documents_search(params[:query])
+    else
+      source_documents = policy_scope(Document).order('created_at DESC')
+    end
+    @documents = source_documents.select { |doc| doc.topic.status == "active" && doc.topic.patient == @patient }
+  end
+
+def index_ex
+    @patient = User.find(params[:patient_id])
+    if params[:query].present?
+      source_documents = policy_scope(Document).order('created_at DESC').documents_search(params[:query])
+    else
+      source_documents = policy_scope(Document).order('created_at DESC')
+    end
+    @documents = source_documents.select { |doc| doc.topic.status == "active" && doc.topic.patient == @patient }
+    #@documents = source_documents.select { |doc| doc.topic.status == "active" && doc.topic.patient == @patient && doc.doc_type == "Exam" }
+  end
+
+  def show
+    set_document
+    @patient = policy_scope(Document).find(params[:patient_id])
+  end
+
+  def deactivate
+    authorize Document
+    @document = policy_scope(Document).find(params[:id])
+    @patient = @document.patient
+    case @document.status
+      when 'inactive'
+        @document.status = "active"
+      else
+        @document.status = "inactive"
+    end
+    @document.save
+    redirect_to patient_documents_path(@patient)
+    #redirect_to patient_topics_path(@patient)
+end
+
+  def download
+    set_document
+    @document.image_url
+    #require 'open-uri'
+    File.write '@document.image_data.metadata.filename', open(@document.image_url).read
+  end
+
+  def new
+    @document = Document.new
+    authorize Document
+  end
+
+  def create
+    @document = Document.new(document_params)
+    @document.user = current_user
+    @document.topic = Topic.where(patient: current_user).first
+    @patient = @document.topic.patient
+    authorize Topic
 
 
-      # @topics = @topics.where(patient_id: current_user)
-      # @documents = @documents.where(user: current_user)
-      # @documents = @documents.where(user_id: current_user)
-
-      # @documents = policy_scope(Document).all
-      # @documents = policy_scope(Document).where(user_id: current_user)
-      @documents = policy_scope(Document).where(user: current_user)
-
-      # redirect_to patient_documents_path
+    if @document.save
+      redirect_to patient_documents_path(@patient.id)
+    else
+       render :new
     end
 
-    # GET /documents/1
-    # GET /documents/1.json
-    def show
-    end
+    # respond_to do |format|
+    #    if @document.save
+    #      format.html { redirect_to @document, notice: 'Document was successfully created.' }
+    #      format.json { render :show, status: :created, location: @document }
+    #    else
+    #      format.html { render :new }
+    #      format.json { render json: @document.errors, status: :unprocessable_entity }
+    #    end
+    #  end
 
-    # GET /documents/new
-    def new
-      @document = Document.new
-    end
+  end
 
-    # GET /documents/1/edit
-    def edit
-    end
+  def edit
+    # authorize Document
+    @document = policy_scope(Document).find(params[:id])
+    @patient = @document.patient
+    authorize Document
 
-    # POST /documents
-    # POST /documents.json
-    def create
-      @document = Document.new(document_params)
+    respond_to do |format|
+       if @document.update(document_params)
+         format.html { redirect_to @document, notice: 'Document was successfully updated.' }
+    #    format.json { render :show, status: :ok, location: @document }
+       else
+         format.html { render :edit }
+         format.json { render json: @document.errors, status: :unprocessable_entity }
+       end
+     end
+  end
 
-      respond_to do |format|
-        if @document.save
-          format.html { redirect_to @document, notice: 'Document was successfully created.' }
-          format.json { render :show, status: :created, location: @document }
-        else
-          format.html { render :new }
-          format.json { render json: @document.errors, status: :unprocessable_entity }
-        end
+  def update
+    respond_to do |format|
+      if @document.update(document_params)
+        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
+        format.json { render :show, status: :ok, location: @document }
+      else
+        format.html { render :edit }
+        format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
+  end
 
-    # PATCH/PUT /documents/1
-    # PATCH/PUT /documents/1.json
-    def update
-      respond_to do |format|
-        if @document.update(pdocument_params)
-          format.html { redirect_to @document, notice: 'Document was successfully updated.' }
-          format.json { render :show, status: :ok, location: @document }
-        else
-          format.html { render :edit }
-          format.json { render json: @document.errors, status: :unprocessable_entity }
-        end
-      end
+
+  def destroy
+    @document.destroy
+    respond_to do |format|
+      format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
+      format.json { head :no_content }
     end
+  end
 
-    # DELETE /documents/1
-    # DELETE /documents/1.json
-    def destroy
-      @document.destroy
-      respond_to do |format|
-        format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
-        format.json { head :no_content }
-      end
-    end
 
-    private
-      # Use callbacks to share common setup or constraints between actions.
+private
+
       def set_document
+        #authorize Document
+        #@document = policy_scope(Document).find(params[:id])
         @document = Document.find(params[:id])
       end
 
-      # Never trust parameters from the scary internet, only allow the white list through.
-      def document_params
-        # params.require(:document).permit(:image, :description)
+      def find_patient
+        @patient = User.find(params[:patient_id])
       end
 
+      def document_params
+        params.require(:document).permit(:topic_id, :user_id, :doc_type, :exam_type, :doc_title, :tags, :url, :file_type, :status, :image_data)
 
-  # Missing SHOW DESTROY UPDATE
-  # BUILD DOWNLOAD => No need just post the url
-  # BUILD deactivate
 
-  # Original CRUD to identify missing ROUTES
-  # def index
-  # end
-
-  # def new
-  # end
-
-  # def create
-  # end
-
-  # def download
-  # end
-
-  # def deactivate
-  # end
+      end
 end

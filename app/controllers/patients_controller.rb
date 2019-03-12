@@ -5,7 +5,6 @@ class PatientsController < ApplicationController
 
   def show
     authorize User
-
     @doctors = @patient.doctors.select { |doc| DoctorPatient.where(doctor: doc, patient: @patient).last.status == "active" }
     # @families = @patient.families.order(:name).select { |fam| FamilyPatient.where(patient: @patient, family: fam).last.status == 'active' }
   end
@@ -69,6 +68,11 @@ class PatientsController < ApplicationController
   private
 
   def find_patient
+    if params[:id].nil?
+    @patient = current_user
+    else
     @patient = User.find(params[:id])
+    end
   end
+
 end

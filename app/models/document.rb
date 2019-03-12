@@ -15,11 +15,22 @@ class Document < ApplicationRecord
 
   validates :topic_id, presence: true, allow_blank: false
   validates :user_id, presence: true, allow_blank: false
-  validates :doc_type, inclusion: { in: DOC_TYPES }
-  validates :doc_title, presence: true, allow_blank: false, uniqueness: { scope: :topic_id }
-  validates :url, presence: true, allow_blank: false
-  validates :status, inclusion: { in: STATUS }
-  validate :val_exam_type
+  #validates :doc_type, inclusion: { in: DOC_TYPES }
+  #validates :doc_title, presence: true, allow_blank: false, uniqueness: { scope: :topic_id }
+  #validates :url, presence: true, allow_blank: false
+  #validates :status, inclusion: { in: STATUS }
+  #validate :val_exam_type
+
+  include PgSearch
+    pg_search_scope :documents_search,
+      against: [:status, :created_at],
+      associated_against: {
+         topic: [:subcode, :title],
+         user: [:first_name, :last_name, :doc_specialties]
+      },
+      using: {
+        tsearch: { prefix: true }
+      }
 
   def val_exam_type
     return unless doc_type == "Exam"

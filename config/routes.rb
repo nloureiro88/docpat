@@ -49,7 +49,12 @@ Rails.application.routes.draw do
         get :download, to: "document#download"
         get :deactivate, to: "documents#deactivate"
         get :read, to: "documents#read"
+
       end
+      collection do
+         get :index_ex, to: "documents#index_ex"
+      end
+
     end
   end
 
