@@ -68,196 +68,199 @@
     <% pat_schedules = patientActions(@patient)[:schedules] %>
 
     <div class="dash-right col-xs-8">
-      <div class="dash-updates">
 
-        <button data-toggle="collapse" data-target="#dash-table-update">
-          <div class="dash-title">
-            <div class="dash-title-left">
-                <h4>Updates</h4>
+      <div class="dash-new-info">
+        <div class="dash-updates">
 
-                <% new_updates = pat_updates.select{ |update| update.read_at.nil? } %>
-                <% if new_updates.count.positive? %>
-                  <h4 class="news"><%= new_updates.count %> New</h4>
+          <button data-toggle="collapse" data-target="#dash-table-update">
+            <div class="dash-title">
+              <div class="dash-title-left">
+                  <h4>Updates</h4>
+
+                  <% new_updates = pat_updates.select{ |update| update.read_at.nil? } %>
+                  <% if new_updates.count.positive? %>
+                    <h4 class="news"><%= new_updates.count %> New</h4>
+                    <h4> / </h4>
+                  <% end %>
+                  <h4><%= pat_updates.count %></h4>
+              </div>
+
+              <div class="dash-title-right">
+                  <% if pat_updates.count.positive? %>
+                    <%= link_to patient_updates_path(@patient), class: "btn btn-default" do %>
+                      <i class="fas fa-search-plus fa-lg"></i>
+                    <% end %>
+                  <% end %>
+              </div>
+            </div>
+          </button>
+
+          <div class="dash-table collapse" id="dash-table-update">
+            <% new_updates.each do |update| %>
+              <div class="show-new">
+                <%= link_to patient_updates_path(@patient, query: update.topic.title) do %>
+                  <ul style="width: 100%; min-width: 100%;">
+                    <li style="width: 12%">
+                      <%= cl_image_tag(update.user.photo, class: "avatar-sm", alt: "#{"Dr. " if update.user.user_type == 'doctor' } #{update.user.first_name} #{update.user.last_name}") %>
+                    </li>
+                    <li class="highlight" style="width: 18%"><%= "Dr." if update.user.user_type == 'doctor' %> <%= update.user.first_name %> <%= update.user.last_name %>
+                    </li>
+                    <li style="width: 30%"><strong><%= update.topic.title %></strong></li>
+                    <li style="width: 25%"><%= update.topic_status.capitalize %></li>
+                    <li style="width: 15%"><%= update.created_at.strftime('%d-%m-%y') %></li>
+                  </ul>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="dash-exams">
+
+          <button data-toggle="collapse" data-target="#dash-table-exams">
+            <div class="dash-title">
+              <div class="dash-title-left">
+                <h4>Exams</h4>
+
+                <% new_exams = pat_exams.select{ |doc| doc.read_at.nil? } %>
+                <% if new_exams.count.positive? %>
+                  <h4 class="news"><%= new_exams.count %> New</h4>
                   <h4> / </h4>
                 <% end %>
-                <h4><%= pat_updates.count %></h4>
-            </div>
+                <h4><%= pat_exams.count %></h4>
+              </div>
 
-            <div class="dash-title-right">
+              <div class="dash-title-right">
                 <% if pat_updates.count.positive? %>
-                  <%= link_to patient_updates_path(@patient), class: "btn btn-default" do %>
+                  <%= link_to patient_documents_path(@patient), class: "btn btn-default" do %>
                     <i class="fas fa-search-plus fa-lg"></i>
                   <% end %>
                 <% end %>
+              </div>
             </div>
+          </button>
+
+          <div class="dash-table collapse" id="dash-table-exams">
+            <% new_exams.each do |exam| %>
+              <div class="show-new">
+                <%= link_to patient_documents_path(@patient, query: exam.doc_title) do %>
+                  <ul style="width: 100%; min-width: 100%;">
+                    <li style="width: 12%">
+                      <%= cl_image_tag(exam.user.photo, class: "avatar-sm", alt: "#{"Dr. " if exam.user.user_type == 'doctor' } #{exam.user.first_name} #{exam.user.last_name}") %>
+                    </li>
+                    <li class="highlight" style="width: 18%"><%= "Dr." if exam.user.user_type == 'doctor' %> <%= exam.user.first_name %> <%= exam.user.last_name %>
+                    </li>
+                    <li style="width: 30%"><strong><%= exam.doc_title %></strong></li>
+                    <li style="width: 25%"><%= exam.exam_type %></li>
+                    <li style="width: 15%"><%= exam.created_at.strftime('%d-%m-%y') %></li>
+                  </ul>
+                <% end %>
+              </div>
+            <% end %>
           </div>
-        </button>
-
-        <div class="dash-table collapse" id="dash-table-update">
-          <% new_updates.each do |update| %>
-            <div class="show-new">
-              <%= link_to patient_updates_path(@patient, query: update.topic.title) do %>
-                <ul style="width: 100%; min-width: 100%;">
-                  <li style="width: 12%">
-                    <%= cl_image_tag(update.user.photo, class: "avatar-sm", alt: "#{"Dr. " if update.user.user_type == 'doctor' } #{update.user.first_name} #{update.user.last_name}") %>
-                  </li>
-                  <li class="highlight" style="width: 18%"><%= "Dr." if update.user.user_type == 'doctor' %> <%= update.user.first_name %> <%= update.user.last_name %>
-                  </li>
-                  <li style="width: 30%"><strong><%= update.topic.title %></strong></li>
-                  <li style="width: 25%"><%= update.topic_status.capitalize %></li>
-                  <li style="width: 15%"><%= update.created_at.strftime('%d-%m-%y') %></li>
-                </ul>
-              <% end %>
-            </div>
-          <% end %>
         </div>
-      </div>
 
-      <div class="dash-exams">
+        <div class="dash-documents">
 
-        <button data-toggle="collapse" data-target="#dash-table-exams">
-          <div class="dash-title">
-            <div class="dash-title-left">
-              <h4>Exams</h4>
+          <button data-toggle="collapse" data-target="#dash-table-documents">
+            <div class="dash-title">
+              <div class="dash-title-left">
+                <h4>Documents</h4>
 
-              <% new_exams = pat_exams.select{ |doc| doc.read_at.nil? } %>
-              <% if new_exams.count.positive? %>
-                <h4 class="news"><%= new_exams.count %> New</h4>
-                <h4> / </h4>
-              <% end %>
-              <h4><%= pat_exams.count %></h4>
-            </div>
+                <% new_documents = pat_documents.select{ |doc| doc.read_at.nil? } %>
+                <% if new_documents.count.positive? %>
+                  <h4 class="news"><%= new_documents.count %> New</h4>
+                  <h4> / </h4>
+                <% end %>
+                <h4><%= pat_documents.count %></h4>
+              </div>
 
-            <div class="dash-title-right">
-              <% if pat_updates.count.positive? %>
+              <div class="dash-title-right">
                 <%= link_to patient_documents_path(@patient), class: "btn btn-default" do %>
                   <i class="fas fa-search-plus fa-lg"></i>
                 <% end %>
-              <% end %>
+              </div>
             </div>
-          </div>
-        </button>
+          </button>
 
-        <div class="dash-table collapse" id="dash-table-exams">
-          <% new_exams.each do |exam| %>
-            <div class="show-new">
-              <%= link_to patient_documents_path(@patient, query: exam.doc_title) do %>
-                <ul style="width: 100%; min-width: 100%;">
-                  <li style="width: 12%">
-                    <%= cl_image_tag(exam.user.photo, class: "avatar-sm", alt: "#{"Dr. " if exam.user.user_type == 'doctor' } #{exam.user.first_name} #{exam.user.last_name}") %>
-                  </li>
-                  <li class="highlight" style="width: 18%"><%= "Dr." if exam.user.user_type == 'doctor' %> <%= exam.user.first_name %> <%= exam.user.last_name %>
-                  </li>
-                  <li style="width: 30%"><strong><%= exam.doc_title %></strong></li>
-                  <li style="width: 25%"><%= exam.exam_type %></li>
-                  <li style="width: 15%"><%= exam.created_at.strftime('%d-%m-%y') %></li>
-                </ul>
-              <% end %>
-            </div>
-          <% end %>
+          <div class="dash-table collapse" id="dash-table-documents">
+            <% new_documents.each do |doc| %>
+              <div class="show-new">
+                <%= link_to patient_documents_path(@patient, query: doc.doc_title) do %>
+                  <ul style="width: 100%; min-width: 100%;">
+                    <li style="width: 12%">
+                      <%= cl_image_tag(doc.user.photo, class: "avatar-sm", alt: "#{"Dr. " if doc.user.user_type == 'doctor' } #{doc.user.first_name} #{doc.user.last_name}") %>
+                    </li>
+                    <li class="highlight" style="width: 18%"><%= "Dr." if doc.user.user_type == 'doctor' %> <%= doc.user.first_name %> <%= doc.user.last_name %>
+                    </li>
+                    <li style="width: 30%"><strong><%= doc.doc_title %></strong></li>
+                    <li style="width: 25%"><%= doc.doc_type %></li>
+                    <li style="width: 15%"><%= doc.created_at.strftime('%d-%m-%y') %></li>
+                  </ul>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
 
-      <div class="dash-documents">
+        <div class="dash-schedules">
 
-        <button data-toggle="collapse" data-target="#dash-table-documents">
-          <div class="dash-title">
-            <div class="dash-title-left">
-              <h4>Documents</h4>
+          <button data-toggle="collapse" data-target="#dash-table-schedules">
+            <div class="dash-title">
+              <div class="dash-title-left">
+                <h4>Prescriptions</h4>
 
-              <% new_documents = pat_documents.select{ |doc| doc.read_at.nil? } %>
-              <% if new_documents.count.positive? %>
-                <h4 class="news"><%= new_documents.count %> New</h4>
-                <h4> / </h4>
-              <% end %>
-              <h4><%= pat_documents.count %></h4>
+                <% new_schedules = pat_schedules.select{ |sc| sc.read_at.nil? } %>
+                <% if new_schedules.count.positive? %>
+                  <h4 class="news"><%= new_schedules.count %> New</h4>
+                  <h4> / </h4>
+                <% end %>
+                <h4><%= pat_schedules.count %></h4>
+              </div>
+
+              <div class="dash-title-right">
+                <%= link_to patient_schedules_path(@patient), class: "btn btn-default" do %>
+                  <i class="fas fa-search-plus fa-lg"></i>
+                <% end %>
+              </div>
             </div>
+          </button>
 
-            <div class="dash-title-right">
-              <%= link_to patient_documents_path(@patient), class: "btn btn-default" do %>
-                <i class="fas fa-search-plus fa-lg"></i>
-              <% end %>
-            </div>
+          <div class="dash-table collapse" id="dash-table-schedules">
+            <% new_schedules.each do |sc| %>
+              <div class="show-new">
+                <%= link_to patient_schedules_path(@patient, query: sc.sc_title) do %>
+                  <ul style="width: 100%; min-width: 100%;">
+                    <li style="width: 12%">
+                      <%= cl_image_tag(sc.user.photo, class: "avatar-sm", alt: "#{"Dr. " if sc.user.user_type == 'doctor' } #{sc.user.first_name} #{sc.user.last_name}") %>
+                    </li>
+                    <li class="highlight" style="width: 18%"><%= "Dr." if sc.user.user_type == 'doctor' %> <%= sc.user.first_name %> <%= sc.user.last_name %>
+                    </li>
+                    <li style="width: 30%"><strong><%= sc.sc_title %></strong></li>
+                    <li style="width: 20%">
+                      <% if (sc.schedule.nil? && sc.dosage.nil?) %>
+                        <%= sc.sc_type %>
+                      <% elsif sc.schedule.nil? %>
+                        <%= sc.dosage %>
+                      <% else %>
+                        <%= sc.schedule %> <br>
+                        (<%= sc.dosage %>)
+                      <% end %>
+                    </li>
+                    <li style="width: 25%">
+                      Start: <%= sc.date_start.strftime('%d-%m-%y') %>
+                      <br>
+                      <% if sc.date_end.year == 9999 %>
+                        End: T.B.D.
+                      <% else %>
+                        End: <%= sc.date_end.strftime('%d-%m-%y') %>
+                      <% end %>
+                    </li>
+                  </ul>
+                <% end %>
+              </div>
+            <% end %>
           </div>
-        </button>
-
-        <div class="dash-table collapse" id="dash-table-documents">
-          <% new_documents.each do |doc| %>
-            <div class="show-new">
-              <%= link_to patient_documents_path(@patient, query: doc.doc_title) do %>
-                <ul style="width: 100%; min-width: 100%;">
-                  <li style="width: 12%">
-                    <%= cl_image_tag(doc.user.photo, class: "avatar-sm", alt: "#{"Dr. " if doc.user.user_type == 'doctor' } #{doc.user.first_name} #{doc.user.last_name}") %>
-                  </li>
-                  <li class="highlight" style="width: 18%"><%= "Dr." if doc.user.user_type == 'doctor' %> <%= doc.user.first_name %> <%= doc.user.last_name %>
-                  </li>
-                  <li style="width: 30%"><strong><%= doc.doc_title %></strong></li>
-                  <li style="width: 25%"><%= doc.doc_type %></li>
-                  <li style="width: 15%"><%= doc.created_at.strftime('%d-%m-%y') %></li>
-                </ul>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="dash-schedules">
-
-        <button data-toggle="collapse" data-target="#dash-table-schedules">
-          <div class="dash-title">
-            <div class="dash-title-left">
-              <h4>Prescriptions</h4>
-
-              <% new_schedules = pat_schedules.select{ |sc| sc.read_at.nil? } %>
-              <% if new_schedules.count.positive? %>
-                <h4 class="news"><%= new_schedules.count %> New</h4>
-                <h4> / </h4>
-              <% end %>
-              <h4><%= pat_schedules.count %></h4>
-            </div>
-
-            <div class="dash-title-right">
-              <%= link_to patient_schedules_path(@patient), class: "btn btn-default" do %>
-                <i class="fas fa-search-plus fa-lg"></i>
-              <% end %>
-            </div>
-          </div>
-        </button>
-
-        <div class="dash-table collapse" id="dash-table-schedules">
-          <% new_schedules.each do |sc| %>
-            <div class="show-new">
-              <%= link_to patient_schedules_path(@patient, query: sc.sc_title) do %>
-                <ul style="width: 100%; min-width: 100%;">
-                  <li style="width: 12%">
-                    <%= cl_image_tag(sc.user.photo, class: "avatar-sm", alt: "#{"Dr. " if sc.user.user_type == 'doctor' } #{sc.user.first_name} #{sc.user.last_name}") %>
-                  </li>
-                  <li class="highlight" style="width: 18%"><%= "Dr." if sc.user.user_type == 'doctor' %> <%= sc.user.first_name %> <%= sc.user.last_name %>
-                  </li>
-                  <li style="width: 30%"><strong><%= sc.sc_title %></strong></li>
-                  <li style="width: 20%">
-                    <% if (sc.schedule.nil? && sc.dosage.nil?) %>
-                      <%= sc.sc_type %>
-                    <% elsif sc.schedule.nil? %>
-                      <%= sc.dosage %>
-                    <% else %>
-                      <%= sc.schedule %> <br>
-                      (<%= sc.dosage %>)
-                    <% end %>
-                  </li>
-                  <li style="width: 25%">
-                    Start: <%= sc.date_start.strftime('%d-%m-%y') %>
-                    <br>
-                    <% if sc.date_end.year == 9999 %>
-                      End: T.B.D.
-                    <% else %>
-                      End: <%= sc.date_end.strftime('%d-%m-%y') %>
-                    <% end %>
-                  </li>
-                </ul>
-              <% end %>
-            </div>
-          <% end %>
         </div>
       </div>
     </div>
