@@ -5,8 +5,7 @@ class PatientsController < ApplicationController
 
   def show
     authorize User
-    @doctors = @patient.doctors.select { |doc| DoctorPatient.where(doctor: doc, patient: @patient).last.status == "active" }
-    # @families = @patient.families.order(:name).select { |fam| FamilyPatient.where(patient: @patient, family: fam).last.status == 'active' }
+    @doctors = DoctorPatient.where(patient: @patient, status: 'active').map(&:doctor)
   end
 
   def doctors
@@ -74,5 +73,4 @@ class PatientsController < ApplicationController
     @patient = User.find(params[:id])
     end
   end
-
 end

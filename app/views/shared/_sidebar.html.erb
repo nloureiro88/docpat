@@ -1,12 +1,14 @@
 <div class=sidebar>
   <div class="current_user ">
     <%= home_patient_link(@patient, current_user) do %>
-      <%= cl_image_tag(current_user.photo, class: "avatar-md", alt: "
-      #{current_user.first_name}") %>
+    <% notif_class = current_user == @patient ? "notif notif-active" : "notif notif-inactive" %>
 
-      <%# if patientNewCount(current_user)[:total] > 0 %>
-        <!-- <p class="tag"><%#= patientNewCount(current_user)[:total] %></p> -->
-      <%# end %>
+      <div class="sidebar-image">
+        <%= cl_image_tag(current_user.photo, class: "avatar-md", alt: "#{current_user.first_name}") %>
+        <% if patientNewCount(current_user)[:total] > 0 %>
+          <p class="<%= notif_class %> notif-user"><%= patientNewCount(current_user)[:total] %></p>
+        <% end %>
+      </div>
 
       <p><%= current_user.first_name %></p>
     <% end %>
@@ -17,14 +19,20 @@
   <% families.each do |fm| %>
     <div class="sidebar-family">
       <p class="sidebar-family-name"><strong><%= fm.name %></strong></p>
-      <% fm.patients.order(:first_name).select{ |patient| patient.id != current_user.id }.each do |pat| %>
-        <%= home_patient_link(@patient, pat) do %>
-          <%= cl_image_tag(pat.photo, class: "avatar-md", alt: "
-            #{pat.first_name}") %>
 
-          <%# if patientNewCount(pat)[:total] > 0 %>
-            <!-- <p class="tag"><%#= patientNewCount(pat)[:total] %></p> -->
-          <%# end %>
+      <% fm.patients.order(:first_name).select{ |patient| patient.id != current_user.id }.each do |pat| %>
+
+        <%= home_patient_link(@patient, pat) do %>
+
+          <% notif_class = pat == @patient ? "notif notif-active" : "notif notif-inactive" %>
+
+          <div class="sidebar-image">
+            <%= cl_image_tag(pat.photo, class: "avatar-md", alt: "
+              #{pat.first_name}") %>
+            <% if patientNewCount(pat)[:total] > 0 %>
+              <p class="<%= notif_class %> notif-fam"><%= patientNewCount(pat)[:total] %></p>
+            <% end %>
+          </div>
 
           <p><%= pat.first_name %></p>
         <% end %>
