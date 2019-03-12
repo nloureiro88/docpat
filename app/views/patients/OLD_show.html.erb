@@ -1,3 +1,26 @@
+<div class="dash-family col-xs-offset-4 col-xs-8">
+  <h3>Family</h3>
+
+  <div class="family-list">
+    <% @families.each do |fam| %>
+      <p class="family-name"><%= fam.name %></p>
+      <% fam.patients.select{ |pat| pat != @patient && FamilyPatient.where(patient: pat, family: fam).last.status == 'active' }.each do |member| %>
+        <ul>
+          <li style="width: 15%">
+          <%= image_tag(member.photo, class: "avatar-sm", alt: "#{member.first_name} #{member.last_name}") %>
+        </li>
+        <li style="width: 50%">
+          <p class="name"><%= member.first_name %> <%= member.last_name %></p>
+        </li>
+        <li style="width: 35%">
+          <p class="smaller"><i class="fas fa-map-marker-alt"></i> <%= member.address %></p>
+        </li>
+        </ul>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
 <div class="dash-updates col-xs-6">
       <div class="dash-title">
 

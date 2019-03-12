@@ -1,89 +1,68 @@
 <div class="container dash-page content">
 
   <div class="row">
-    <div class="dash-profile col-xs-3">
-      <div class="patient-card">
-        <div class="avatar-container">
-          <%= image_tag(@patient.photo, class: "avatar-md", alt: "#{@patient.first_name} #{@patient.last_name}") %>
-        </div>
 
-        <div class="patient-info">
-          <p class="patient-name"><%= @patient.first_name %> <%= @patient.last_name %></p>
-          <div class="last-row">
-            <p class="patient-location smaller"><i class="fas fa-map-marker-alt"></i> <%= @patient.address %></p>
-            <p class="patient-data smaller">
-              <span><i class="fas fa-id-card"></i> <%= age(@patient.date_birth) %></span>
-              <span><i class="fas fa-tint"></i> <%= @patient.pat_blood %></span>
-            </p>
+    <div class="dash-left col-xs-4">
+
+      <div class="dash-profile">
+        <div class="patient-card">
+          <div class="avatar-container">
+            <%= image_tag(@patient.photo, class: "avatar-md", alt: "#{@patient.first_name} #{@patient.last_name}") %>
+          </div>
+
+          <div class="patient-info">
+            <p class="patient-name"><%= @patient.first_name %> <%= @patient.last_name %></p>
+            <div class="last-row">
+              <p class="patient-location smaller"><i class="fas fa-map-marker-alt"></i> <%= @patient.address %></p>
+              <p class="patient-data smaller">
+                <span><i class="fas fa-id-card"></i> <%= age(@patient.date_birth) %></span>
+                <span><i class="fas fa-tint"></i> <%= @patient.pat_blood %></span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="dash-topics col-xs-5">
-      <h3>Topics</h3>
-    </div>
+      <div class="dash-doctors">
+        <div class="doctor-head">
+          <h3>Doctors</h3>
 
-    <div class="dash-doctors col-xs-4">
-      <div class="doctor-head">
-        <h3>Doctors</h3>
+          <div class="doctor-head-icons">
+            <%= link_to doctors_patient_path(@patient), class: "btn btn-default" do %>
+            <i class="fas fa-eye"></i>
+          <% end %>
+          <%= link_to docsearch_patient_path(@patient), class: "btn btn-default" do %>
+            <i class="fas fa-plus"></i>
+          <% end %>
+          </div>
+        </div>
 
-        <div class="doctor-head-icons">
-          <%= link_to doctors_patient_path(@patient), class: "btn btn-default" do %>
-          <i class="fas fa-eye"></i>
-        <% end %>
-        <%= link_to docsearch_patient_path(@patient), class: "btn btn-default" do %>
-          <i class="fas fa-plus"></i>
-        <% end %>
+        <div class="doctor-list">
+          <% @doctors.each do |doctor| %>
+            <% rel = DoctorPatient.where(doctor: doctor, patient: @patient, status: 'active').last %>
+            <% doctor_name = "#{doctor.first_name} #{doctor.last_name}" %>
+            <%= link_to doctors_patient_path(@patient, query: doctor_name) do %>
+              <ul>
+                <li style="width: 15%">
+                  <%= image_tag(doctor.photo, class: "avatar-sm", alt: "#{"Dr. " if doctor.user_type == 'doctor' } #{doctor.first_name} #{doctor.last_name}") %>
+                </li>
+                <li style="width: 50%">
+                  <p class="name">Dr. <%= doctor.first_name %> <%= doctor.last_name %></p>
+                  <p><%= doctor.doc_specialties[0] %></p>
+                </li>
+                <li style="width: 35%">
+                  <p class="smaller"><i class="fas fa-map-marker-alt"></i> <%= doctor.address %></p>
+                  <p class="smaller"><i class="far fa-address-book"></i> <%= rel.updated_at.strftime("%d-%m-%y") %></p>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
         </div>
       </div>
-
-      <div class="doctor-list">
-        <% @doctors.each do |doctor| %>
-          <% rel = DoctorPatient.where(doctor: doctor, patient: @patient, status: 'active').last %>
-          <% doctor_name = "#{doctor.first_name} #{doctor.last_name}" %>
-          <%= link_to doctors_patient_path(@patient, query: doctor_name) do %>
-            <ul>
-              <li style="width: 15%">
-                <%= image_tag(doctor.photo, class: "avatar-sm", alt: "#{"Dr. " if doctor.user_type == 'doctor' } #{doctor.first_name} #{doctor.last_name}") %>
-              </li>
-              <li style="width: 50%">
-                <p class="name">Dr. <%= doctor.first_name %> <%= doctor.last_name %></p>
-                <p><%= doctor.doc_specialties[0] %></p>
-              </li>
-              <li style="width: 35%">
-                <p class="smaller"><i class="fas fa-map-marker-alt"></i> <%= doctor.address %></p>
-                <p class="smaller"><i class="far fa-address-book"></i> <%= rel.updated_at.strftime("%d-%m-%y") %></p>
-              </li>
-            </ul>
-          <% end %>
-        <% end %>
-      </div>
     </div>
 
-    <div class="dash-family col-xs-offset-3 col-xs-9">
-      <h3>Family</h3>
+    <div class="dash-right col-xs-8">
 
-      <div class="family-list">
-        <% @families.each do |fam| %>
-          <p class="family-name"><%= fam.name %></p>
-          <% fam.patients.select{ |pat| pat != @patient && FamilyPatient.where(patient: pat, family: fam).last.status == 'active' }.each do |member| %>
-            <ul>
-              <li style="width: 15%">
-              <%= image_tag(member.photo, class: "avatar-sm", alt: "#{member.first_name} #{member.last_name}") %>
-            </li>
-            <li style="width: 50%">
-              <p class="name"><%= member.first_name %> <%= member.last_name %></p>
-            </li>
-            <li style="width: 35%">
-              <p class="smaller"><i class="fas fa-map-marker-alt"></i> <%= member.address %></p>
-            </li>
-            </ul>
-          <% end %>
-        <% end %>
-      </div>
-    </div
-
+    </div>
   </div>
-
 </div>
