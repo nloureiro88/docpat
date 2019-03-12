@@ -22,6 +22,9 @@ Update.destroy_all
 Topic.destroy_all
 User.destroy_all
 
+puts 'Cleaning up Cloudinary via API'
+Cloudinary::Api.delete_all_resources
+
 # Type lists:
 
 puts "Creating hardcoded domain lists..."
@@ -133,7 +136,6 @@ CSV.foreach(filepath_users, csv_options) do |row|
                       first_name: row[0],
                       last_name: row[1],
                       gender: row[4],
-                      photo: row[3], # CHANGE TO REMOTE_PHOTO_URL AFTER USER SETUP
                       address: row[2],
                       date_birth: Faker::Date.birthday(20, 50),
                       identity_card: Faker::Number.number(10),
@@ -141,7 +143,8 @@ CSV.foreach(filepath_users, csv_options) do |row|
                       pat_blood: BLOOD_TYPES.sample,
                       pat_pharma: pharma,
                       pat_pharma_email: pharma_mail,
-                      status: 'active') # To test with different status
+                      status: 'active')
+  new_user.remote_photo_url = row[3]                     # To test with different status
   new_user.save!
 
   unless row[5].nil?
@@ -166,11 +169,6 @@ locations_pt = ["Lisbon", "Porto", "Beja", "Évora", "Coimbra", "Faro", "Braga",
                         first_name: fname,
                         last_name: lname,
                         gender: "male",
-                        photo: ["https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.dailymail.co.uk%2Fi%2Fpix%2F2016%2F08%2F28%2F01%2F37A49C5300000578-3761834-image-a-10_1472342613804.jpg&f=1",
-                                "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi1-news.softpedia-static.com%2Fimages%2Fnews2%2FDoctor-McSteamy-Returns-to-039-Grey-039-s-Anatomy-039-2.jpg&f=1",
-                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2F81%2Ff9%2F53%2F81f953425bf1ac8fc44976ee538f112b.jpg&f=1",
-                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F87%2F4e%2Fed%2F874eedefa8b66101edc1c2eddc0e8477.jpg&f=1",
-                                "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2F3.bp.blogspot.com%2F-vO7eiZKx4FU%2FTl_X6xLLxqI%2FAAAAAAAABOA%2F90Ujq1eIMfo%2Fs1600%2Ftumblr_li6awrYU5H1qeig70o1_400.jpg&f=1"].sample, # CHANGE TO REMOTE_PHOTO_URL AFTER USER SETUP
                         address: locations_pt.sample,
                         date_birth: Faker::Date.birthday(25, 70),
                         identity_card: Faker::Number.number(10),
@@ -178,7 +176,12 @@ locations_pt = ["Lisbon", "Porto", "Beja", "Évora", "Coimbra", "Faro", "Braga",
                         doc_number: Faker::Number.number(8),
                         doc_institutions: hospitals.sample(rand(1..3)),
                         doc_specialties: specialties.keys.sample(rand(1..3)),
-                        status: 'active') # To test with different status
+                        status: 'active')
+  new_doctor.remote_photo_url = ["https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.dailymail.co.uk%2Fi%2Fpix%2F2016%2F08%2F28%2F01%2F37A49C5300000578-3761834-image-a-10_1472342613804.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi1-news.softpedia-static.com%2Fimages%2Fnews2%2FDoctor-McSteamy-Returns-to-039-Grey-039-s-Anatomy-039-2.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2F81%2Ff9%2F53%2F81f953425bf1ac8fc44976ee538f112b.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F87%2F4e%2Fed%2F874eedefa8b66101edc1c2eddc0e8477.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2F3.bp.blogspot.com%2F-vO7eiZKx4FU%2FTl_X6xLLxqI%2FAAAAAAAABOA%2F90Ujq1eIMfo%2Fs1600%2Ftumblr_li6awrYU5H1qeig70o1_400.jpg&f=1"].sample # To test with different status
   new_doctor.save!
 end
 
@@ -194,11 +197,6 @@ puts "Creating female doctors..."
                         first_name: fname,
                         last_name: lname,
                         gender: "female",
-                        photo: ["https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.mamamia.com.au%2Fwp%2Fwp-content%2Fuploads%2F2016%2F04%2F06140652%2Fmeredith-grey-resize.jpg&f=1",
-                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fentertainmentthatsus.files.wordpress.com%2F2016%2F03%2Fmiranda-bailey.jpg%3Fw%3D714&f=1",
-                                "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fmedia.nbcwashington.com%2Fimages%2F1200*1200%2F72594.jpg&f=1",
-                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fd1i5hut471lhig.cloudfront.net%2F7c134f19ba9dcc4fbaea768a8c034efbc45fd424.jpg&f=1",
-                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fd1i5hut471lhig.cloudfront.net%2F30f5abf518a71a41c8eefa3b7affd9dd4cd405eb.jpg&f=1"].sample , # CHANGE TO REMOTE_PHOTO_URL AFTER USER SETUP
                         address: locations_pt.sample,
                         date_birth: Faker::Date.birthday(25, 70),
                         identity_card: Faker::Number.number(10),
@@ -206,7 +204,12 @@ puts "Creating female doctors..."
                         doc_number: Faker::Number.number(8),
                         doc_institutions: hospitals.sample(rand(1..3)),
                         doc_specialties: specialties.keys.sample(rand(1..3)),
-                        status: 'active') # To test with different status
+                        status: 'active')
+  new_doctor.remote_photo_url = ["https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.dailymail.co.uk%2Fi%2Fpix%2F2016%2F08%2F28%2F01%2F37A49C5300000578-3761834-image-a-10_1472342613804.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi1-news.softpedia-static.com%2Fimages%2Fnews2%2FDoctor-McSteamy-Returns-to-039-Grey-039-s-Anatomy-039-2.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2F81%2Ff9%2F53%2F81f953425bf1ac8fc44976ee538f112b.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F87%2F4e%2Fed%2F874eedefa8b66101edc1c2eddc0e8477.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2F3.bp.blogspot.com%2F-vO7eiZKx4FU%2FTl_X6xLLxqI%2FAAAAAAAABOA%2F90Ujq1eIMfo%2Fs1600%2Ftumblr_li6awrYU5H1qeig70o1_400.jpg&f=1"].sample # To test with different status
   new_doctor.save!
 end
 
@@ -376,4 +379,7 @@ puts "Schedules:"
 p rand_pat.schedules
 puts ""
 puts "------------------------------------------"
+
+
+
 

@@ -1,8 +1,13 @@
 <div class=sidebar>
   <div class="current_user ">
-    <%= dynamic_patient_link(@patient, current_user) do %>
-      <%= image_tag(current_user.photo, class: "avatar-md", alt: "
+    <%= home_patient_link(@patient, current_user) do %>
+      <%= cl_image_tag(current_user.photo, class: "avatar-md", alt: "
       #{current_user.first_name}") %>
+
+      <%# if patientNewCount(current_user)[:total] > 0 %>
+        <!-- <p class="tag"><%#= patientNewCount(current_user)[:total] %></p> -->
+      <%# end %>
+
       <p><%= current_user.first_name %></p>
     <% end %>
   </div>
@@ -13,9 +18,14 @@
     <div class="sidebar-family">
       <p class="sidebar-family-name"><strong><%= fm.name %></strong></p>
       <% fm.patients.order(:first_name).select{ |patient| patient.id != current_user.id }.each do |pat| %>
-        <%= dynamic_patient_link(@patient, pat) do %>
-          <%= image_tag(pat.photo, class: "avatar-md", alt: "
+        <%= home_patient_link(@patient, pat) do %>
+          <%= cl_image_tag(pat.photo, class: "avatar-md", alt: "
             #{pat.first_name}") %>
+
+          <%# if patientNewCount(pat)[:total] > 0 %>
+            <!-- <p class="tag"><%#= patientNewCount(pat)[:total] %></p> -->
+          <%# end %>
+
           <p><%= pat.first_name %></p>
         <% end %>
       <% end %>
