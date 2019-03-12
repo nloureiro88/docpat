@@ -19,7 +19,14 @@
     padding-bottom: 0.2rem;
   }
 
-  .dash-profile, .dash-topics, .dash-doctors {
+  .dash-profile {
+    border-radius: 5px;
+    min-height: 38vh;
+    height: 38vh;
+    padding: 1.5rem;
+  }
+
+  .dash-doctors {
     border-radius: 5px;
     min-height: 35vh;
     height: 35vh;
@@ -95,25 +102,41 @@
   }
 
 
-  .dash-family {
+  .dash-right {
     border-radius: 5px;
-    min-height: 40vh;
-    height: 40vh;
+    // min-height: 38vh;
+    // height: 38vh;
     padding: 1.5rem;
 
-    .family-list {
-      font-size: 12px;
-      height: 100%;
-      width: 100%;
-      overflow-y: scroll;
+    .dash-title {
+      display: flex;
+      align-item: center;
+      justify-content: space-between;
+      border-bottom: 1px dotted rgb(230,230,230);
+      padding-bottom: 0.4rem;
 
-      .family-name {
-
-      }
-
-      ul {
+      .dash-title-left {
         display: flex;
         align-items: center;
+
+        .news {
+          color: $l-blue;
+          border-radius: 5px;
+          padding: 4px;
+          margin-left: 6px;
+        }
+      }
+
+      .dash-title-right {
+        .btn-default {
+          margin: 0;
+          padding: 0;
+          color: $l-gray;
+          border: none;
+          // border-color: rgb(240,240,240);
+          // border-radius: 5px;
+          font-size: 12px;
+        }
       }
     }
   }
@@ -138,36 +161,4 @@
   }
 }
 
-// FOR OLD VIEW
 
-  // .dash-title {
-  //   display: flex;
-  //   align-item: center;
-  //   justify-content: space-between;
-  //   border-bottom: 1px dotted rgb(230,230,230);
-  //   padding-bottom: 0.4rem;
-
-  //   .dash-title-left {
-  //     display: flex;
-  //     align-items: center;
-
-  //     .news {
-  //       color: $l-blue;
-  //       // background-color: ;
-  //       border-radius: 5px;
-  //       padding: 4px;
-  //       margin-left: 6px;
-  //     }
-  //   }
-
-  //   .dash-title-right {
-  //     .btn-default {
-  //       margin: 0;
-  //       color: $l-gray;
-  //       border-color: rgb(240,240,240);
-  //       border-radius: 5px;
-  //       padding: 3px 6px;
-  //       font-size: 12px;
-  //     }
-  //   }
-  // }

@@ -3,6 +3,11 @@
     <%= home_patient_link(@patient, current_user) do %>
       <%= image_tag(current_user.photo, class: "avatar-md", alt: "
       #{current_user.first_name}") %>
+
+      <%# if patientNewCount(current_user)[:total] > 0 %>
+        <!-- <p class="tag"><%#= patientNewCount(current_user)[:total] %></p> -->
+      <%# end %>
+
       <p><%= current_user.first_name %></p>
     <% end %>
   </div>
@@ -16,6 +21,11 @@
         <%= home_patient_link(@patient, pat) do %>
           <%= image_tag(pat.photo, class: "avatar-md", alt: "
             #{pat.first_name}") %>
+
+          <%# if patientNewCount(pat)[:total] > 0 %>
+            <!-- <p class="tag"><%#= patientNewCount(pat)[:total] %></p> -->
+          <%# end %>
+
           <p><%= pat.first_name %></p>
         <% end %>
       <% end %>

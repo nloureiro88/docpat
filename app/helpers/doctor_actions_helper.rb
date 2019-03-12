@@ -1,11 +1,11 @@
 module DoctorActionsHelper
   def doctorActions(doc, pat)
     doctorInfo = {}
-    doctorInfo[:updates] = Update.where(user: doc).select { |item| item.topic.status == "active" && item.topic.patient == pat}
-    documents = Document.where(user: doc).select { |item| item.status == "active" && item.topic.status == "active" && item.topic.patient == pat}
+    doctorInfo[:updates] = Update.where(user: doc).select { |item| item.topic.status == "active" && item.topic.patient == pat }
+    documents = Document.where(user: doc, status: 'active').select { |item| item.topic.status == "active" && item.topic.patient == pat }
     doctorInfo[:documents] = documents.select { |doc| doc.doc_type != "Exam" }
     doctorInfo[:exams] = documents.select { |doc| doc.doc_type == "Exam" }
-    doctorInfo[:schedules] = Schedule.where(user: doc).select { |item| item.status == "active" && item.topic.status == "active" && item.topic.patient == pat}
+    doctorInfo[:schedules] = Schedule.where(user: doc, status: 'active').select { |item| item.topic.status == "active" && item.topic.patient == pat }
     doctorInfo
   end
 
