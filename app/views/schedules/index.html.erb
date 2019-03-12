@@ -97,7 +97,7 @@
           </li>
 
           <li class="topic-doctor col col-xs-2 col-sm-2 col-md-2" style="margin:0px;">
-            <%= image_tag(sch.user.photo, class: "avatar-md", alt: "Dr. #{sch.user.first_name} #{sch.user.last_name}") %>
+            <%= cl_image_tag(sch.user.photo, class: "avatar-md", alt: "Dr. #{sch.user.first_name} #{sch.user.last_name}") %>
             <div class="update website">
               <p class="desktop"><%= "#{sch.user.first_name} #{sch.user.last_name}" %></p>
               <%# if sch.user.user_type == "doctor" %>

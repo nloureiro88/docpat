@@ -49,6 +49,7 @@ Rails.application.routes.draw do
         get :download, to: "document#download"
         get :deactivate, to: "documents#deactivate"
         get :read, to: "documents#read"
+        delete :delete, to: "documents#destroy"
 
       end
       collection do

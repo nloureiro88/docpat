@@ -11,7 +11,7 @@
   <div class="field">
     <!--  document.image or form.object -->
     <% if form.image.present? %>
-      <%= image_tag form.object.image_url, style: 'height:300px; width:auto;' %>
+      <%= cl_image_tag form.object.image_url, style: 'height:300px; width:auto;' %>
       <div>
         <%= label_tag 'remove' do %>
           Remove image

@@ -111,9 +111,10 @@ end
 
 
   def destroy
+    @patient = @document.patient
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
+      format.html { redirect_to patient_documents_path, notice: 'Document was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

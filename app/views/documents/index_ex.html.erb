@@ -75,7 +75,7 @@
 
           <li class="topic-title col col-xs-7 col-sm-5 col-md-4">
             <% if document.image_data? %>
-              <%= image_tag(document.image_url,  size: "40x40", class: "svg-icon desktop", alt: "#{document.doc_type.capitalize}")%>
+              <%= cl_image_tag(document.image_url,  size: "40x40", class: "svg-icon desktop", alt: "#{document.doc_type.capitalize}")%>
               <p><strong><%= document.doc_type %></strong>
               <span class="small code">(<%= document.doc_title %>)</span></p>
               <p class="mobile-date"><%= document.created_at.strftime("%d-%m-%Y") %></p>
@@ -83,7 +83,7 @@
           </li>
 
           <li class="topic-doctor col col-xs-2 col-sm-2 col-md-3" style="margin:0px;">
-            <%= image_tag(document.user.photo, class: "avatar-md", alt: "Dr. #{document.user.first_name} #{document.user.last_name}") %>
+            <%= cl_image_tag(document.user.photo, class: "avatar-md", alt: "Dr. #{document.user.first_name} #{document.user.last_name}") %>
             <div class="update website">
               <p class="desktop"><%= "Dr. #{document.user.first_name} #{document.user.last_name}" %></p>
               <% if document.user.user_type == "doctor" %>
