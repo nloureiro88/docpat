@@ -22,7 +22,7 @@ Update.destroy_all
 Topic.destroy_all
 User.destroy_all
 
-puts 'Cleaning up Cloudinary via API'
+puts 'Cleaning up Cloudinary via API...'
 Cloudinary::Api.delete_all_resources
 
 # Type lists:
@@ -48,6 +48,7 @@ filepath_hospitals = './db/csv/hospitals.csv'
 filepath_pharmas = './db/csv/pharmas.csv'
 
 # Creating docs Array:
+
 
 puts "Creating docs array..."
 
@@ -303,7 +304,7 @@ Topic.all.each do |topic|
                     url: "https://www.lewagon.com",
                     file_type: file_types.sample,
                     status: ['active', 'inactive'].sample,
-                    image_data: image_json)
+                    file: "https://www.lewagon.com")
   end
 
   y = rand(1..5)

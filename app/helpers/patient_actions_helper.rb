@@ -1,11 +1,10 @@
 module PatientActionsHelper
   def patientActions(pat)
     patientInfo = {}
-    patientInfo[:updates] = Update.all.order('created_at DESC').select { |item| item.topic.status == "active" && item.topic.patient == pat }
-    documents = Document.where(status: 'active').order('created_at DESC').select { |item| item.topic.status == "active" && item.topic.patient == pat }
-    patientInfo[:documents] = documents.select { |doc| doc.doc_type != "Exam" }
-    patientInfo[:exams] = documents.select { |doc| doc.doc_type == "Exam" }
-    patientInfo[:schedules] = Schedule.where(status: 'active').order('created_at DESC').select { |item| item.topic.status == "active" && item.topic.patient == pat }
+    patientInfo[:updates] = Update.joins(:topic).where("topics.status = 'active' AND topics.patient_id = ?", pat.id)
+    patientInfo[:documents] = Document.joins(:topic).where("documents.status = 'active' AND documents.doc_type != 'Exam' AND topics.status = 'active' AND topics.patient_id = ?", pat.id)
+    patientInfo[:exams] = Document.joins(:topic).where("documents.status = 'active' AND documents.doc_type = 'Exam' AND topics.status = 'active' AND topics.patient_id = ?", pat.id)
+    patientInfo[:schedules] = Schedule.joins(:topic).where("schedules.status = 'active' AND topics.status = 'active' AND topics.patient_id = ?", pat.id)
     patientInfo
   end
 
