@@ -104,22 +104,19 @@
             <% end %>
           </div>
 
-          <li class="document-type col-xs-2">
+          <li class="document-type col-xs-3">
             <p><strong><%= document.doc_title %></strong></p>
           </li>
 
-          <li class="document-icon col-xs-1">
-            <% if document.file?  %>
+          <li class="document-info col col-xs-3">
+            <div class="document-info-header">
+              <% if document.file?  %>
                 <%= image_tag("file_icons/#{document.file.url.split(".").last}.svg", size: "32x32", class: "svg-icon")%>
               <% else %>
                 <%= image_tag("file_icons/file.svg", size: "32x32", class: "svg-icon")%>
               <% end %>
-          </li>
-
-          <li class="document-info col col-xs-3">
-            <p>
               <strong><%= document.doc_type %></strong>
-            </p>
+            </div>
             <div class="document-tags">
               <% document.tags.gsub(/[^0-9a-z ]/i, ' ').split(' ').each do |tag| %>
                 <%= link_to patient_documents_path(@patient, query: tag.capitalize) do %>

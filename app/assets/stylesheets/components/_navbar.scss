@@ -66,9 +66,20 @@
 .navbar-wagon-link {
   color: $gray;
   font-size: 0.8rem;
+  text-decoration: none;
+}
+.navbar-wagon-link:focus {
+  text-decoration: none;
 }
 .navbar-wagon-link:hover {
-  color: $d-orange;
+  color: $d-blue;
+  text-decoration: none;
+}
+
+.navbar-wagon-link-active {
+  color: $l-orange !important;
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid $l-orange;
   text-decoration: none;
 }
 

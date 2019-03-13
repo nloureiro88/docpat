@@ -13,4 +13,17 @@ const initUpdateNavbarOnScroll = () => {
   }
 }
 
+const highlightActiveLink = () => {
+  // const links = document.querySelectorAll('.navbar-wagon-link');
+  // links.forEach((link) => {
+  //   link.addEventListener('click', (event) => {
+  //     links.forEach((link) => {
+  //       link.classList.remove('navbar-wagon-link-active');
+  //     });
+  //     event.currentTarget.classList.add('navbar-wagon-link-active');
+  //   });
+  // });
+}
+
 export { initUpdateNavbarOnScroll };
+export { highlightActiveLink };
