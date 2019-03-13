@@ -19,7 +19,49 @@
     padding-bottom: 0.2rem;
   }
 
-  .dash-left {
+  .dash-topics {
+
+    margin: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    h2, h3 {
+      border: none;
+      padding: 0.2rem 0;
+      margin: 0;
+      text-align: left;
+      color: white
+    }
+
+    h3 {
+      margin-left: 0.4rem;
+    }
+
+    .dash-topics-info {
+      height: 60px;
+      min-height: 60px;
+      border-radius: 5px;
+      width: 30%;
+
+      &.dash-diagnosed {
+        background-color: $red;
+      }
+
+      &.dash-under {
+        background-color: $l-orange;
+      }
+
+      &.dash-cured {
+        background-color: $green;
+      }
+
+      .dash-topic-header {
+        padding: 0.4rem;
+        display: flex;
+        align-items: center;
+      }
+    }
   }
 
   .dash-profile {
@@ -123,23 +165,6 @@
         outline: none;
       }
 
-      button {
-        background-color: none;
-        border: none;
-        box-shadow: none;
-        outline: none;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-
-        &:visited {
-          background-color: none;
-          border: none;
-          box-shadow: none;
-          outline: none;
-        }
-      }
-
       .dash-title {
         display: flex;
         align-item: center;
@@ -180,36 +205,81 @@
         border-bottom: 1px solid rgb(230,230,230);
         background: rgb(250,250,250);
       }
-
-      .show-new {
-        font-size: 13px;
-
-        a {
-          text-decoration: none;
-          color: $gray;
-        }
-
-        ul {
-          padding: 0.4rem 0.6rem;
-          margin: 0;
-          display: flex;
-          align-items: center;
-
-          &:hover {
-            background-color: rgb(240,240,240);
-          }
-
-          li {
-            padding: 0.6rem;
-
-            &.highlight{
-              color: $d-blue;
-            }
-          }
-        }
-      }
     }
   }
 }
 
 
+.show-new, .dash-topic {
+  font-size: 13px;
+
+  a {
+    text-decoration: none;
+    color: $gray;
+  }
+
+  ul {
+    padding: 0.4rem 0.6rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: rgb(240,240,240);
+    }
+
+    li {
+      padding: 0.6rem;
+
+      &.highlight{
+        color: $d-blue;
+      }
+    }
+  }
+
+  .dash-topic-title {
+    p {
+      margin: 0;
+    }
+  }
+
+  .dash-topic-category {
+    display: flex;
+    align-items: center;
+    color: $d-blue;
+
+    .subject {
+      padding-left: 0.8rem;
+    }
+  }
+}
+
+
+#dash-topic-list-diagnosed i {
+  color: $red;
+}
+
+#dash-topic-list-under i {
+  color: $l-orange;
+}
+
+#dash-topic-list-cured i {
+  color: $green;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  &:visited {
+    background-color: none;
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+}
