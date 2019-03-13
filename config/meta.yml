@@ -1,7 +1,7 @@
 meta_product_name: "DocPat"
 meta_title: "DocPat - Your health, always."
 meta_description: "Join DocPat and be in control of your family’s health history and documentation"
-meta_image: "docpat_og.png" # should exist in `app/assets/images/`
+meta_image: "cover.png" # should exist in `app/assets/images/`
 twitter_account: "@product_twitter_account"   # required for Twitter Cards
 
 
