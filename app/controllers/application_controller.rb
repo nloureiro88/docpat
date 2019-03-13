@@ -29,11 +29,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    patient_topics_path(current_user)
+    patient_path(current_user)
   end
 
    def after_update_path_for(resource)
-        flash[:notice] = "Account succesfully updated"
-        patients_path(current_user)
+    flash[:notice] = "Account succesfully updated"
+    patient_path(current_user)
   end
 end

@@ -238,7 +238,7 @@
 
               <div class="dash-title-right">
                 <% if pat_updates.count.positive? %>
-                  <%= link_to patient_documents_path(@patient), class: "btn btn-default" do %>
+                  <%= link_to index_ex_patient_documents_path(@patient), class: "btn btn-default" do %>
                     <i class="fas fa-search-plus fa-lg"></i>
                   <% end %>
                 <% end %>
@@ -249,7 +249,7 @@
           <div class="dash-table collapse" id="dash-table-exams">
             <% new_exams.each do |exam| %>
               <div class="show-new">
-                <%= link_to patient_documents_path(@patient, query: exam.doc_title) do %>
+                <%= link_to index_ex_patient_documents_path(@patient, query: exam.doc_title) do %>
                   <ul style="width: 100%; min-width: 100%;">
                     <li style="width: 12%">
                       <%= cl_image_tag(exam.user.photo, class: "avatar-sm", alt: "#{"Dr. " if exam.user.user_type == 'doctor' } #{exam.user.first_name} #{exam.user.last_name}") %>

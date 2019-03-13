@@ -12,6 +12,10 @@
 
   .topic-title {
     align-items: center;
+
+     p {
+      padding-left: 0.6rem;
+    }
   }
 
   .topic-ns {
@@ -36,7 +40,11 @@
   }
 
   .schedule-info {
-    display: block !important;
+    flex-direction: column;
+
+    strong {
+      padding-bottom: 1rem;
+    }
   }
 
   .schedule-user {

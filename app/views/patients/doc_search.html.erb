@@ -61,6 +61,10 @@
   <div class="card-container"> <!-- container -->
     <!-- <div class="row"> -->
 
+      <% if @doctors.count.zero? %>
+        <p class="nothing">Nothing to show</p>
+      <% end %>
+
       <% @doctors.each do |doc| %>
       <%# rel = DoctorPatient.where(doctor: doc, patient: @patient).first %>
 

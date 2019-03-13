@@ -27,19 +27,15 @@
             <h1 class="hero__title" style="font-size: 64px; margin-bottom: 24px">DocPat</h1>
             <h4 class="hero__title">Your Health - Always</h4>
             <%#= image_tag('undraw_medicine_b1ol.svg', :class => 'expanded__image') %>
-
-          <p>
+            <p>
               <span class="hero__text" id="banner-typed-text"></span>
             </p>
-
-
             <%= link_to t(".sign_up", default: "Register"), new_user_registration_path, class: "button button__accent" %>
-
-            <%= link_to t(".sign_in", default: "Sign In"), new_user_session_path, class: "button hero__button" %>
-
-
-
-
+            <% if user_signed_in? %>
+              <%= link_to "Start", patient_path(current_user), class: "button hero__accent" %>
+            <% else %>
+              <%= link_to t(".sign_in", default: "Sign In"), new_user_session_path, class: "button hero__button" %>
+            <% end %>
           </div>
         </div>
       </div>

@@ -74,6 +74,10 @@
     </div>
 
     <!-- Each info row -->
+    <% if @updates.count.zero? %>
+      <p class="nothing">Nothing to show</p>
+    <% end %>
+
     <% @updates.each do |update| %>
 
       <div class='show-row'>

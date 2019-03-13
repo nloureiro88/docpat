@@ -73,6 +73,10 @@
     </div>
 
     <!-- Each info row -->
+    <% if @topics.count.zero? %>
+      <p class="nothing">Nothing to show</p>
+    <% end %>
+
     <% @topics.each do |topic| %>
       <% first_update = topic.updates.first %>
       <% last_update = topic.updates.last %>

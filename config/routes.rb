@@ -44,18 +44,16 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :documents, only: [:index, :new, :create, :destroy] do
+    resources :documents, only: [:index, :new, :create] do
       member do
         get :download, to: "document#download"
         get :deactivate, to: "documents#deactivate"
         get :read, to: "documents#read"
-
-
       end
+
       collection do
          get :index_ex, to: "documents#index_ex"
       end
-
     end
   end
 

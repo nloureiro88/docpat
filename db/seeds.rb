@@ -31,7 +31,7 @@ puts "Creating hardcoded domain lists..."
 
 BLOOD_TYPES = %w(A+ A- B+ B- AB+ AB- 0+ 0-)
 SCHEDULE_TYPES = ['Medicine', 'Treatment', 'Physical therapy', 'Radiation therapy', 'Respiratory therapy', 'Other']
-DOC_TYPES = ['Exam', 'Consultation report', 'Procedure report', 'Discharge report', 'Medical notes', 'Prescription', 'Invoice', 'Insurance', 'Other']
+DOC_TYPES = ['Exam', 'Consultation report', 'Procedure report', 'Discharge report', 'Medical notes', 'Prescription', 'Invoice', 'Insurance', 'Misc']
 EXAM_TYPES = ['Sensitivity test', 'Microbiological / immunological test', 'Blood test', 'Urine test', 'Faeces test', 'Histological / exfoliative cytology',
               'Other laboratory test NEC', 'Physical function test', 'Diagnostic endoscopy', 'Diagnostic radiology / imaging', 'Electrical tracing', 'Other diagnostic procedure']
 
@@ -300,8 +300,7 @@ Topic.all.each do |topic|
                     doc_title: "#{doc_type.capitalize} for #{topic.title} in #{hospitals.sample}",
                     doc_type: doc_type,
                     exam_type: doc_type == "Exam" ? EXAM_TYPES.sample : "",
-                    tags: ["Important", "Follow-up", "Contact Doctor", "Tommorrow", "To Delete"].sample(rand(1..5)),
-                    url: "https://www.lewagon.com",
+                    tags: ["Important", "Follow-up", "Contact Doctor", "Tommorrow", "To Delete"].sample(rand(1..5)).join(" "),
                     file_type: file_types.sample,
                     status: ['active', 'inactive'].sample,
                     file: "https://www.lewagon.com")

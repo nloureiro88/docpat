@@ -36,7 +36,7 @@
           <%= text_field_tag :query,
             params[:query],
             class: "form-control",
-            placeholder: "Find by name, type, topic, code, doctor or specialty"
+            placeholder: "Find by name, type, topic, code or uploader"
           %>
           <%= button_tag(type: 'submit', class: "btn btn-search") do %>
             <i class="fas fa-search"></i>
@@ -65,14 +65,18 @@
       <div class="row">
         <ul>
           <li class="col col-xs-3">Prescription</li>
-          <li class="col col-xs-3">Topic</li>
+          <li class="col col-xs-3">Info</li>
           <li class="col col-xs-3">Created By</li>
-          <li class="col col-xs-3">Schedule</li>
+          <li class="col col-xs-3">Topic</li>
         </ul>
       </div>
     </div>
 
     <!-- Each info row -->
+    <% if @schedules.count.zero? %>
+      <p class="nothing">Nothing to show</p>
+    <% end %>
+
     <% @schedules.each do |schedule| %>
 
       <div class='show-row'>
@@ -98,10 +102,21 @@
             <p><strong><%= schedule.sc_title %></strong></p>
           </li>
 
-          <li class="topic-title col col-xs-3">
-            <%#= image_tag("category_icons/#{schedule.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{schedule.topic.category.subject.capitalize}") %>
-            <p><%= schedule.topic.title %>
-            <span class="small code">(<%= schedule.topic.subcode %>)</span></p>
+          <li class="schedule-info col col-xs-3">
+            <p><strong><%= schedule.sc_type %></strong></p>
+            <div class="schedule-data">
+              <% unless schedule.schedule.nil? && schedule.dosage.nil? %>
+                <% if schedule.dosage.nil? %>
+                  <p class="small"><i class="fas fa-calendar-alt"></i> <%= schedule.schedule %></p>
+                <% else %>
+                  <p class="small"><i class="fas fa-calendar-alt"></i> <%= schedule.schedule %> <span class="small">(<%= schedule.dosage %>)</span></p>
+                <% end %>
+              <% end %>
+              <p class="small"><i class="fas fa-play-circle"></i> <%= schedule.date_start.strftime('%d-%m-%y') %></p>
+              <% unless schedule.date_end.year == 9999 %>
+                <p class="small"><i class="fas fa-pause-circle"></i> <%= schedule.date_end.strftime('%d-%m-%y') %></p>
+              <% end %>
+            </div>
           </li>
 
           <li class="schedule-user col col-xs-3">
@@ -114,20 +129,10 @@
             </div>
           </li>
 
-          <li class="schedule-info col col-xs-3">
-            <% if (schedule.schedule.nil? && schedule.dosage.nil?) %>
-              <p>Not applicable</p>
-            <% elsif schedule.schedule.nil? %>
-              <p><%= schedule.dosage %></p>
-            <% else %>
-              <p><strong><%= schedule.schedule %></strong> (<%= schedule.dosage %>)</p>
-            <% end %>
-            <p><i class="fas fa-play-circle"></i> <%= schedule.date_start.strftime('%d-%m-%y') %></p>
-            <% if schedule.date_end.year == 9999 %>
-              <p><i class="fas fa-pause-circle"></i> T.B.D.</p>
-            <% else %>
-              <p><i class="fas fa-pause-circle"></i> <%= schedule.date_end.strftime('%d-%m-%y') %></p>
-            <% end %>
+          <li class="topic-title col col-xs-3">
+            <%= image_tag("category_icons/#{schedule.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{schedule.topic.category.subject.capitalize}") %>
+            <p><%= schedule.topic.title %>
+            <span class="small code">(<%= schedule.topic.subcode %>)</span></p>
           </li>
         </ul>
 

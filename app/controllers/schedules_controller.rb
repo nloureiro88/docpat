@@ -3,8 +3,6 @@ class SchedulesController < ApplicationController
   before_action :set_schedule, only: %i(edit update read deactivate)
 
   def index
-    @patient = User.find(params[:patient_id])
-
     if params[:query].present?
       source_schedules = policy_scope(Schedule).where(status: 'active').order('created_at DESC').schedules_search(params[:query])
     else
@@ -27,7 +25,6 @@ class SchedulesController < ApplicationController
 
   def read
     authorize Schedule
-    @schedule = Schedule.find(params[:id])
     @schedule.read_at = DateTime.now
     @schedule.read_by = current_user.id
     @schedule.save
