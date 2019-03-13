@@ -78,7 +78,7 @@
               <%= cl_image_tag(document.file.url,  size: "40x40", class: "svg-icon desktop")%>
               <p><strong><%= document.doc_title %></strong><br>
               <span class="small code"><%= document.doc_type %></span><br>
-              <span class="small code"><%= document.file_type %></span><br>
+              <span class="small code"><%= document.topic.title %></span><br>
               <span class="small code">(<%= document.updated_at.strftime("%d-%m-%Y") %>)</span>
               <span class="mobile-date">(<%= document.created_at.strftime("%d-%m-%Y") %>)</span></p>
             <% end %>

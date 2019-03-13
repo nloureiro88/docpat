@@ -1,0 +1,67 @@
+<div class="boilerplate">
+  <div class="auth">
+    <div class="container">
+      <div class="auth__inner">
+
+         <div class="auth__auth">
+          <h1 class="auth__title">New Schedule</h1>
+          <p>Please specify recomendation/prescription elements</p>
+
+            <%= simple_form_for [@patient, @schedule], class: "simple_form", url: patient_schedules_path, html: { method: :post } do |f| %>
+
+            <%#= render 'shared/errors', object: @schedule %>
+             <%= f.error_notification %>
+
+              <div class="form-inputs">
+                 <%= f.input :topic_id,
+                            label: "Related Topic",
+                            collection: @patient.topics.collect {|top| [top.title, top.id] },
+                            required: true,
+                            input_html: { style: "padding: 0pt 20pt;"} %>
+                <%= f.input :sc_title,
+                            label: "Schedule Title",
+                            required: true,
+                            autofocus: true,
+                            input_html: { autocomplete: "document title" } %>
+                <%= f.input :sc_type,
+                            label: "Schedule Type",
+                            required: true,
+                            collection:
+                            ['Medicine', 'Treatment', 'Physical therapy', 'Radiation therapy', 'Respiratory therapy', 'Other'],
+                            input_html: { style: "padding: 0pt 20pt;" } %>
+                <%= f.input :schedule,
+                            label: "Schedule",
+                            required: false  %>
+                <%= f.input :dosage,
+                            label: "Dosage",
+                            required: false  %>
+
+                  <%= f.input :date_start,
+                              label: "Start Date",
+                              selected: Date.today,
+                              required: true,
+                              input_html: { style: "display: inline-block; width: 32%; margin-right: 0px; padding: 0pt 20pt;"}  %>
+
+                  <%= f.input :date_end,
+                              label: "End Date",
+                              selected: Date.today+1,
+                              required: true,
+                              input_html: { style: "display: inline-block; width: 32%; margin-right: 0px; padding: 0pt 20pt;"}  %>
+
+              </div>
+          <br>
+              <div class=xform-inputs">
+                  <%#= f.button :button, "Create Schedule!", type: :submit, class: :btn %>
+                  <%= f.button :submit, "Create Schedule!", class: 'button button__accent' %>
+                  <%= f.button :button, "Cancel", type: "reset", input_html: { style: 'background-color = red' }  %>
+              </div>
+
+            <% end %>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -11,7 +11,7 @@ class DocumentsController < ApplicationController
     @documents = source_documents.select { |doc| doc.topic.status == "active" && doc.topic.patient == @patient }
   end
 
-def index_ex
+  def index_ex
     @patient = User.find(params[:patient_id])
     if params[:query].present?
       source_documents = policy_scope(Document).order('created_at DESC').documents_search(params[:query])
@@ -43,6 +43,7 @@ def index_ex
   end
 
   def new
+    @patient = User.find(params[:patient_id])
     @document = Document.new
     authorize Document
   end
@@ -50,9 +51,10 @@ def index_ex
   def create
     @document = Document.new(document_params)
     @document.user = current_user
-    @document.topic = Topic.where(patient: current_user).first
+    #@document.topic = Topic.where(patient: current_user)
     @patient = @document.topic.patient
     authorize Topic
+
 
     #if @document.save
     #  redirect_to patient_documents_path(@patient.id)

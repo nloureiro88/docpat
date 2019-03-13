@@ -13,6 +13,13 @@
              <%= f.error_notification %>
 
               <div class="form-inputs">
+                <%= f.input :topic_id,
+                            label: "Topic",
+                            collection: @patient.topics.collect {|top| [top.title, top.id] },
+                            required: true,
+                            input_html: { style: "padding: 0pt 20pt;"},
+                            placeholder: "Related topic" %>
+
                 <%= f.input :doc_title,
                             label: "Document Title",
                             required: true,
@@ -24,31 +31,26 @@
                             collection:
                             ['Exam', 'Consultation report', 'Procedure report', 'Discharge report', 'Medical notes',
                             'Prescription', 'Invoice', 'Insurance', 'Other'],
-                            input_html: { autocomplete: "Exam"}%>
-                <%# if @document.doc_type == 'Exam' %>
-                  <%= f.input :exam_type,
-                              label: "Exam Type",
-                              required: false,
-                              input_html: { autocomplete: "Exam descritpion" } %>
-                <%# end %>
+                            input_html: { id: 'docTypeInput', style: "padding: 0pt 20pt;", onchange:'showHideExam()' } %>
+                <%= f.input :exam_type,
+                            label: false,
+                            required: false,
+                            input_html: { :id => 'examTypeInput', style: "display: none" } %>
                 <%= f.input :tags,
                             label: "Document Tags",
-                            required: false,
-                            input_html: { autocomplete: "exam keywords" } %>
-                <%= f.input :file, label: "Document File" %>
+                            required: false %>
+                <%= f.input :file,
+                            label: "Please select a file",
+                            input_html: { class: "button" } %>
                 <%= f.input :file_cache, as: :hidden %>
 
               </div>
-
+          <br>
               <div class="form-actions">
                   <%= f.button :submit, "Upload", :class => 'button button__accent' %>
-                  <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
-
-
+                  <%= f.button :button, "Cancel", type: "reset", input_html: { style: 'background-color = red' }  %>
               </div>
 
-              <%#= f.button :submit, class: "btn-primary" %>
-              <%#= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
             <% end %>
 
         </div>
@@ -57,3 +59,19 @@
     </div>
   </div>
 </div>
+
+<script>
+
+  function showHideExam(){
+    p = document.getElementById("docTypeInput").value;
+    if (p == 'Exam') {
+        a = document.getElementById('examTypeInput');
+          a.style.display='block';
+          a.placeholder = "Please describe exam";
+    } else {
+        a = document.getElementById('examTypeInput')
+        a.style.display='none';
+    }
+  }
+
+</script>

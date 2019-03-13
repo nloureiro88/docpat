@@ -1,6 +1,6 @@
 <div class="container list-page updates content">
   <div class="row">
-    <h2><%= @schedules.first.topic.title %> Schedules index</h2>
+    <h2>Schedules index</h2>
   </div>
 
   <div class="row">
@@ -40,6 +40,28 @@
       </div>
     </div>
   </div>
+
+
+
+<!-- Simple Calendar -->
+
+<%#= @schedules = @schedules.where((:date_start > Date.today || :date_end > Date.today) && status: "active") %>
+<%#= @schedules = @schedules.where('date_end > ?', Date.today).all %>
+
+<!-- <div class="row">
+  <div class="action-header">
+    <%#= week_calendar(attribute: :date_start, end_attribute: :date_end, events: @schedules) do |date, sch| %>
+      <%#= date.day %>
+
+      <%# sch.each do |schedule| %>
+        <div>
+          <%#= schedule.sc_title %>
+        </div>
+      <%# end %>
+    <%# end %>
+  </div>
+</div> -->
+
 
   <!-- Table container for data -->
 
@@ -107,9 +129,6 @@
           </li>
 
 <!-- Status -->
-
-
-
           <li class="update-changes col col-sm-3 col-md-2">
 
               <p><%= link_to edit_patient_schedule_path(@patient,sch), class: "" do %>
@@ -129,6 +148,6 @@
     <% end %>
 
     </div>
-  </div>
+</div>
 
 <!-- </div> -->
