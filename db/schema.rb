@@ -40,7 +40,8 @@ ActiveRecord::Schema.define(version: 2019_03_06_164316) do
     t.string "doc_type"
     t.string "exam_type"
     t.string "doc_title"
-    t.string "tags"
+    t.string "tags", default: [], array: true
+    t.string "url"
     t.string "file_type"
     t.string "status", default: "active"
     t.integer "read_by"
