@@ -1,45 +1,50 @@
 class DocumentsController < ApplicationController
-  # before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :find_patient
+  before_action :set_document, only: %i(show read deactivate)
 
   def index
-    @patient = User.find(params[:patient_id])
     if params[:query].present?
-      source_documents = policy_scope(Document).order('created_at DESC').documents_search(params[:query])
+      source_documents = policy_scope(Document).where(status: 'active').order('created_at DESC').documents_search(params[:query])
     else
-      source_documents = policy_scope(Document).order('created_at DESC')
+      source_documents = policy_scope(Document).where(status: 'active').order('created_at DESC')
     end
-    @documents = source_documents.select { |doc| doc.topic.status == "active" && doc.topic.patient == @patient }
+    @documents = source_documents.select { |doc| doc.doc_type != "Exam" && doc.topic.status == 'active' && doc.topic.patient == @patient }
   end
 
   def index_ex
-    @patient = User.find(params[:patient_id])
+    authorize Document
+
     if params[:query].present?
-      source_documents = policy_scope(Document).order('created_at DESC').documents_search(params[:query])
+      source_documents = policy_scope(Document).where(status: 'active', doc_type: 'Exam').order('created_at DESC').documents_search(params[:query])
     else
-      source_documents = policy_scope(Document).order('created_at DESC')
+      source_documents = policy_scope(Document).where(status: 'active', doc_type: 'Exam').order('created_at DESC')
     end
-    @documents = source_documents.select { |doc| doc.topic.status == "active" && doc.topic.patient == @patient }
-    #@documents = source_documents.select { |doc| doc.topic.status == "active" && doc.topic.patient == @patient && doc.doc_type == "Exam" }
+    @documents = source_documents.select { |doc| doc.topic.status == 'active' && doc.topic.patient == @patient }
   end
 
-  def show
+  def read
+    authorize Document
+    @document.read_at = DateTime.now
+    @document.read_by = current_user.id
+    @document.save
+
+    if @document.doc_type == "Exam"
+      redirect_to index_ex_patient_documents_path(@patient, query: params[:query])
+    else
+      redirect_to patient_documents_path(@patient, query: params[:query])
+    end
   end
 
   def deactivate
     authorize Document
-    @document = policy_scope(Document).find(params[:id])
-    @patient = @document.patient
-    case @document.status
-      when 'inactive'
-        @document.status = "active"
-      else
-        @document.status = "inactive"
-    end
+    @document.status = "inactive"
     @document.save
-    redirect_to patient_documents_path(@patient)
-  end
 
-  def download
+    if @document.doc_type == "Exam"
+      redirect_to index_ex_patient_documents_path(@patient, query: params[:query])
+    else
+      redirect_to patient_documents_path(@patient, query: params[:query])
+    end
   end
 
   def new
@@ -55,64 +60,39 @@ class DocumentsController < ApplicationController
     @patient = @document.topic.patient
     authorize Topic
 
+    @document.topic = Topic.where(patient: current_user).first ## TO CORRECT
+    @patient = @document.topic.patient
+    authorize Topic
 
-    #if @document.save
-    #  redirect_to patient_documents_path(@patient.id)
-    #else
-    #   render :new
-    #end
+    if @document.doc_type == "Exam"
+      my_path = index_ex_patient_documents_path(@patient, query: params[:query])
+    else
+      my_path = patient_documents_path(@patient, query: params[:query])
 
-    respond_to do |format|
-        if @document.save
-          format.html { redirect_to patient_documents_path, notice: 'Document was successfully created.' }
-          #format.json { render :show, status: :created, location: @document }
-        else
-          format.html { render :new }
-          #format.json { render json: @document.errors, status: :unprocessable_entity }
-        end
     end
 
+    # respond_to do |format|
+    #   if @document.save
+    #     format.html { redirect_to my_path, notice: 'Document was successfully created.' }
+    #     #format.json { render :show, status: :created, location: @document }
+    #   else
+    #     format.html { render :new }
+    #     #format.json { render json: @document.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
+  private
 
-  def update
-    respond_to do |format|
-      if @document.update(document_params)
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
-        #format.json { render :show, status: :ok, location: @document }
-      else
-        format.html { render :edit }
-        #format.json { render json: @document.errors, status: :unprocessable_entity }
-      end
-    end
+  def set_document
+    @document = Document.find(params[:id])
   end
 
-
-  def destroy
-    #@patient = @document.patient
-    authorize Document
-    @document = policy_scope(Document).find(params[:id])
-    @document.destroy
-    respond_to do |format|
-      format.html { redirect_to patient_documents_path, notice: 'Document was successfully destroyed.' }
-      #format.json { head :no_content }
-    end
-    #redirect_to patient_document_path
+  def find_patient
+    @patient = User.find(params[:patient_id])
   end
 
-private
-
-      def set_document
-        #authorize Document
-        #@document = policy_scope(Document).find(params[:id])
-        @document = Document.find(params[:id])
-      end
-
-      def find_patient
-        @patient = User.find(params[:patient_id])
-      end
-
-      def document_params
-        params.require(:document).permit(:topic_id, :user_id, :doc_type, :exam_type, :doc_title, :tags, :url, :file_type, :status, :file)
-      end
+  def document_params
+    params.require(:document).permit(:topic_id, :user_id, :doc_type, :exam_type, :doc_title, :tags, :status, :file, :read_by, :read_at)
+  end
 end

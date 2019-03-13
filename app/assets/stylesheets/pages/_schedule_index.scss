@@ -1,0 +1,59 @@
+.schedules .show-row {
+
+  .item-row {
+    p {
+      margin: 0;
+    }
+  }
+
+  .mobile-date {
+    display: none;
+  }
+
+  .topic-title {
+    align-items: center;
+
+     p {
+      padding-left: 0.6rem;
+    }
+  }
+
+  .topic-ns {
+    ul {
+      padding-left: 1rem;
+
+      li {
+        list-style: square;
+        list-style-type: square;
+        padding: 0;
+        margin-bottom: 0.2rem;
+      }
+    }
+  }
+
+  .schedule-type {
+    color: $d-blue;
+
+    p {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .schedule-info {
+    flex-direction: column;
+
+    strong {
+      padding-bottom: 1rem;
+    }
+  }
+
+  .schedule-user {
+    text-align: center;
+    align-items: center;
+    text-align: left;
+
+    img {
+      margin-right: 1rem;
+    }
+  }
+}

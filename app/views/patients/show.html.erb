@@ -54,12 +54,128 @@
       </div>
     </div>
 
+    <% pat_topics = @patient.topics.where(status: 'active') %>
     <% pat_updates = patientActions(@patient)[:updates] %>
     <% pat_documents = patientActions(@patient)[:documents] %>
     <% pat_exams = patientActions(@patient)[:exams] %>
     <% pat_schedules = patientActions(@patient)[:schedules] %>
 
     <div class="dash-right col-xs-8">
+
+      <div class="dash-topics">
+
+        <% status_counter = statusCount(@patient) %>
+
+        <div class="dash-topics-info dash-diagnosed col-xs-4">
+        <button data-toggle="collapse" data-target="#dash-topic-list-diagnosed">
+          <div class="dash-topic-header">
+            <h2><%= status_counter[:diagnosed] %></h2>
+            <h3>Diagnosed</h3>
+          </div>
+        </button>
+        </div>
+
+        <div class="dash-topics-info dash-under col-xs-4">
+        <button data-toggle="collapse" data-target="#dash-topic-list-under">
+          <div class="dash-topic-header">
+            <h2><%= status_counter[:treatment] %></h2>
+            <h3>Under Treatment</h3>
+          </div>
+        </button>
+        </div>
+
+        <div class="dash-topics-info dash-cured col-xs-4">
+        <button data-toggle="collapse" data-target="#dash-topic-list-cured">
+          <div class="dash-topic-header">
+            <h2><%= status_counter[:cured] %></h2>
+            <h3>Cured</h3>
+          </div>
+        </button>
+        </div>
+
+      </div>
+
+      <div class="dash-topics-lists">
+
+        <div class="dash-topic-list collapse" id="dash-topic-list-diagnosed">
+          <% pat_topics.each do |topic| %>
+            <% if topic.updates.last.topic_status == 'diagnosed' %>
+              <% last_update = topic.updates.last %>
+              <div class="dash-topic">
+                <%= link_to patient_updates_path(@patient, query: topic.title) do %>
+                  <ul style="width: 100%; min-width: 100%;">
+                    <li style="width: 5%">
+                      <i class="fas fa-circle fa-lg"></i>
+                    </li>
+                    <li style="width: 35%" class="dash-topic-title"><p> <strong><%= topic.title %></strong> <span class="small code">(<%= topic.subcode %>)</span></p></li>
+                    <li style="width: 35%" class="dash-topic-category">
+                      <%= image_tag("category_icons/#{last_update.topic.category.icon_url}", size: "40x40", class: "svg-icon-gray", style: "color: grey", alt: "#{last_update.topic.category.subject.capitalize}") %>
+                      <div class="subject"><%= last_update.topic.category.subject %></div>
+                    </li>
+                    <li style="width: 35%">
+                      <p>Updated: <strong><%= last_update.created_at.strftime('%d-%m-%y') %></strong></p>
+                      <p class="last-by">By: <strong><%= "Dr. " if last_update.user.user_type == 'doctor' %><%= last_update.user.first_name %> <%= last_update.user.last_name %></strong></p>
+                    </li>
+                  </ul>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="dash-topic-list collapse" id="dash-topic-list-under">
+          <% pat_topics.each do |topic| %>
+            <% if topic.updates.last.topic_status == 'under treatment' %>
+              <% last_update = topic.updates.last %>
+              <div class="dash-topic">
+                <%= link_to patient_updates_path(@patient, query: topic.title) do %>
+                  <ul style="width: 100%; min-width: 100%;">
+                    <li style="width: 5%">
+                      <i class="fas fa-circle fa-lg"></i>
+                    </li>
+                    <li style="width: 35%" class="dash-topic-title"><p>  <strong><%= topic.title %></strong> <span class="small code">(<%= topic.subcode %>)</span></p></li>
+                    <li style="width: 35%" class="dash-topic-category">
+                      <%= image_tag("category_icons/#{last_update.topic.category.icon_url}", size: "40x40", class: "svg-icon-gray", style: "color: grey", alt: "#{last_update.topic.category.subject.capitalize}") %>
+                      <div class="subject"><%= last_update.topic.category.subject %></div>
+                    </li>
+                    <li style="width: 35%">
+                      <p>Updated: <strong><%= last_update.created_at.strftime('%d-%m-%y') %></strong></p>
+                      <p class="last-by">By: <strong><%= "Dr. " if last_update.user.user_type == 'doctor' %><%= last_update.user.first_name %> <%= last_update.user.last_name %></strong></p>
+                    </li>
+                  </ul>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="dash-topic-list collapse" id="dash-topic-list-cured">
+          <% pat_topics.each do |topic| %>
+            <% last_update = topic.updates.last %>
+            <% if topic.updates.last.topic_status == 'cured' %>
+              <div class="dash-topic">
+                <%= link_to patient_updates_path(@patient, query: topic.title) do %>
+                  <ul style="width: 100%; min-width: 100%;">
+                    <li style="width: 5%">
+                      <i class="fas fa-circle fa-lg"></i>
+                    </li>
+                    <li style="width: 35%" class="dash-topic-title"><p><strong><%= topic.title %></strong> <span class="small code">(<%= topic.subcode %>)</span></p></li>
+                    <li style="width: 35%" class="dash-topic-category">
+                      <%= image_tag("category_icons/#{last_update.topic.category.icon_url}", size: "40x40", class: "svg-icon-gray", style: "color: grey", alt: "#{last_update.topic.category.subject.capitalize}") %>
+                      <div class="subject"><%= last_update.topic.category.subject %></div>
+                    </li>
+                    <li style="width: 35%">
+                      <p>Updated: <strong><%= last_update.created_at.strftime('%d-%m-%y') %></strong></p>
+                      <p class="last-by">By: <strong><%= "Dr. " if last_update.user.user_type == 'doctor' %><%= last_update.user.first_name %> <%= last_update.user.last_name %></strong></p>
+                    </li>
+                  </ul>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
 
       <div class="dash-new-info">
         <div class="dash-updates">
@@ -122,7 +238,7 @@
 
               <div class="dash-title-right">
                 <% if pat_updates.count.positive? %>
-                  <%= link_to patient_documents_path(@patient), class: "btn btn-default" do %>
+                  <%= link_to index_ex_patient_documents_path(@patient), class: "btn btn-default" do %>
                     <i class="fas fa-search-plus fa-lg"></i>
                   <% end %>
                 <% end %>
@@ -133,7 +249,7 @@
           <div class="dash-table collapse" id="dash-table-exams">
             <% new_exams.each do |exam| %>
               <div class="show-new">
-                <%= link_to patient_documents_path(@patient, query: exam.doc_title) do %>
+                <%= link_to index_ex_patient_documents_path(@patient, query: exam.doc_title) do %>
                   <ul style="width: 100%; min-width: 100%;">
                     <li style="width: 12%">
                       <%= cl_image_tag(exam.user.photo, class: "avatar-sm", alt: "#{"Dr. " if exam.user.user_type == 'doctor' } #{exam.user.first_name} #{exam.user.last_name}") %>

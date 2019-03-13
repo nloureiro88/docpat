@@ -5,14 +5,6 @@ class SchedulePolicy < ApplicationPolicy
     end
   end
 
-  def index?
-    true
-  end
-
-  def show?
-    true
-  end
-
   def new?
     create?
   end
@@ -29,7 +21,7 @@ class SchedulePolicy < ApplicationPolicy
     true
   end
 
-  def destroy?
+  def read?
     true
   end
 

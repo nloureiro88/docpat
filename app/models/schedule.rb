@@ -16,13 +16,15 @@ class Schedule < ApplicationRecord
   validates :status, inclusion: { in: STATUS }
 
   include PgSearch
-   pg_search_scope :schedules_search,
-     against: [:sc_type, :sc_title, :dosage, :schedule, :date_start, :date_end, :created_at],
-     associated_against: {
-        topic: [:subcode, :title],
-        user: [:first_name, :last_name, :doc_specialties]
-     },
-     using: {
-       tsearch: { prefix: true }
-     }
+
+    pg_search_scope :schedules_search,
+      against: [:sc_type, :sc_title, :dosage, :schedule, :date_start, :date_end, :created_at],
+      associated_against: {
+         topic: [:subcode, :title],
+         user: [:first_name, :last_name, :doc_specialties]
+      },
+      using: {
+        tsearch: { prefix: true }
+      }
+
 end

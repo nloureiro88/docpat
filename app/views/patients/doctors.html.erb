@@ -60,6 +60,9 @@
 
   <div class="card-container"> <!-- container -->
     <!-- <div class="row"> -->
+      <% if @doctors.count.zero? %>
+        <p class="nothing">Nothing to show</p>
+      <% end %>
 
       <% @doctors.each do |doc| %>
       <% rel = DoctorPatient.where(doctor: doc, patient: @patient).last %>
@@ -116,7 +119,7 @@
                   <i class="far fa-file-alt"></i><span> <%= doctorActions(doc, @patient)[:documents].count %></span><span> Documents</span>
                 <% end %>
 
-                <%= link_to patient_documents_path(@patient, query: doctor), class: "btn btn-default #{"new-item" if doctorNew(doc, @patient)[:exams]}" do %>
+                <%= link_to index_ex_patient_documents_path(@patient, query: doctor), class: "btn btn-default #{"new-item" if doctorNew(doc, @patient)[:exams]}" do %>
                   <i class="far fa-chart-bar"></i><span> <%= doctorActions(doc, @patient)[:exams].count %></span><span> Exams</span>
                 <% end %>
 

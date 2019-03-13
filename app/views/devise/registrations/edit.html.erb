@@ -43,8 +43,9 @@
                   input_html: { autocomplete: "gender" }%>
       <%= f.input :date_birth,
                   required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "date_birth" }%>
+                  as: :string,
+                  input_html: { class: "dobdate" }
+                  %>
       <%= f.input :address,
                   required: true,
                   autofocus: true,
