@@ -42,43 +42,6 @@
     }
   }
 
-  .sidebar-image {
-    position: relative;
-
-    .notif {
-      z-index: 2;
-      position: absolute;
-      color: white;
-      font-size: 11px;
-      font-weight: bold;
-      border-radius: 50%;
-      height: 22px;
-      width: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      align-content: center;
-      padding: 0.4rem;
-      top: -16px;
-      right: -11px;
-      border: 1px solid rgb(240,240,240);
-    }
-
-    .notif-active {
-      background-color: $l-orange;
-    }
-
-    .notif-inactive {
-      color: white;
-      background-color: $l-gray;
-    }
-
-    .notif-inactive:hover {
-      color: white;
-      background-color: $l-blue;
-    }
-  }
-
   .sidebar-family {
     display: flex;
     flex-direction: column;
@@ -139,6 +102,43 @@
     p {
       color: $d-orange;
       text-decoration: none;
+    }
+  }
+
+  .sidebar-image {
+    position: relative;
+
+    .notif {
+      z-index: 2;
+      position: absolute;
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 5px;
+      height: 22px;
+      width: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      padding: 0.4rem;
+      top: -16px;
+      right: -11px;
+      border: 1px solid rgb(240,240,240);
+    }
+
+    .notif-active {
+      background-color: $l-orange;
+    }
+
+    .notif-inactive {
+      color: white;
+      background-color: $l-blue;
+    }
+
+    .notif-inactive:hover {
+      color: white;
+      background-color: $d-blue;
     }
   }
 }

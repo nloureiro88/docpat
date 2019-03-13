@@ -35,7 +35,9 @@
     }
 
     h3 {
-      margin-left: 0.4rem;
+      margin-left: 0.5rem;
+      font-size: 0.9rem;
+      font-color: rgb(240,240,240);
     }
 
     .dash-topics-info {
@@ -43,6 +45,7 @@
       min-height: 60px;
       border-radius: 5px;
       width: 30%;
+      margin-bottom: 1rem;
 
       &.dash-diagnosed {
         background-color: $red;
@@ -203,12 +206,11 @@
 
       .dash-table {
         border-bottom: 1px solid rgb(230,230,230);
-        background: rgb(250,250,250);
+        // background: rgb(250,250,250);
       }
     }
   }
 }
-
 
 .show-new, .dash-topic {
   font-size: 13px;
@@ -240,20 +242,19 @@
   .dash-topic-title {
     p {
       margin: 0;
+      color: $d-blue;
     }
   }
 
   .dash-topic-category {
     display: flex;
     align-items: center;
-    color: $d-blue;
 
     .subject {
       padding-left: 0.8rem;
     }
   }
 }
-
 
 #dash-topic-list-diagnosed i {
   color: $red;
@@ -267,19 +268,22 @@
   color: $green;
 }
 
-button {
-  background-color: transparent;
-  border: none;
-  box-shadow: none;
-  outline: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-
-  &:visited {
-    background-color: none;
+.dash-page {
+  button {
+    background-color: transparent;
     border: none;
     box-shadow: none;
     outline: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    &:visited {
+      background-color: none;
+      border: none;
+      box-shadow: none;
+      outline: none;
+    }
   }
 }
+
