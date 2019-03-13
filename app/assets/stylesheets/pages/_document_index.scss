@@ -1,44 +1,87 @@
-.docs .item-row {
+.documents .show-row {
 
-  .doc-title {
-    align-items: center;
-    color: $d-blue;
-
+  .item-row {
     p {
-      padding-left: 0.75rem;
+      margin: 0;
     }
   }
 
-  .doc-tumb, .doc-laststatus {
-    color: $gray;
+  .mobile-date {
+    display: none;
+  }
+
+  .topic-title {
+    align-items: center;
+
+    p {
+      padding-left: 0.6rem;
+    }
+  }
+
+  .topic-ns {
+    ul {
+      padding-left: 1rem;
+
+      li {
+        list-style: square;
+        list-style-type: square;
+        padding: 0;
+        margin-bottom: 0.2rem;
+      }
+    }
+  }
+
+  .document-type {
+    color: $d-blue;
+
+    p {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .document-icon {
+    img {
+      position: absolute;
+      right: -0.4rem;
+      top: 0;
+    }
+  }
+
+  .document-info {
+    display: block !important;
+
+    .document-tags {
+      margin-top: 0.5rem;
+      display: block;
+      cursor: pointer;
+
+      a {
+        text-decoration: none;
+        color: none;
+      }
+
+      .tag {
+        border-radius: 5px;
+        background-color: rgb(220,220,220);
+        color: white;
+        padding: 0.2rem 0.4rem;
+        font-size: 0.7rem;
+        line-height: 2.5;
+
+        &:hover {
+          background-color: $l-orange;
+        }
+      }
+    }
+  }
+
+  .document-user {
     text-align: center;
     align-items: center;
     text-align: left;
 
     img {
       margin-right: 1rem;
-    }
-  }
-
-  .doc-info {
-    display: flex;
-    flex-wrap: wrap;
-
-    a {
-      border: 1px solid white;
-      font-size: 0.7rem;
-      padding: 4px;
-      color: $gray;
-      margin: 3px;
-    }
-  }
-
-  &:hover {
-    .doc-info {
-      a {
-        border: 1px solid $l-gray;
-        border-radius: 5px;
-      }
     }
   }
 }

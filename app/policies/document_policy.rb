@@ -5,15 +5,11 @@ class DocumentPolicy < ApplicationPolicy
     end
   end
 
-  def index?
-    true
-  end
-
   def index_ex?
     true
   end
 
-  def show?
+  def read?
     true
   end
 
@@ -25,20 +21,7 @@ class DocumentPolicy < ApplicationPolicy
     true
   end
 
-  def edit?
-    update?
-  end
-
-  def update?
-    true
-  end
-
-  def destroy?
-    true
-  end
-
   def deactivate?
     true
   end
-
 end

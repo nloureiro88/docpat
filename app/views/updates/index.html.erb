@@ -65,8 +65,8 @@
       <div class="row">
         <ul>
           <li class="col col-xs-3">Category / Topic</li>
-          <li class="col col-xs-2">Date</li>
           <li class="col col-xs-3">Updated By</li>
+          <li class="col col-xs-2">Date</li>
           <li class="col col-xs-2">Status</li>
           <li class="col col-xs-2">Changes</li>
         </ul>
@@ -74,6 +74,10 @@
     </div>
 
     <!-- Each info row -->
+    <% if @updates.count.zero? %>
+      <p class="nothing">Nothing to show</p>
+    <% end %>
+
     <% @updates.each do |update| %>
 
       <div class='show-row'>
@@ -95,14 +99,6 @@
             <span class="small code">(<%= update.topic.subcode %>)</span></p>
           </li>
 
-          <li class="update-date col col-xs-2">
-            <p><%= update.created_at.strftime("%d-%m-%y") %>
-              <% if update == Update.where(topic: update.topic).last %>
-                <i class="fas fa-star"></i>
-              <% end %>
-            </p>
-          </li>
-
           <li class="topic-doctor col col-xs-3">
             <div class="avatar-container">
               <%= cl_image_tag(update.user.photo, class: "avatar-md", alt: "Dr. #{update.user.first_name} #{update.user.last_name}") %>
@@ -113,6 +109,14 @@
                 <p class="small"><%= update.user.doc_specialties[0] %></p>
               <% end %>
             </div>
+          </li>
+
+          <li class="update-date col col-xs-2">
+            <p><%= update.created_at.strftime("%d-%m-%y") %>
+              <% if update == Update.where(topic: update.topic).last %>
+                <i class="fas fa-star"></i>
+              <% end %>
+            </p>
           </li>
 
           <% case update.topic_status %>

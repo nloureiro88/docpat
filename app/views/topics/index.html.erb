@@ -73,6 +73,10 @@
     </div>
 
     <!-- Each info row -->
+    <% if @topics.count.zero? %>
+      <p class="nothing">Nothing to show</p>
+    <% end %>
+
     <% @topics.each do |topic| %>
       <% first_update = topic.updates.first %>
       <% last_update = topic.updates.last %>
@@ -131,8 +135,6 @@
             <%= link_to patient_documents_path(@patient, query: topic.title), class: "btn btn-default #{"new-item" if topicNew(topic)[:documents]}" do %>
               <i class="far fa-file-alt"></i><span> <%= topicActions(topic)[:documents].count %></span><span> Documents</span>
             <% end %>
-
-
 
             <%= link_to index_ex_patient_documents_path(@patient, query: topic.title), class: "btn btn-default #{"new-item" if topicNew(topic)[:exams]}" do %>
               <i class="far fa-chart-bar"></i><span> <%= topicActions(topic)[:exams].count %></span><span> Exams</span>

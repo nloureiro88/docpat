@@ -6,8 +6,7 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
       t.string :doc_type
       t.string :exam_type
       t.string :doc_title
-      t.string :tags, array: true, default: []
-      t.string :url
+      t.string :tags
       t.string :file_type
       t.string :status, default: 'active'
       t.integer :read_by
