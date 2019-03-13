@@ -121,11 +121,11 @@
               <strong><%= document.doc_type %></strong>
             </p>
             <div class="document-tags">
-              <% document.tags.gsub(/[^0-9a-z ]/i, ' ').split(' ').each do |tag| %>
+              <%# document.tags.sub(/[^0-9a-z ]/i, ' ').split(' ').each do |tag| %>
                 <%= link_to patient_documents_path(@patient, query: tag.capitalize) do %>
                   <span class="tag"><%= tag.capitalize %></span>
                 <% end %>
-              <% end %>
+              <%# end %>
             </div>
           </li>
 
