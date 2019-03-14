@@ -23,7 +23,33 @@
     position: relative;
     border-bottom: 1px solid rgb(230,230,230);
 
+    .more-button {
+      display: none;
+      position: absolute;
+      right: 1rem;
+      bottom: 0.5rem;
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      outline: none;
+      margin: 0;
+      padding: 0;
+      color: $gray;
+
+      &:active{
+        display: none;
+      }
+
+      &:visited {
+        background-color: none;
+        border: none;
+        box-shadow: none;
+        outline: none;
+      }
+    }
+
     .item-row {
+      position: relative;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -32,6 +58,7 @@
 
       .hidden-buttons {
         display: none;
+        padding-right: 0.4rem;
         a {
           border: none; // 1px solid rgb(230,230,230);
           font-size: 0.7rem;
@@ -51,7 +78,12 @@
     }
 
     .hidden-row {
-      display: none;
+      display: flex;
+      align-items: flex-start;
+      padding: 0.5rem;
+      background-color: rgb(245,245,245);
+      border-top: 1px solid white;
+      margin: 0;
     }
 
     &:hover {
@@ -63,13 +95,8 @@
         right: 5px;
       }
 
-      .hidden-row {
+      .more-button {
         display: flex;
-        align-items: flex-start;
-        padding: 0.5rem;
-        background-color: rgb(245,245,245);
-        border-top: 1px solid white;
-        margin: 0;
       }
     }
 

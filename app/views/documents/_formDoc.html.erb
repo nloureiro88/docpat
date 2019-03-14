@@ -1,0 +1,77 @@
+<div class="boilerplate">
+  <div class="auth">
+    <div class="container">
+      <div class="auth__inner">
+
+         <div class="auth__auth">
+          <h1 class="auth__title">New Document</h1>
+          <p>Please upload file and specify both the document's title and type</p>
+
+            <%= simple_form_for [@patient, @document], class: "simple_form", url: patient_documents_path, html: { method: :post } do |f| %>
+
+            <%#= render 'shared/errors', object: @document %>
+             <%= f.error_notification %>
+
+              <div class="form-inputs">
+                <%= f.input :topic_id,
+                            label: "Topic",
+                            collection: @patient.topics.collect {|top| [top.title, top.id] },
+                            required: true,
+                            input_html: { style: "padding: 0pt 20pt;"},
+                            placeholder: "Related topic" %>
+
+                <%= f.input :doc_title,
+                            label: "Document Title",
+                            required: true,
+                            autofocus: true,
+                            input_html: { autocomplete: "document title" } %>
+                <%= f.input :doc_type,
+                            label: "Document Type",
+                            required: true,
+                            collection:
+                            ['Exam', 'Consultation report', 'Procedure report', 'Discharge report', 'Medical notes',
+                            'Prescription', 'Invoice', 'Insurance', 'Other'],
+                            input_html: { id: 'docTypeInput', style: "padding: 0pt 20pt;", onchange:'showHideExam()' } %>
+                <%= f.input :exam_type,
+                            label: false,
+                            required: false,
+                            input_html: { :id => 'examTypeInput', style: "display: none" } %>
+                <%= f.input :tags,
+                            label: "Document Tags",
+                            required: false %>
+                <%= f.input :file,
+                            label: "Please select a file",
+                            input_html: { class: "button" } %>
+                <%= f.input :file_cache, as: :hidden %>
+
+              </div>
+          <br>
+              <div class="form-actions">
+                  <%= f.button :submit, "Upload", :class => 'button button__accent' %>
+                  <%= f.button :button, "Cancel", type: "reset", input_html: { style: 'background-color = red' }  %>
+              </div>
+
+            <% end %>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  function showHideExam(){
+    p = document.getElementById("docTypeInput").value;
+    if (p == 'Exam') {
+        a = document.getElementById('examTypeInput');
+          a.style.display='block';
+          a.placeholder = "Please describe exam";
+    } else {
+        a = document.getElementById('examTypeInput')
+        a.style.display='none';
+    }
+  }
+
+</script>

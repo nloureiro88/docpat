@@ -10,7 +10,7 @@
 
       <div class="mobile">
          <div class="actions col-xs-12 text-center">
-          <%= link_to "Add Prescription", "#", class: "btn btn-default" %>
+          <%= link_to "Add Prescription", new_patient_schedule_path(@patient), class: "btn btn-default" %>
           <br>
           <%= link_to "Health Topics", patient_topics_path(@patient), class: "btn btn-default" %>
         </div>
@@ -55,6 +55,28 @@
     </div>
   </div>
 
+
+
+<!-- Simple Calendar -->
+
+<%#= @schedules = @schedules.where((:date_start > Date.today || :date_end > Date.today) && status: "active") %>
+<%#= @schedules = @schedules.where('date_end > ?', Date.today).all %>
+
+<!-- <div class="row">
+  <div class="action-header">
+    <%#= week_calendar(attribute: :date_start, end_attribute: :date_end, events: @schedules) do |date, sch| %>
+      <%#= date.day %>
+
+      <%# sch.each do |schedule| %>
+        <div>
+          <%#= schedule.sc_title %>
+        </div>
+      <%# end %>
+    <%# end %>
+  </div>
+</div> -->
+
+
   <!-- Table container for data -->
 
   <div class="table-container">
@@ -76,6 +98,8 @@
     <% if @schedules.count.zero? %>
       <p class="nothing">Nothing to show</p>
     <% end %>
+
+    <% button_counter = 1 %>
 
     <% @schedules.each do |schedule| %>
 
@@ -130,21 +154,28 @@
           </li>
 
           <li class="topic-title col col-xs-3">
-            <%= image_tag("category_icons/#{schedule.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{schedule.topic.category.subject.capitalize}") %>
+            <%= image_tag("category_icons_grey/#{schedule.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{schedule.topic.category.subject.capitalize}") %>
             <p><%= schedule.topic.title %>
             <span class="small code">(<%= schedule.topic.subcode %>)</span></p>
           </li>
+
+          <button class="more-button" data-toggle="collapse" data-target="#hidden-row-<%= button_counter %>"><i class="fas fa-info-circle"></i></button>
         </ul>
 
-        <ul class="hidden-row">
-          <li class="schedule-notes col col-xs-12 col-sm-12">
-            <p><strong>Notes</strong></p>
-            <p><%= schedule.notes %></p>
-          </li>
-        </ul>
+        <div class="collapse" id="hidden-row-<%= button_counter %>">
+          <ul class="hidden-row">
+            <li class="schedule-notes col col-xs-12 col-sm-12">
+              <p><strong>Notes</strong></p>
+              <p><%= schedule.notes %></p>
+            </li>
+          </ul>
+        </div>
       </div>
+
+    <% button_counter += 1 %>
     <% end %>
     </div>
   </div>
+
 </div>
 

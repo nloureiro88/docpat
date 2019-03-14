@@ -1,0 +1,131 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 22/06/2016 15:20
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticon-back-side-of-legs:before { content: "\f100"; }
+.flaticon-basophil:before { content: "\f101"; }
+.flaticon-big-cellule:before { content: "\f102"; }
+.flaticon-big-lips:before { content: "\f103"; }
+.flaticon-big-moustache:before { content: "\f104"; }
+.flaticon-big-nose:before { content: "\f105"; }
+.flaticon-bladder:before { content: "\f106"; }
+.flaticon-blood-supply-system:before { content: "\f107"; }
+.flaticon-blood-transfusion:before { content: "\f108"; }
+.flaticon-blood-vessel:before { content: "\f109"; }
+.flaticon-bones-joint:before { content: "\f10a"; }
+.flaticon-broken-bone:before { content: "\f10b"; }
+.flaticon-bronchioles:before { content: "\f10c"; }
+.flaticon-cellulite:before { content: "\f10d"; }
+.flaticon-cone-cell:before { content: "\f10e"; }
+.flaticon-digestive-system:before { content: "\f10f"; }
+.flaticon-dishes-stack:before { content: "\f110"; }
+.flaticon-dna-sequence:before { content: "\f111"; }
+.flaticon-eyeball-structure:before { content: "\f112"; }
+.flaticon-female-hair:before { content: "\f113"; }
+.flaticon-female-pubis:before { content: "\f114"; }
+.flaticon-female-trunk:before { content: "\f115"; }
+.flaticon-fertilization:before { content: "\f116"; }
+.flaticon-foot-bones:before { content: "\f117"; }
+.flaticon-gallbladder:before { content: "\f118"; }
+.flaticon-hand-bones:before { content: "\f119"; }
+.flaticon-hand-palm:before { content: "\f11a"; }
+.flaticon-hip-bone:before { content: "\f11b"; }
+.flaticon-human-abdomen:before { content: "\f11c"; }
+.flaticon-human-ankle:before { content: "\f11d"; }
+.flaticon-human-artery:before { content: "\f11e"; }
+.flaticon-human-body-side:before { content: "\f11f"; }
+.flaticon-human-bone:before { content: "\f120"; }
+.flaticon-human-brain:before { content: "\f121"; }
+.flaticon-human-breast:before { content: "\f122"; }
+.flaticon-human-buttocks:before { content: "\f123"; }
+.flaticon-human-cerebellum:before { content: "\f124"; }
+.flaticon-human-ear:before { content: "\f125"; }
+.flaticon-human-eye:before { content: "\f126"; }
+.flaticon-human-eyebrow:before { content: "\f127"; }
+.flaticon-human-fetus:before { content: "\f128"; }
+.flaticon-human-finger:before { content: "\f129"; }
+.flaticon-human-fingerprint:before { content: "\f12a"; }
+.flaticon-human-foot:before { content: "\f12b"; }
+.flaticon-human-head:before { content: "\f12c"; }
+.flaticon-human-heart:before { content: "\f12d"; }
+.flaticon-human-hip:before { content: "\f12e"; }
+.flaticon-human-lips:before { content: "\f12f"; }
+.flaticon-human-liver:before { content: "\f130"; }
+.flaticon-human-lungs:before { content: "\f131"; }
+.flaticon-human-muscle:before { content: "\f132"; }
+.flaticon-human-neck:before { content: "\f133"; }
+.flaticon-human-nostril:before { content: "\f134"; }
+.flaticon-human-ribs:before { content: "\f135"; }
+.flaticon-human-skin:before { content: "\f136"; }
+.flaticon-human-skull:before { content: "\f137"; }
+.flaticon-human-spine:before { content: "\f138"; }
+.flaticon-human-spleen:before { content: "\f139"; }
+.flaticon-human-teeth:before { content: "\f13a"; }
+.flaticon-human-toe:before { content: "\f13b"; }
+.flaticon-human-trachea:before { content: "\f13c"; }
+.flaticon-human-uterus:before { content: "\f13d"; }
+.flaticon-immune-system:before { content: "\f13e"; }
+.flaticon-large-intestine:before { content: "\f13f"; }
+.flaticon-long-nail:before { content: "\f140"; }
+.flaticon-lymphonodus:before { content: "\f141"; }
+.flaticon-masculine-chromosomes:before { content: "\f142"; }
+.flaticon-men-back:before { content: "\f143"; }
+.flaticon-men-beard:before { content: "\f144"; }
+.flaticon-men-chest:before { content: "\f145"; }
+.flaticon-men-elbow:before { content: "\f146"; }
+.flaticon-men-hair:before { content: "\f147"; }
+.flaticon-men-hand:before { content: "\f148"; }
+.flaticon-men-knee:before { content: "\f149"; }
+.flaticon-men-leg:before { content: "\f14a"; }
+.flaticon-men-shoulder:before { content: "\f14b"; }
+.flaticon-mouth-open:before { content: "\f14c"; }
+.flaticon-mucous-membrane:before { content: "\f14d"; }
+.flaticon-muscle-fiber:before { content: "\f14e"; }
+.flaticon-neuron:before { content: "\f14f"; }
+.flaticon-nose-side-view:before { content: "\f150"; }
+.flaticon-pancreas:before { content: "\f151"; }
+.flaticon-platelets:before { content: "\f152"; }
+.flaticon-respiratory-system:before { content: "\f153"; }
+.flaticon-rod-cell:before { content: "\f154"; }
+.flaticon-skin-cells:before { content: "\f155"; }
+.flaticon-skull-side-view:before { content: "\f156"; }
+.flaticon-small-intestine:before { content: "\f157"; }
+.flaticon-spine-bone:before { content: "\f158"; }
+.flaticon-stomach-with-liquids:before { content: "\f159"; }
+.flaticon-three-bacteria:before { content: "\f15a"; }
+.flaticon-thyroid:before { content: "\f15b"; }
+.flaticon-tongue-and-mouth:before { content: "\f15c"; }
+.flaticon-tonsil:before { content: "\f15d"; }
+.flaticon-tooth-and-gums:before { content: "\f15e"; }
+.flaticon-two-kidneys:before { content: "\f15f"; }
+.flaticon-two-spermatozoon:before { content: "\f160"; }
+.flaticon-white-blood-cell:before { content: "\f161"; }
+.flaticon-woman-pregnant:before { content: "\f162"; }
+.flaticon-women-eyelashes:before { content: "\f163"; }

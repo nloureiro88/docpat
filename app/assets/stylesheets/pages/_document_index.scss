@@ -41,14 +41,22 @@
 
   .document-icon {
     img {
-      position: absolute;
-      right: -0.4rem;
+      left: 0;
       top: 0;
     }
   }
 
   .document-info {
     display: block !important;
+
+    .document-info-header {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-right: 0.3rem;
+      }
+    }
 
     .document-tags {
       margin-top: 0.5rem;
