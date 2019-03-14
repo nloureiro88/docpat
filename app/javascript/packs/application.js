@@ -3,6 +3,9 @@ import "bootstrap";
 import { initUpdateNavbarOnScroll } from '../components/navbar';
 initUpdateNavbarOnScroll();
 
+import { highlightActiveLink } from '../components/navbar';
+highlightActiveLink();
+
 import { loadDynamicBannerText } from '../components/banner';
 loadDynamicBannerText();
 

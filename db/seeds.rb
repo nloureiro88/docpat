@@ -302,7 +302,7 @@ Topic.all.each do |topic|
                     tags: ["Important", "Follow-up", "Contact Doctor", "Tommorrow", "To Delete"].sample(rand(1..5)).join(" "),
                     file_type: file_types.sample,
                     status: ['active', 'inactive'].sample,
-                    file: string)
+                    file: "https://photos.state.gov/libraries/portugal/231771/PDFs/C2S-LeWagon-Workshop-Program.pdf")
   end
 
   y = rand(1..5)
