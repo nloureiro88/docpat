@@ -14,13 +14,14 @@
       <% @patient = current_user if @patient.nil? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Summary", patient_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Doctors", doctors_patient_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Health Topics", patient_topics_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Updates", patient_updates_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Exams", index_ex_patient_documents_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Documents", patient_documents_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Prescriptions", patient_schedules_path(@patient), class: "navbar-wagon-item navbar-wagon-link" %>
+      <% "" if controller_name == "patients" && action_name == "show" %>
+        <%= link_to "Summary", patient_path(@patient), class: "navbar-wagon-item navbar-wagon-link #{'navbar-wagon-link-active' if controller_name == "patients" && action_name == "show"}" %>
+      <%= link_to "Doctors", doctors_patient_path(@patient), class: "navbar-wagon-item navbar-wagon-link #{'navbar-wagon-link-active' if controller_name == "patients" && (action_name == "doctors" || action_name == "doc_search")}" %>
+      <%= link_to "Health Topics", patient_topics_path(@patient), class: "navbar-wagon-item navbar-wagon-link #{'navbar-wagon-link-active' if controller_name == "topics" && action_name == "index"}" %>
+      <%= link_to "Updates", patient_updates_path(@patient), class: "navbar-wagon-item navbar-wagon-link #{'navbar-wagon-link-active' if controller_name == "updates" && action_name == "index"}" %>
+      <%= link_to "Exams", index_ex_patient_documents_path(@patient), class: "navbar-wagon-item navbar-wagon-link #{'navbar-wagon-link-active' if controller_name == "documents" && action_name == "index_ex"}" %>
+      <%= link_to "Documents", patient_documents_path(@patient), class: "navbar-wagon-item navbar-wagon-link #{'navbar-wagon-link-active' if controller_name == "documents" && action_name == "index"}" %>
+      <%= link_to "Prescriptions", patient_schedules_path(@patient), class: "navbar-wagon-item navbar-wagon-link #{'navbar-wagon-link-active' if controller_name == "schedules" && action_name == "index"}" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
