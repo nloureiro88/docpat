@@ -879,8 +879,8 @@
     background-color: #6C63FF; }
 
   .hero__overlay--gradient {
-    background: linear-gradient(to right, #5894B5, #8BC7E9);
-    opacity: 0.75;
+    background: linear-gradient(to right, #5894B5, #F6B586);
+    opacity: 0.60;
      }
 
   .hero__overlay--gradientVertical {
@@ -901,14 +901,14 @@
     -js-display: flex;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     min-height: calc( 100vh - 50px);
     padding: calc( 92px) 0;
     overflow: auto; }
     .hero__content__inner {
       width: 100%;
       max-width: 600px;
-      text-align: center; }
+      text-align: left; }
 
   /*--- CONTENT STYLING ---*/
   .hero__title {
