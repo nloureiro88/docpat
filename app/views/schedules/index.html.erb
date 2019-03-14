@@ -10,7 +10,7 @@
 
       <div class="mobile">
          <div class="actions col-xs-12 text-center">
-          <%= link_to "Add Prescription", new_patient_schedule_path(@patient), class: "btn btn-default" %>
+          <%= link_to "Add Prescription", new_patient_schedule_path, class: "btn btn-default" %>
           <br>
           <%= link_to "Health Topics", patient_topics_path(@patient), class: "btn btn-default" %>
         </div>
@@ -46,7 +46,7 @@
 
       <div class="desktop">
         <div class="actions col-xs-12 col-md-4 col-md-offset-2">
-          <%= link_to "Add Prescription", "#", class: "btn btn-default" %>
+          <%= link_to "Add Prescription", new_patient_schedule_path, class: "btn btn-default" %>
           <br>
           <%= link_to "Health Topics", patient_topics_path(@patient), class: "btn btn-default" %>
         </div>
@@ -58,23 +58,6 @@
 
 
 <!-- Simple Calendar -->
-
-<%#= @schedules = @schedules.where((:date_start > Date.today || :date_end > Date.today) && status: "active") %>
-<%#= @schedules = @schedules.where('date_end > ?', Date.today).all %>
-
-<!-- <div class="row">
-  <div class="action-header">
-    <%#= week_calendar(attribute: :date_start, end_attribute: :date_end, events: @schedules) do |date, sch| %>
-      <%#= date.day %>
-
-      <%# sch.each do |schedule| %>
-        <div>
-          <%#= schedule.sc_title %>
-        </div>
-      <%# end %>
-    <%# end %>
-  </div>
-</div> -->
 
 
   <!-- Table container for data -->

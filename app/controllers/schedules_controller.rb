@@ -24,16 +24,16 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.new(schedule_params)
     @schedule.user = current_user
     #@schedule.topic = Topic.where(patient: current_user).first
-    @patient = @schedule.topic.patient
     authorize Topic
+    @patient = User.find(params[:patient_id])
+    #@patient = @schedule.topic.patient
+    #authorize Patient
 
      respond_to do |format|
         if @schedule.save
           format.html { redirect_to patient_schedules_path, notice: 'Schedule was successfully created.' }
-          #format.json { render :show, status: :created, location: @document }
         else
           format.html { render :new }
-          #format.json { render json: @document.errors, status: :unprocessable_entity }
         end
       end
   end

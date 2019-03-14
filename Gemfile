@@ -12,7 +12,7 @@ gem "pg_search"
 gem 'cloudinary', '~> 1.9.1'
 gem "data_grid"
 gem "flatpickr"
-gem "simple_calendar", "~> 2.0"
+gem 'simple_calendar', '~> 2.3'
 
 # -------------
 

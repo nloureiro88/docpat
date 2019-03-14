@@ -10,6 +10,8 @@
 
       <div class="mobile">
          <div class="actions col-xs-12 text-center">
+          <%= link_to "Add Update", new_patient_update_path, class: "btn btn-default" %>
+          <br>
           <%= link_to "Health Topics", patient_topics_path(@patient), class: "btn btn-default" %>
           <br>
           <%#= link_to "Active Topics", patient_path(@patient), class: "btn btn-default" %>
@@ -46,6 +48,8 @@
 
       <div class="desktop">
         <div class="actions col-xs-12 col-md-4 col-md-offset-2">
+          <%= link_to "Add Update", new_patient_update_path, class: "btn btn-default" %>
+          <br>
           <%= link_to "Health Topics", patient_topics_path(@patient), class: "btn btn-default" %>
           <br>
           <%#= link_to "Full Log", patient_path(@patient), class: "btn btn-default" %>

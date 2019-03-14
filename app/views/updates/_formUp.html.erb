@@ -25,10 +25,16 @@
                 <%= f.input :next_steps,
                             label: "Next steps",
                             required: true  %>
+                <%= f.input :topic_status,
+                            label: "Topic Status",
+                            required: true,
+                            collection:
+                            ["diagnosed", "under treatment", "cured", "inactive"],
+                            input_html: { style: "padding: 0pt 20pt;"}  %>
 
               </div>
           <br>
-              <div class=xform-inputs">
+              <div class="form-inputs">
                   <%= f.button :submit, "Create Update", class: 'button button__accent' %>
                   <%= f.button :button, "Cancel", type: "reset", input_html: { style: 'background-color = red' }  %>
               </div>
