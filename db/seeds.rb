@@ -157,7 +157,7 @@ end
 
 puts "Creating male doctors..."
 
-locations_pt = ["Lisbon", "Lisbon", "Lisbon", "Lisbon", "Lisbon", "Lisbon", "Porto", "Beja", "Évora", "Coimbra", "Faro", "Braga", "Guimarães", "Setúbal", "Bragança"]
+locations_pt = ["Lisbon", "Lisbon", "Lisbon", "Lisbon", "Porto", "Beja", "Évora", "Coimbra", "Faro", "Braga", "Guimarães", "Setúbal", "Bragança"]
 
 MALE_DOCTOR_PHOTOS = ['http://s.plurielles.fr/mmdia/i/97/7/kevin-mckidd-3673977hzwod.jpg?v=3',
                       'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2F81%2Ff9%2F53%2F81f953425bf1ac8fc44976ee538f112b.jpg&f=1',
