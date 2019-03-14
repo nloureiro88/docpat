@@ -77,6 +77,8 @@
       <p class="nothing">Nothing to show</p>
     <% end %>
 
+    <% button_counter = 1 %>
+
     <% @topics.each do |topic| %>
       <% first_update = topic.updates.first %>
       <% last_update = topic.updates.last %>
@@ -127,9 +129,7 @@
           <li class="topic-info col col-xs-4">
 
             <%= link_to patient_updates_path(@patient, query: topic.title), class: "btn btn-default #{"new-item" if topicNew(topic)[:updates]}" do %>
-
               <i class="fas fa-list-ul"></i><span> <%= topicActions(topic)[:updates].count %></span><span> Updates</span>
-
             <% end %>
 
             <%= link_to patient_documents_path(@patient, query: topic.title), class: "btn btn-default #{"new-item" if topicNew(topic)[:documents]}" do %>
@@ -142,36 +142,40 @@
 
             <%= link_to patient_schedules_path(@patient, query: topic.title), class: "btn btn-default #{"new-item" if topicNew(topic)[:schedules]}" do %>
               <i class="far fa-calendar-alt"></i><span> <%= topicActions(topic)[:schedules].count %></span><span> Prescriptions</span>
-
             <% end %>
 
           </li>
 
+          <button class="more-button" data-toggle="collapse" data-target="#hidden-row-<%= button_counter %>"><i class="fas fa-info-circle"></i></button>
         </ul>
 
-        <ul class="hidden-row">
+        <div class="collapse" id="hidden-row-<%= button_counter %>">
+          <ul class="hidden-row">
+            <% if last_update.next_steps.count.zero? %>
+              <li class="topic-current col col-xs-12 col-sm-12">
+                <p><strong>Current Analysis</strong></p>
+                <p><%= last_update.diagnosis %></p>
+              </li>
+            <% else %>
+              <li class="topic-current col col-xs-12 col-sm-8">
+                <p><strong>Current Analysis</strong></p>
+                <p><%= last_update.diagnosis %></p>
+              </li>
+              <li class="topic-ns col col-xs-12 col-sm-4">
+                <p><strong>Next Steps</strong></p>
+                <ul>
+                  <% last_update.next_steps.each do |ns| %>
+                    <li><%= ns %></li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+          </ul>
 
-          <% if last_update.next_steps.count.zero? %>
-            <li class="topic-current col col-xs-12 col-sm-12">
-              <p><strong>Current Analysis</strong></p>
-              <p><%= last_update.diagnosis %></p>
-            </li>
-          <% else %>
-            <li class="topic-current col col-xs-12 col-sm-8">
-              <p><strong>Current Analysis</strong></p>
-              <p><%= last_update.diagnosis %></p>
-            </li>
-            <li class="topic-ns col col-xs-12 col-sm-4">
-              <p><strong>Next Steps</strong></p>
-              <ul>
-                <% last_update.next_steps.each do |ns| %>
-                  <li><%= ns %></li>
-                <% end %>
-              </ul>
-            </li>
-          <% end %>
-        </ul>
+        </div>
       </div>
+
+      <% button_counter += 1 %>
     <% end %>
 
     </div>

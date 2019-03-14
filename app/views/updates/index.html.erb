@@ -82,6 +82,8 @@
       <p class="nothing">Nothing to show</p>
     <% end %>
 
+    <% button_counter = 1 %>
+
     <% @updates.each do |update| %>
 
       <div class='show-row'>
@@ -160,31 +162,37 @@
 
             <% end %>
           </li>
+
+          <button class="more-button" data-toggle="collapse" data-target="#hidden-row-<%= button_counter %>"><i class="fas fa-info-circle"></i></button>
         </ul>
 
-        <ul class="hidden-row">
+        <div class="collapse" id="hidden-row-<%= button_counter %>">
+          <ul class="hidden-row">
 
-          <% if update.next_steps.count.zero? %>
-            <li class="topic-current col col-xs-12 col-sm-12">
-              <p><strong>Analysis</strong></p>
-              <p><%= update.diagnosis %></p>
-            </li>
-          <% else %>
-            <li class="topic-current col col-xs-12 col-sm-8">
-              <p><strong>Analysis</strong></p>
-              <p><%= update.diagnosis %></p>
-            </li>
-            <li class="topic-ns col col-xs-12 col-sm-4">
-              <p><strong>Next Steps</strong></p>
-              <ul>
-                <% update.next_steps.each do |ns| %>
-                  <li><%= ns %></li>
-                <% end %>
-              </ul>
-            </li>
-          <% end %>
-        </ul>
+            <% if update.next_steps.count.zero? %>
+              <li class="topic-current col col-xs-12 col-sm-12">
+                <p><strong>Analysis</strong></p>
+                <p><%= update.diagnosis %></p>
+              </li>
+            <% else %>
+              <li class="topic-current col col-xs-12 col-sm-8">
+                <p><strong>Analysis</strong></p>
+                <p><%= update.diagnosis %></p>
+              </li>
+              <li class="topic-ns col col-xs-12 col-sm-4">
+                <p><strong>Next Steps</strong></p>
+                <ul>
+                  <% update.next_steps.each do |ns| %>
+                    <li><%= ns %></li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
+
+    <% button_counter += 1 %>
     <% end %>
 
     </div>
