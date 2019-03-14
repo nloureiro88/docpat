@@ -49,7 +49,7 @@ filepath_pharmas = './db/csv/pharmas.csv'
 
 # Creating docs Array:
 
-puts "Creating doc types array..."
+puts "Creating docs array..."
 
 file_types = []
 
@@ -115,7 +115,7 @@ end
 
 puts "Creating families..."
 
-families = ['Footinvest', 'Clubhouse', 'Ask Mom', 'Caretaker Helper', 'DocPat', 'Habit Tracker', 'Ronaldo']
+families = ['Footinvest', 'Clubhouse', 'Ask Mom', 'Caretaker Helper', 'DocPat', 'Habit Tracker']
 
 families.each do |fam|
   Family.create(name: fam, status: 'active') # To test with different status
