@@ -89,6 +89,7 @@
             <% end %>
           <% end %>
 
+
           <div class="hidden-buttons">
             <% x = document.file.url || nil %>
             <% if x.present?  %>
@@ -98,28 +99,26 @@
               <%= link_to x.sub('upload/','upload/fl_attachment/'), class: "btn btn-default" do %>
                 <i class="fas fa-download"></i>
               <% end %>
+
             <% end %>
             <%= link_to deactivate_patient_document_path(@patient, document), class: "btn btn-default" do %>
               <i class="far fa-trash-alt"></i>
             <% end %>
           </div>
 
-          <li class="document-type col-xs-2">
+          <li class="document-type col-xs-3">
             <p><strong><%= document.doc_title %></strong></p>
           </li>
 
-          <li class="document-icon col-xs-1">
-            <% if document.file?  %>
+          <li class="document-info col col-xs-3">
+            <div class="document-info-header">
+              <% if document.file?  %>
                 <%= image_tag("file_icons/#{document.file.url.split(".").last}.svg", size: "32x32", class: "svg-icon")%>
               <% else %>
                 <%= image_tag("file_icons/file.svg", size: "32x32", class: "svg-icon")%>
               <% end %>
-          </li>
-
-          <li class="document-info col col-xs-3">
-            <p>
               <strong><%= document.doc_type %></strong>
-            </p>
+            </div>
             <div class="document-tags">
               <%# document.tags.sub(/[^0-9a-z ]/i, ' ').split(' ').each do |tag| %>
                 <%= link_to patient_documents_path(@patient, query: tag.capitalize) do %>
@@ -140,7 +139,7 @@
           </li>
 
           <li class="topic-title col col-xs-3">
-            <%= image_tag("category_icons/#{document.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{document.topic.category.subject.capitalize}") %>
+            <%= image_tag("category_icons_grey/#{document.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{document.topic.category.subject.capitalize}") %>
             <p><%= document.topic.title %>
             <span class="small code">(<%= document.topic.subcode %>)</span></p>
           </li>

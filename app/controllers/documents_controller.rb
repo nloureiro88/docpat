@@ -13,6 +13,7 @@ class DocumentsController < ApplicationController
 
   def index_ex
     authorize Document
+
     if params[:query].present?
       source_documents = policy_scope(Document).where(status: 'active', doc_type: 'Exam').order('created_at DESC').documents_search(params[:query])
     else
@@ -47,6 +48,7 @@ class DocumentsController < ApplicationController
   end
 
   def new
+    @patient = User.find(params[:patient_id])
     @document = Document.new
     authorize Document
   end
@@ -54,6 +56,10 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     @document.user = current_user
+    #@document.topic = Topic.where(patient: current_user)
+    @patient = @document.topic.patient
+    authorize Topic
+
     @document.topic = Topic.where(patient: current_user).first ## TO CORRECT
     @patient = @document.topic.patient
     authorize Topic
@@ -62,17 +68,18 @@ class DocumentsController < ApplicationController
       my_path = index_ex_patient_documents_path(@patient, query: params[:query])
     else
       my_path = patient_documents_path(@patient, query: params[:query])
+
     end
 
-    respond_to do |format|
-      if @document.save
-        format.html { redirect_to my_path, notice: 'Document was successfully created.' }
-        #format.json { render :show, status: :created, location: @document }
-      else
-        format.html { render :new }
-        #format.json { render json: @document.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @document.save
+    #     format.html { redirect_to my_path, notice: 'Document was successfully created.' }
+    #     #format.json { render :show, status: :created, location: @document }
+    #   else
+    #     format.html { render :new }
+    #     #format.json { render json: @document.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   private

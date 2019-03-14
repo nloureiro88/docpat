@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :updates, only: [:index] do
+    resources :updates, only: [:index, :new] do
       member do
         get :read, to: "updates#read"
       end

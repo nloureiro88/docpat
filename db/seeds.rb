@@ -22,7 +22,7 @@ Update.destroy_all
 Topic.destroy_all
 User.destroy_all
 
-puts 'Cleaning up Cloudinary via API...'
+puts 'Cleaning up Cloudinary via API'
 Cloudinary::Api.delete_all_resources
 
 # Type lists:
@@ -48,7 +48,6 @@ filepath_hospitals = './db/csv/hospitals.csv'
 filepath_pharmas = './db/csv/pharmas.csv'
 
 # Creating docs Array:
-
 
 puts "Creating docs array..."
 
@@ -160,7 +159,7 @@ puts "Creating male doctors..."
 
 locations_pt = ["Lisbon", "Porto", "Beja", "Évora", "Coimbra", "Faro", "Braga", "Guimarães", "Setúbal", "Bragança"]
 
-50.times do
+15.times do
   fname = Faker::Name.male_first_name
   lname = Faker::Name.last_name
   doc_email = "#{fname.downcase}.#{lname.downcase}@medical.org"
@@ -188,7 +187,7 @@ end
 
 puts "Creating female doctors..."
 
-50.times do
+15.times do
   fname = Faker::Name.female_first_name
   lname = Faker::Name.last_name
   doc_email = "#{fname.downcase}.#{lname.downcase}@medical.org"
@@ -303,7 +302,7 @@ Topic.all.each do |topic|
                     tags: ["Important", "Follow-up", "Contact Doctor", "Tommorrow", "To Delete"].sample(rand(1..5)).join(" "),
                     file_type: file_types.sample,
                     status: ['active', 'inactive'].sample,
-                    file: "https://www.lewagon.com")
+                    file: "https://photos.state.gov/libraries/portugal/231771/PDFs/C2S-LeWagon-Workshop-Program.pdf")
   end
 
   y = rand(1..5)
@@ -323,6 +322,157 @@ Topic.all.each do |topic|
   end
 end
 
+# Creating "real-life" seeds
+
+# puts "Creating real-life seeds..."
+
+# # Famiy
+
+# anderson = Family.create(name: "Anderson", status: 'active')
+
+# # Mary
+
+# pharma = pharmas.sample
+# pharma_mail = "#{pharma.downcase.tr(" ", ".")}@lewagon.org"
+
+# mary = User.new(email: "mary.smith@lewagon.org",
+#                     password: '654321',
+#                     first_name: "Mary",
+#                     last_name: "Anderson",
+#                     gender: "female",
+#                     address: "lisbon",
+#                     date_birth: Date.new(1980,4,24),
+#                     identity_card: Faker::Number.number(10),
+#                     user_type: 'patient',
+#                     pat_blood: BLOOD_TYPES.sample,
+#                     pat_pharma: pharma,
+#                     pat_pharma_email: pharma_mail,
+#                     status: 'active')
+
+# mary.photo = "seed_pics/mary.jpeg"
+# mary.save!
+
+# FamilyPatient.create(family: anderson, patient: mary, status: 'active')
+
+# # Erica
+
+# pharma = pharmas.sample
+# pharma_mail = "#{pharma.downcase.tr(" ", ".")}@lewagon.org"
+
+# erica = User.new(email: "erica.anderson@lewagon.org",
+#                     password: '654321',
+#                     first_name: "Erica",
+#                     last_name: "Anderson",
+#                     gender: "female",
+#                     address: "lisbon",
+#                     date_birth: Date.new(1930,7,21),
+#                     identity_card: Faker::Number.number(10),
+#                     user_type: 'patient',
+#                     pat_blood: BLOOD_TYPES.sample,
+#                     pat_pharma: pharma,
+#                     pat_pharma_email: pharma_mail,
+#                     status: 'active')
+
+# erica.photo = "seed_pics/erica.png"
+# erica.save!
+
+# FamilyPatient.create(family: anderson, patient: erica, status: 'active')
+
+# # Ben
+
+# pharma = pharmas.sample
+# pharma_mail = "#{pharma.downcase.tr(" ", ".")}@lewagon.org"
+
+# john = User.new(email: "john.anderson@lewagon.org",
+#                 password: '654321',
+#                 first_name: "John",
+#                 last_name: "Anderson",
+#                 gender: "male",
+#                 address: "lisbon",
+#                 date_birth: Date.new(1972,2,7),
+#                 identity_card: Faker::Number.number(10),
+#                 user_type: 'patient',
+#                 pat_blood: BLOOD_TYPES.sample,
+#                 pat_pharma: pharma,
+#                 pat_pharma_email: pharma_mail,
+#                 status: 'active')
+
+# john.photo = "seed_pics/john.png"
+# john.save!
+
+# FamilyPatient.create(family: anderson, patient: ben, status: 'active')
+
+# # kevin
+
+# pharma = pharmas.sample
+# pharma_mail = "#{pharma.downcase.tr(" ", ".")}@lewagon.org"
+
+# christian = User.new(email: "christian.anderson@lewagon.org",
+#                 password: '654321',
+#                 first_name: "Christian",
+#                 last_name: "Anderson",
+#                 gender: "male",
+#                 address: "lisbon",
+#                 date_birth: Date.new(2012,1,9),
+#                 identity_card: Faker::Number.number(10),
+#                 user_type: 'patient',
+#                 pat_blood: BLOOD_TYPES.sample,
+#                 pat_pharma: pharma,
+#                 pat_pharma_email: pharma_mail,
+#                 status: 'active')
+
+# christian.photo = "seed_pics/christian.png"
+# christian.save!
+
+# FamilyPatient.create(family: anderson, patient: kevin, status: 'active')
+
+# # sarah
+
+# pharma = pharmas.sample
+# pharma_mail = "#{pharma.downcase.tr(" ", ".")}@lewagon.org"
+
+# sarah = User.new(email: "sarah.anderson@lewagon.org",
+#                 password: '654321',
+#                 first_name: "Sarah",
+#                 last_name: "Anderson",
+#                 gender: "male",
+#                 address: "lisbon",
+#                 date_birth: Date.new(2015,8,21),
+#                 identity_card: Faker::Number.number(10),
+#                 user_type: 'patient',
+#                 pat_blood: BLOOD_TYPES.sample,
+#                 pat_pharma: pharma,
+#                 pat_pharma_email: pharma_mail,
+#                 status: 'active')
+
+# sarah.photo = "seed_pics/sarah.png"
+# sarah.save!
+
+# FamilyPatient.create(family: anderson, patient: sarah, status: 'active')
+
+# # chirstian
+
+# pharma = pharmas.sample
+# pharma_mail = "#{pharma.downcase.tr(" ", ".")}@lewagon.org"
+
+# ben = User.new(email: "ben.anderson@lewagon.org",
+#                 password: '654321',
+#                 first_name: "Ben",
+#                 last_name: "Anderson",
+#                 gender: "male",
+#                 address: "lisbon",
+#                 date_birth: Date.new(2017,1,17),
+#                 identity_card: Faker::Number.number(10),
+#                 user_type: 'patient',
+#                 pat_blood: BLOOD_TYPES.sample,
+#                 pat_pharma: pharma,
+#                 pat_pharma_email: pharma_mail,
+#                 status: 'active')
+
+# ben.photo = "seed_pics/ben.jpeg"
+# ben.save!
+
+# FamilyPatient.create(family: anderson, patient: ben, status: 'active')
 
 # Show seeding results
 
