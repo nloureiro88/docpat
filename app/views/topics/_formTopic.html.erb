@@ -4,32 +4,32 @@
       <div class="auth__inner">
 
          <div class="auth__auth">
-          <h1 class="auth__title">New Update</h1>
+          <h1 class="auth__title">New Topic</h1>
           <p>Please specify Update elements</p>
 
-            <%= simple_form_for [@patient, @topic], class: "simple_form", url: patient_updates_path, html: { method: :post } do |f| %>
+            <%= simple_form_for [@patient, @topic], class: "simple_form", url: patient_topics_path, html: { method: :post } do |f| %>
 
-            <%#= render 'shared/errors', object: @schedule %>
-             <%= f.error_notification %>
+            <%= render 'shared/errors', object: @topic %>
+             <%#= f.error_notification %>
 
               <div class="form-inputs">
                  <%= f.input :title,
-                            label: "Update Diagnosis",
+                            label: "Title",
                             required: true,
                             autofocus: true %>
                  <%= f.input :category_id,
-                            label: "Related Topic",
-                            collection:
-                            ['General and unspecified','Blood, blood forming organs, lymphatics, spleen','Digestive','Eye','Ear','Circulatory','Musculoskeletal','Neurological','Psychological','Respiratory','Skin','Endocrine, metabolic, nutritional','Urology','Pregnancy, childbirth, family planning','Female genital system, breast','Male genital system','Social problems'],
+                            label: "Category",
+                            collection: Category.all.collect {|top| [top.subject, top.id] },
                             required: true,
                             input_html: { style: "padding: 0pt 20pt;"} %>
                 <%= f.input :subcode,
                             label: "Category Subcode",
-                            required: true  %>
+                            required: false  %>
+                            <%#= @topic.subcode = "#{@topic.category.code}#{(1..9).sample(2)}" %>
               </div>
 
           <br>
-              <div class=xform-inputs">
+              <div class="form-inputs">
                   <%= f.button :submit, "Create Topic", class: 'button button__accent' %>
                   <%= f.button :button, "Cancel", type: "reset", input_html: { style: 'background-color = red' }  %>
               </div>

@@ -11,8 +11,9 @@ class TopicsController < ApplicationController
   end
 
   def new
+    @patient = User.find(params[:patient_id])
     @topic = Topic.new
-    @update = Update.new
+    #@update = Update.new
     authorize Topic
     #authorize Document
   end
@@ -20,13 +21,17 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     @topic.patient = @patient
-    @update = Update.new(update_params)
-    @update.topic = @topic
-    @update.user = current_user
+
     authorize Topic
-    authorize Update
-    if @topic.save && @update.save
-      redirect_to patient_topics_path(@patient, query: params[:query])
+
+    if @topic.save
+      # @update = Update.new(update_params)
+      # @update.topic = @topic
+      # @update.user = current_user
+      # authorize Update
+      # @update.save
+      #redirect_to patient_topics_path(@patient, query: params[:query])
+      redirect_to new_patient_update_path(@patient, query: @topic.id)
     else
       render :new
     end

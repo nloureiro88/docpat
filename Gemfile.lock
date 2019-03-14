@@ -287,7 +287,7 @@ DEPENDENCIES
   rails (= 5.2.2)
   redis
   sassc-rails
-  simple_calendar (~> 2.0)
+  simple_calendar (~> 2.3)
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)

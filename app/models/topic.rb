@@ -3,7 +3,7 @@ class Topic < ApplicationRecord
   belongs_to :category
 
   has_many :updates
-  has_many :documents
+  has_many :documents, dependent: :destroy
   has_many :schedules
 
   STATUS = ["active", "inactive"]

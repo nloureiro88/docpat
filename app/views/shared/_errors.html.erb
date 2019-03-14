@@ -1,6 +1,5 @@
-_errors.html.erb
 <% if object.errors.any? %>
-  <h3>Some errors were found:</h3>
+  <p>Some errors were found:</p>
   <ul>
     <% object.errors.full_messages.each do |message| %>
       <li><%= message %></li>

@@ -79,7 +79,6 @@
     <% end %>
 
     <% @documents.each do |document| %>
-
       <div class='show-row'>
 
         <ul class="item-row row">
@@ -122,11 +121,14 @@
               <strong><%= document.exam_type %></strong>
             </p>
             <div class="document-tags">
+
+              <%# document.tags.sub(/[^0-9a-z ]/i, ' ').split(' ').each do |tag| %>
               <% document.tags.gsub(/[^0-9a-z ]/i, ' ').split(' ').each do |tag| %>
                 <%= link_to index_ex_patient_documents_path(@patient, query: tag.capitalize) do %>
                   <span class="tag"><%= tag.capitalize %></span>
                 <% end %>
               <% end %>
+
             </div>
           </li>
 
@@ -147,16 +149,18 @@
           </li>
         </ul>
 
-        <!--
-        <ul class="hidden-row">
-          <li class="schedule-notes col col-xs-12 col-sm-12">
-            <p><strong>Notes</strong></p>
-            <p><%#= schedule.notes %></p>
-          </li>
-        </ul> -->
+                    <!--
+                    <ul class="hidden-row">
+                      <li class="schedule-notes col col-xs-12 col-sm-12">
+                        <p><strong>Notes</strong></p>
+                        <p><%#= schedule.notes %></p>
+                      </li>
+                    </ul> -->
       </div>
     <% end %>
-    </div>
+
   </div>
-</div>
+
+
+ </div>
 

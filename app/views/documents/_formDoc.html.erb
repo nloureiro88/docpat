@@ -35,17 +35,20 @@
                 <%= f.input :exam_type,
                             label: false,
                             required: false,
-                            input_html: { :id => 'examTypeInput', style: "display: none" } %>
+                            collection:
+                            ['Sensitivity test', 'Microbiological / immunological test', 'Blood test', 'Urine test', 'Faeces test', 'Histological / exfoliative cytology',
+                'Other laboratory test NEC', 'Physical function test', 'Diagnostic endoscopy', 'Diagnostic radiology / imaging', 'Electrical tracing', 'Other diagnostic procedure'],
+                            input_html: { :id => 'examTypeInput', style: "display: none; padding: 0pt 20pt" } %>
                 <%= f.input :tags,
                             label: "Document Tags",
                             required: false %>
                 <%= f.input :file,
                             label: "Please select a file",
-                            input_html: { class: "button" } %>
+                            input_html: { class: "button__accent" } %>
                 <%= f.input :file_cache, as: :hidden %>
 
               </div>
-          <br>
+              <br>
               <div class="form-actions">
                   <%= f.button :submit, "Upload", :class => 'button button__accent' %>
                   <%= f.button :button, "Cancel", type: "reset", input_html: { style: 'background-color = red' }  %>

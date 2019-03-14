@@ -57,29 +57,23 @@ class DocumentsController < ApplicationController
     @document = Document.new(document_params)
     @document.user = current_user
     #@document.topic = Topic.where(patient: current_user)
-    @patient = @document.topic.patient
-    authorize Topic
-
-    @document.topic = Topic.where(patient: current_user).first ## TO CORRECT
-    @patient = @document.topic.patient
+    @patient = User.find(params[:patient_id])
+    #@patient = @document.topic.patient
     authorize Topic
 
     if @document.doc_type == "Exam"
       my_path = index_ex_patient_documents_path(@patient, query: params[:query])
     else
       my_path = patient_documents_path(@patient, query: params[:query])
-
     end
 
-    # respond_to do |format|
-    #   if @document.save
-    #     format.html { redirect_to my_path, notice: 'Document was successfully created.' }
-    #     #format.json { render :show, status: :created, location: @document }
-    #   else
-    #     format.html { render :new }
-    #     #format.json { render json: @document.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+       if @document.save
+         format.html { redirect_to my_path, notice: 'Document was successfully created.' }
+       else
+        format.html { render :new }
+       end
+     end
   end
 
   private
