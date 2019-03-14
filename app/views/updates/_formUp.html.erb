@@ -1,0 +1,44 @@
+<div class="boilerplate">
+  <div class="auth">
+    <div class="container">
+      <div class="auth__inner">
+
+         <div class="auth__auth">
+          <h1 class="auth__title">New Update</h1>
+          <p>Please specify Update elements</p>
+
+            <%= simple_form_for [@patient, @update], class: "simple_form", url: patient_updates_path, html: { method: :post } do |f| %>
+
+            <%#= render 'shared/errors', object: @schedule %>
+             <%= f.error_notification %>
+
+              <div class="form-inputs">
+                 <%= f.input :topic_id,
+                            label: "Related Topic",
+                            collection: @patient.topics.collect {|top| [top.title, top.id] },
+                            required: true,
+                            input_html: { style: "padding: 0pt 20pt;"} %>
+                <%= f.input :diagnosis,
+                            label: "Update Diagnosis",
+                            required: true,
+                            autofocus: true %>
+                <%= f.input :next_steps,
+                            label: "Next steps",
+                            required: true  %>
+
+              </div>
+          <br>
+              <div class=xform-inputs">
+                  <%= f.button :submit, "Create Update", class: 'button button__accent' %>
+                  <%= f.button :button, "Cancel", type: "reset", input_html: { style: 'background-color = red' }  %>
+              </div>
+
+            <% end %>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

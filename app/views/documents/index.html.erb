@@ -89,6 +89,7 @@
             <% end %>
           <% end %>
 
+
           <div class="hidden-buttons">
             <% x = document.file.url || nil %>
             <% if x.present?  %>
@@ -98,6 +99,7 @@
               <%= link_to x.sub('upload/','upload/fl_attachment/'), class: "btn btn-default" do %>
                 <i class="fas fa-download"></i>
               <% end %>
+
             <% end %>
             <%= link_to deactivate_patient_document_path(@patient, document), class: "btn btn-default" do %>
               <i class="far fa-trash-alt"></i>

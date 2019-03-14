@@ -13,6 +13,8 @@ class TopicsController < ApplicationController
   def new
     @topic = Topic.new
     @update = Update.new
+    authorize Topic
+    #authorize Document
   end
 
   def create
