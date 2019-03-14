@@ -77,6 +77,8 @@
       <p class="nothing">Nothing to show</p>
     <% end %>
 
+    <% button_counter = 1 %>
+
     <% @schedules.each do |schedule| %>
 
       <div class='show-row'>
@@ -130,19 +132,25 @@
           </li>
 
           <li class="topic-title col col-xs-3">
-            <%= image_tag("category_icons/#{schedule.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{schedule.topic.category.subject.capitalize}") %>
+            <%= image_tag("category_icons_grey/#{schedule.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{schedule.topic.category.subject.capitalize}") %>
             <p><%= schedule.topic.title %>
             <span class="small code">(<%= schedule.topic.subcode %>)</span></p>
           </li>
+
+          <button class="more-button" data-toggle="collapse" data-target="#hidden-row-<%= button_counter %>"><i class="fas fa-info-circle"></i></button>
         </ul>
 
-        <ul class="hidden-row">
-          <li class="schedule-notes col col-xs-12 col-sm-12">
-            <p><strong>Notes</strong></p>
-            <p><%= schedule.notes %></p>
-          </li>
-        </ul>
+        <div class="collapse" id="hidden-row-<%= button_counter %>">
+          <ul class="hidden-row">
+            <li class="schedule-notes col col-xs-12 col-sm-12">
+              <p><strong>Notes</strong></p>
+              <p><%= schedule.notes %></p>
+            </li>
+          </ul>
+        </div>
       </div>
+
+    <% button_counter += 1 %>
     <% end %>
     </div>
   </div>
