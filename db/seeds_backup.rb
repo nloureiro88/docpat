@@ -157,53 +157,9 @@ end
 
 puts "Creating male doctors..."
 
-locations_pt = ["Lisbon", "Lisbon", "Lisbon", "Lisbon", "Lisbon", "Lisbon", "Porto", "Beja", "Évora", "Coimbra", "Faro", "Braga", "Guimarães", "Setúbal", "Bragança"]
+locations_pt = ["Lisbon", "Porto", "Beja", "Évora", "Coimbra", "Faro", "Braga", "Guimarães", "Setúbal", "Bragança"]
 
-MALE_DOCTOR_PHOTOS = ['http://s.plurielles.fr/mmdia/i/97/7/kevin-mckidd-3673977hzwod.jpg?v=3',
-                      'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2F81%2Ff9%2F53%2F81f953425bf1ac8fc44976ee538f112b.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.dailymail.co.uk%2Fi%2Fpix%2F2015%2F09%2F25%2F06%2F2C70E10900000578-3248534-image-a-64_1443159937079.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fp0.storage.canalblog.com%2F00%2F22%2F1152592%2F89974091_o.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2F1.bp.blogspot.com%2F-sghc_pVJHjA%2FUNt8agMWMBI%2FAAAAAAAAAIU%2F93EtfDCQRs0%2Fs1600%2FRICHARD1.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fcc-media-foxit.fichub.com%2Fimage%2Ffox-it-mondofox%2Faaaba043-eb98-4a4c-ae77-040bee4af9f9%2Falex-karev-630x630.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2Fee%2F65%2Fe3%2Fee65e32c26c2ec3d8c171d0c796c803a.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fdiariosur.es%2Focio%2Fnoticias%2FMedia%2F200906%2F11%2Flaurie2.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F0%2F06%2FRobert_Sean_LeonardCrop.JPG%2F245px-Robert_Sean_LeonardCrop.JPG&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.uratex.com.ph%2Findustrial-institutional%2Fwp-content%2Fuploads%2F2015%2F02%2FJD-Dorian.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.tvtropes.org%2Fpmwiki%2Fpub%2Fimages%2Fscrubs_kelso_2493.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fimg3.wikia.nocookie.net%2F__cb20110924074716%2Fscrubs%2Fimages%2F9%2F92%2FSquare_Turk.png&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.XWqupa8vZ9Kh9dpy2S86aAHaGt%26pid%3D15.1&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette.wikia.nocookie.net%2Fscrubs%2Fimages%2Fd%2Fd5%2FS6-HQ-Cox.jpg%2Frevision%2Flatest%2Ftop-crop%2Fwidth%2F320%2Fheight%2F320%3Fcb%3D20141103192935&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.comphealth.com%2Fresources%2Fwp-content%2Fuploads%2F2014%2F05%2Fdoctor-computer.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fblog.bulletproof.com%2Fwp-content%2Fuploads%2F2018%2F04%2FHeadshot2.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fbonnier.imgix.net%2Fdrphil_10_seamless1_237_print-_sJ5Z4huBx1gswFZWUlDuA.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F75%2F87%2Fa0%2F7587a0e610095e85ebac4addba58f4fd--doctor-male-celebrities.jpg&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2F3.bp.blogspot.com%2F-Hf6nlC7wN24%2FTqkfads2nrI%2FAAAAAAAAEKc%2FFKfvMQEN1us%2Fs1600%2FGreysAnatomy3.JPG&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fm3.wyanokecdn.com%2F98d0838159596b00db27e5fd4bd6f86c.jpg&f=1']
-
-FEMALE_DOCTOR_PHOTOS = ['https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod.s3.amazonaws.com%2Fimages%2Fan-honest-mistake-dereks-confidence-is-shaken-like-never-news-photo-93750705-1538069801.jpg%3Fcrop%3D1.00xw%3A0.669xh%3B0%2C0.0613xh%26resize%3D480%3A*&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2F29%2F09%2Fa1%2F2909a1f19fd5c282309db17d725cf7fa--greys-anatomy-online-grey-s-anatomy.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2Foriginals%2F51%2F10%2F83%2F51108303591973c9edce4c7b18945d60.jpg&f=1',
-                        'https://d1i5hut471lhig.cloudfront.net/7c134f19ba9dcc4fbaea768a8c034efbc45fd424.jpg',
-                        'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pulseheadlines.com%2Fwp-content%2Fuploads%2F2016%2F12%2Fjejeje-1.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fd1i5hut471lhig.cloudfront.net%2F30f5abf518a71a41c8eefa3b7affd9dd4cd405eb.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Ffan-grey-s-anatomy.e-monsite.com%2Fmedias%2Fimages%2Fdr-miranda-bailey-1.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2Foriginals%2Fc0%2Fff%2Faf%2Fc0ffaf7916530e94350d043a4e73720c.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.popsugar-assets.com%2Ffiles%2Fthumbor%2FdKympnzvqnZOL1y92i65k6rftYE%2Ffit-in%2F550x550%2Ffilters%3Aformat_auto-!!-%3Astrip_icc-!!-%2F2011%2F05%2F20%2F2%2F192%2F1922283%2Ffff2604bb1f12af9_thumb%2Fi%2FLisa-Edelstein-Quitting-House.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.austinchronicle.com%2Fbinary%2F7a9a%2FThirteen.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fbrainsnorts.files.wordpress.com%2F2012%2F07%2Fjennifer-morrison-hq22.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.yasamsifreleri.com%2Fwp-content%2Fuploads%2F2015%2F04%2Fgamze-topuz-doktorlar.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fstatic.tvtropes.org%2Fpmwiki%2Fpub%2Fimages%2Fscrubs_elliot_4536.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.canarianweekly.com%2Fwp-content%2Fuploads%2F2014%2F10%2FHealth-1.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Fd1%2Fba%2F0d%2Fd1ba0ddaacaaef4357a86f363eaaf718--greys-anatomy-season--lexie-grey.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.craveyoutv.com%2Fwp-content%2Fuploads%2F2013%2F08%2F300.oh_.greysanatomy.092408.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.instyle.gr%2Fwp-content%2Fuploads%2F2018%2F01%2F01%2Fdr-pimple-popper.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Flajonesmedia.com%2Fwp-content%2Fuploads%2F2016%2F12%2Flady-doctor-1.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Fed%2Ff7%2F27%2Fedf7274c4fc5fc91967bcab18deaf1ef--role-models-dr-who.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fen%2Fa%2Fa2%2FDr_chen.jpg&f=1']
-
-doc_counter = 0
-
-20.times do
+15.times do
   fname = Faker::Name.male_first_name
   lname = Faker::Name.last_name
   doc_email = "#{fname.downcase}.#{lname.downcase}@medical.org"
@@ -214,23 +170,24 @@ doc_counter = 0
                         last_name: lname,
                         gender: "male",
                         address: locations_pt.sample,
-                        date_birth: Faker::Date.birthday(35, 55),
+                        date_birth: Faker::Date.birthday(25, 70),
                         identity_card: Faker::Number.number(10),
                         user_type: 'doctor',
                         doc_number: Faker::Number.number(8),
-                        doc_institutions: hospitals.sample(rand(1..2)),
+                        doc_institutions: hospitals.sample(rand(1..3)),
                         doc_specialties: specialties.keys.sample(rand(1..3)),
                         status: 'active')
-  new_doctor.remote_photo_url = MALE_DOCTOR_PHOTOS[doc_counter]
+  new_doctor.remote_photo_url = ["https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.dailymail.co.uk%2Fi%2Fpix%2F2016%2F08%2F28%2F01%2F37A49C5300000578-3761834-image-a-10_1472342613804.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi1-news.softpedia-static.com%2Fimages%2Fnews2%2FDoctor-McSteamy-Returns-to-039-Grey-039-s-Anatomy-039-2.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2F81%2Ff9%2F53%2F81f953425bf1ac8fc44976ee538f112b.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F87%2F4e%2Fed%2F874eedefa8b66101edc1c2eddc0e8477.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2F3.bp.blogspot.com%2F-vO7eiZKx4FU%2FTl_X6xLLxqI%2FAAAAAAAABOA%2F90Ujq1eIMfo%2Fs1600%2Ftumblr_li6awrYU5H1qeig70o1_400.jpg&f=1"].sample # To test with different status
   new_doctor.save!
-  doc_counter += 1
 end
 
 puts "Creating female doctors..."
 
-doc_counter = 0
-
-20.times do
+15.times do
   fname = Faker::Name.female_first_name
   lname = Faker::Name.last_name
   doc_email = "#{fname.downcase}.#{lname.downcase}@medical.org"
@@ -241,33 +198,20 @@ doc_counter = 0
                         last_name: lname,
                         gender: "female",
                         address: locations_pt.sample,
-                        date_birth: Faker::Date.birthday(35, 55),
+                        date_birth: Faker::Date.birthday(25, 70),
                         identity_card: Faker::Number.number(10),
                         user_type: 'doctor',
                         doc_number: Faker::Number.number(8),
-                        doc_institutions: hospitals.sample(rand(1..2)),
+                        doc_institutions: hospitals.sample(rand(1..3)),
                         doc_specialties: specialties.keys.sample(rand(1..3)),
                         status: 'active')
-  new_doctor.remote_photo_url = FEMALE_DOCTOR_PHOTOS[doc_counter]
+  new_doctor.remote_photo_url = ["https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.dailymail.co.uk%2Fi%2Fpix%2F2016%2F08%2F28%2F01%2F37A49C5300000578-3761834-image-a-10_1472342613804.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi1-news.softpedia-static.com%2Fimages%2Fnews2%2FDoctor-McSteamy-Returns-to-039-Grey-039-s-Anatomy-039-2.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2F81%2Ff9%2F53%2F81f953425bf1ac8fc44976ee538f112b.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F87%2F4e%2Fed%2F874eedefa8b66101edc1c2eddc0e8477.jpg&f=1",
+                                "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2F3.bp.blogspot.com%2F-vO7eiZKx4FU%2FTl_X6xLLxqI%2FAAAAAAAABOA%2F90Ujq1eIMfo%2Fs1600%2Ftumblr_li6awrYU5H1qeig70o1_400.jpg&f=1"].sample # To test with different status
   new_doctor.save!
-  doc_counter += 1
 end
-
-new_doctor = User.new(email: 'emily.burns@medical.org',
-                      password: '654321',
-                      first_name: 'Emily',
-                      last_name: 'Burns',
-                      gender: "female",
-                      address: 'Lisbon',
-                      date_birth: Faker::Date.birthday(34, 35),
-                      identity_card: Faker::Number.number(10),
-                      user_type: 'doctor',
-                      doc_number: Faker::Number.number(8),
-                      doc_institutions: ["Clinic LeWagon"],
-                      doc_specialties: ["Psychiatric", "Pediatric"],
-                      status: 'active')
-new_doctor.remote_photo_url = "https://avatars3.githubusercontent.com/u/37870441?v=4"
-new_doctor.save!
 
 # Mapping patients and doctors:
 
