@@ -14,7 +14,7 @@ class Document < ApplicationRecord
   validates :topic_id, presence: true, allow_blank: false
   validates :user_id, presence: true, allow_blank: false
   validates :doc_type, inclusion: { in: DOC_TYPES }
-  validates :doc_title, presence: true, allow_blank: false, uniqueness: { scope: :topic_id }
+  validates :doc_title, presence: true, allow_blank: false #, uniqueness: { scope: :topic_id }
   validates :status, inclusion: { in: STATUS }
   # validates :file, presence: true, allow_blank: false
   validate :val_exam_type

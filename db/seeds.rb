@@ -115,7 +115,7 @@ end
 
 puts "Creating families..."
 
-families = ['Footinvest', 'Clubhouse', 'Ask Mom', 'Caretaker Helper', 'DocPat', 'Habit Tracker']
+families = ['Footinvest', 'Clubhouse', 'Ask Mom', 'Caretaker Helper', 'DocPat', 'Habit Tracker', 'Dunphy']
 
 families.each do |fam|
   Family.create(name: fam, status: 'active') # To test with different status
@@ -152,6 +152,115 @@ CSV.foreach(filepath_users, csv_options) do |row|
     FamilyPatient.create(family: find_family, patient: new_user, status: 'active')
   end
 end
+
+# Creating family members
+
+dunphy = Family.find_by(name: 'Dunphy')
+pharma = pharmas.sample
+pharma_mail = "#{pharma.downcase.tr(" ", ".")}@lewagon.org"
+
+phil = User.new(email: 'phil.dunphy@lewagon.org',
+                password: '654321',
+                first_name: 'Phil',
+                last_name: 'Dunphy',
+                gender: 'male',
+                address: 'Lisbon',
+                date_birth: Faker::Date.birthday(45, 52),
+                identity_card: Faker::Number.number(10),
+                user_type: 'patient',
+                pat_blood: BLOOD_TYPES.sample,
+                pat_pharma: pharma,
+                pat_pharma_email: pharma_mail,
+                status: 'active')
+phil.remote_photo_url = 'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F655606044593270784%2FQ2zXWsr__400x400.jpg&f=1'
+phil.save!
+FamilyPatient.create(family: dunphy, patient: phil, status: 'active')
+
+claire = User.new(email: 'claire.dunphy@lewagon.org',
+                password: '654321',
+                first_name: 'Claire',
+                last_name: 'Dunphy',
+                gender: 'female',
+                address: 'Lisbon',
+                date_birth: Faker::Date.birthday(40, 50),
+                identity_card: Faker::Number.number(10),
+                user_type: 'patient',
+                pat_blood: BLOOD_TYPES.sample,
+                pat_pharma: pharma,
+                pat_pharma_email: pharma_mail,
+                status: 'active')
+claire.remote_photo_url = 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.citytv.com%2Fwp-content%2Fuploads%2F2012%2F12%2FMF_124865_08_Julie_Bowen_BD_0416_R2-e1389999199579-300x300.jpg&f=1'
+claire.save!
+FamilyPatient.create(family: dunphy, patient: claire, status: 'active')
+
+jay = User.new(email: 'jay.prichett@lewagon.org',
+                password: '654321',
+                first_name: 'Jay',
+                last_name: 'Prichett',
+                gender: 'male',
+                address: 'Lisbon',
+                date_birth: Faker::Date.birthday(68, 75),
+                identity_card: Faker::Number.number(10),
+                user_type: 'patient',
+                pat_blood: BLOOD_TYPES.sample,
+                pat_pharma: pharma,
+                pat_pharma_email: pharma_mail,
+                status: 'active')
+jay.remote_photo_url = 'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette4.wikia.nocookie.net%2Fmodernfamily%2Fimages%2F2%2F22%2FJay-port.jpg%2Frevision%2Flatest%3Fcb%3D20150310161348&f=1'
+jay.save!
+FamilyPatient.create(family: dunphy, patient: jay, status: 'active')
+
+haley = User.new(email: 'haley.dunphy@lewagon.org',
+                password: '654321',
+                first_name: 'Haley',
+                last_name: 'Dunphy',
+                gender: 'female',
+                address: 'Lisbon',
+                date_birth: Faker::Date.birthday(18, 21),
+                identity_card: Faker::Number.number(10),
+                user_type: 'patient',
+                pat_blood: BLOOD_TYPES.sample,
+                pat_pharma: pharma,
+                pat_pharma_email: pharma_mail,
+                status: 'active')
+haley.remote_photo_url = 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fvignette3.wikia.nocookie.net%2Fmodernfamily%2Fimages%2Fd%2Fd8%2FHaley-port.jpg%2Frevision%2Flatest%3Fcb%3D20150310161919&f=1'
+haley.save!
+FamilyPatient.create(family: dunphy, patient: haley, status: 'active')
+
+alex = User.new(email: 'alex.dunphy@lewagon.org',
+                password: '654321',
+                first_name: 'Alex',
+                last_name: 'Dunphy',
+                gender: 'female',
+                address: 'Lisbon',
+                date_birth: Faker::Date.birthday(15, 18),
+                identity_card: Faker::Number.number(10),
+                user_type: 'patient',
+                pat_blood: BLOOD_TYPES.sample,
+                pat_pharma: pharma,
+                pat_pharma_email: pharma_mail,
+                status: 'active')
+alex.remote_photo_url = 'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette1.wikia.nocookie.net%2Fmodernfamily%2Fimages%2Fd%2Fd9%2FAlex-port.jpg%2Frevision%2Flatest%3Fcb%3D20150310161934&f=1'
+alex.save!
+FamilyPatient.create(family: dunphy, patient: alex, status: 'active')
+
+luke = User.new(email: 'luke.dunphy@lewagon.org',
+                password: '654321',
+                first_name: 'Luke',
+                last_name: 'Dunphy',
+                gender: 'male',
+                address: 'Lisbon',
+                date_birth: Faker::Date.birthday(12, 14),
+                identity_card: Faker::Number.number(10),
+                user_type: 'patient',
+                pat_blood: BLOOD_TYPES.sample,
+                pat_pharma: pharma,
+                pat_pharma_email: pharma_mail,
+                status: 'active')
+luke.remote_photo_url = 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fimages4.wikia.nocookie.net%2F__cb20130227073761%2Fdoblaje%2Fes%2Fimages%2F6%2F63%2FLukemodern.png&f=1'
+luke.save!
+FamilyPatient.create(family: dunphy, patient: luke, status: 'active')
+
 
 # Creating doctors:
 
@@ -253,21 +362,21 @@ doc_counter = 0
   doc_counter += 1
 end
 
-new_doctor = User.new(email: 'emily.burns@medical.org',
-                      password: '654321',
-                      first_name: 'Emily',
-                      last_name: 'Burns',
-                      gender: "female",
-                      address: 'Lisbon',
-                      date_birth: Faker::Date.birthday(34, 35),
-                      identity_card: Faker::Number.number(10),
-                      user_type: 'doctor',
-                      doc_number: Faker::Number.number(8),
-                      doc_institutions: ["Clinic LeWagon"],
-                      doc_specialties: ["Psychiatric", "Pediatric"],
-                      status: 'active')
-new_doctor.remote_photo_url = "https://avatars3.githubusercontent.com/u/37870441?v=4"
-new_doctor.save!
+emily = User.new(email: 'emily.burns@medical.org',
+                 password: '654321',
+                 first_name: 'Emily',
+                 last_name: 'Burns',
+                 gender: "female",
+                 address: 'Lisbon',
+                 date_birth: Faker::Date.birthday(34, 35),
+                 identity_card: Faker::Number.number(10),
+                 user_type: 'doctor',
+                 doc_number: Faker::Number.number(8),
+                 doc_institutions: ["Clinic LeWagon", "Hospital da Luz"],
+                 doc_specialties: ["Psychiatric", "Pediatric"],
+                 status: 'active')
+emily.remote_photo_url = "https://avatars3.githubusercontent.com/u/37870441?v=4"
+emily.save!
 
 # Mapping patients and doctors:
 
@@ -281,13 +390,18 @@ User.where(user_type: 'patient').each do |patient|
     # pr_time = rand(0..1).zero?
     # pr_help = rand(0..1).zero?
     # pr_kind = rand(0..1).zero?
-    doctor = User.where(user_type: 'doctor').sample
+    doctor = User.where(user_type: 'doctor').reject{ |doc| doc.last_name == 'Burns' }.sample
 
     DoctorPatient.create(patient: patient,
                          doctor: doctor,
                          praise: rand(0..1).zero?,
                          status: 'active') # To test with different status
   end
+
+  DoctorPatient.create(patient: patient,
+                       doctor: emily,
+                       praise: true,
+                       status: 'active')
 end
 
 # Creating topics:
@@ -316,6 +430,10 @@ User.where(user_type: 'patient').each do |patient|
     topic.save!
 
     y = rand(3..5)
+    random_dates = [rand(90..120).days.ago, rand(60..90).days.ago, rand(30..60).days.ago, rand(7..30).days.ago, rand(1..6).days.ago]
+    tp_status = ['diagnosed', 'under treatment', 'under treatment', 'under treatment', 'cured']
+    date_counter = 0
+
     y.times do
       rand_doctor = User.where(user_type: 'doctor').sample
       rand_doctor_name = "#{rand_doctor.first_name} #{rand_doctor.last_name}"
@@ -323,9 +441,130 @@ User.where(user_type: 'patient').each do |patient|
                           user: user_array.sample,
                           diagnosis: Faker::Quote.matz,
                           next_steps: ["Take medicine XYZ", "Start treatment ABC", "New appointment on #{Faker::Date.forward(90)}", "Contact Dr. #{rand_doctor_name}"].sample(rand(1..3)),
-                          topic_status: ["diagnosed", "under treatment", "cured"].sample)
+                          topic_status: tp_status[date_counter],
+                          read_at: Date.new,
+                          read_by: topic.patient.id)
+      update.created_at = random_dates[date_counter]
       update.save!
+      date_counter += 1
     end
+  end
+end
+
+# Populating Phil Dunphy
+
+user_array = []
+phil.doctors.each do |doc|
+  user_array << doc unless doc.last_name == "Burns"
+end
+
+gen_topics = ['Excessive intimate prowess', 'Insomnia', 'Severe back pain', 'Strabismus', 'Post-traumatic stress disorder']
+gen_code = ['Y24', 'P06', 'L02', 'F98', 'P82']
+code_counter = 0
+
+gen_topics.each do |topic|
+  code = gen_code[code_counter]
+  topic = Topic.new(patient: phil,
+                    title: topic,
+                    category: Category.find_by(code: code[0]),
+                    subcode: code,
+                    status: 'active') # To test with different status
+  topic.save!
+
+  random_dates = [rand(90..120).days.ago, rand(60..90).days.ago, rand(30..60).days.ago, rand(7..30).days.ago, rand(1..6).days.ago]
+  tp_status = ['diagnosed', 'under treatment', 'under treatment', 'under treatment', 'cured']
+  date_counter = 0
+
+  topic_updates = [5, 5, 3, 2, 1]
+  topic_updates[code_counter].times do
+    rand_doctor = User.where(user_type: 'doctor').sample
+    rand_doctor_name = "#{rand_doctor.first_name} #{rand_doctor.last_name}"
+    update = Update.new(topic: topic,
+                        user: user_array.sample,
+                        diagnosis: Faker::Quote.matz,
+                        next_steps: ["Take medicine XYZ", "Start treatment ABC", "New appointment on #{Faker::Date.forward(90)}", "Contact Dr. #{rand_doctor_name}"].sample(rand(1..3)),
+                        topic_status: tp_status[date_counter],
+                        read_at: Date.new,
+                        read_by: phil.id)
+    update.created_at = random_dates[date_counter]
+    update.save!
+    date_counter += 1
+  end
+  code_counter += 1
+end
+
+# Populating Luke Dunphy
+
+user_array = []
+luke.doctors.each do |doc|
+  user_array << doc unless doc.last_name == "Burns"
+end
+
+gen_topics = ['Broken radius bone', 'Asthma', 'Chikenpox', 'Conjuntivitis allergic', 'Vertigo']
+gen_code = ['L14', 'R96', 'A72', 'F71', 'N17']
+code_counter = 0
+
+gen_topics.each do |topic|
+  code = gen_code[code_counter]
+  topic = Topic.new(patient: luke,
+                    title: topic,
+                    category: Category.find_by(code: code[0]),
+                    subcode: code,
+                    status: 'active') # To test with different status
+  topic.save!
+
+  if topic.title == 'Broken radius bone'
+
+    random_dates = [rand(31..32).days.ago, rand(15..30).days.ago, rand(7..15).days.ago, 1.days.ago]
+    tp_status = ['diagnosed', 'under treatment', 'under treatment', 'under treatment']
+    date_counter = 0
+
+    3.times do
+      rand_doctor = User.where(user_type: 'doctor').sample
+      rand_doctor_name = "#{rand_doctor.first_name} #{rand_doctor.last_name}"
+      update = Update.new(topic: topic,
+                          user: user_array.sample,
+                          diagnosis: Faker::Quote.matz,
+                          next_steps: ["Take medicine XYZ", "Start treatment ABC", "New appointment on #{Faker::Date.forward(90)}", "Contact Dr. #{rand_doctor_name}"].sample(rand(1..3)),
+                          topic_status: tp_status[date_counter],
+                          read_at: Date.new,
+                          read_by: luke.id)
+      update.created_at = random_dates[date_counter]
+      update.save!
+      date_counter += 1
+    end
+
+    update = Update.new(topic: topic,
+                        user: user_array.sample,
+                        diagnosis: "The arm is still in risk of falling, it is necessary to keep the cast and reinforce preventive measures such as praying.",
+                        next_steps: ["Take cast in one week", "Keep taking Ibuprofen", "Never play tennis ever again"],
+                        topic_status: tp_status[3])
+    update.created_at = random_dates[3]
+    update.save!
+
+  else
+
+    random_dates = [rand(90..120).days.ago, rand(60..90).days.ago, rand(30..60).days.ago, rand(15..30).days.ago, rand(7..15).days.ago]
+    tp_status = ['diagnosed', 'under treatment', 'under treatment', 'under treatment', 'cured']
+    date_counter = 0
+
+    topic_updates = [3, 5, 5, 2]
+    topic_updates[code_counter].times do
+      rand_doctor = User.where(user_type: 'doctor').sample
+      rand_doctor_name = "#{rand_doctor.first_name} #{rand_doctor.last_name}"
+      update = Update.new(topic: topic,
+                          user: user_array.sample,
+                          diagnosis: Faker::Quote.matz,
+                          next_steps: ["Take medicine XYZ", "Start treatment ABC", "New appointment on #{Faker::Date.forward(90)}", "Contact Dr. #{rand_doctor_name}"].sample(rand(1..3)),
+                          topic_status: tp_status[date_counter],
+                          read_at: Date.new,
+                          read_by: luke.id)
+      update.created_at = random_dates[date_counter]
+      update.save!
+      date_counter += 1
+    end
+    code_counter += 1
+
   end
 end
 
@@ -345,36 +584,53 @@ Topic.all.each do |topic|
     user_array << doc
   end
 
-  image_json = "{\"id\":\"6b2ac5bb949db46f470cb463791c6985.png\",\"storage\":\"cache\",\"metadata\":{\"filename\":\"Captura de ecra 2019-02-25, as 15.50.17.png\",\"size\":130178,\"mime_type\":\"image/png\",\"width\":1366,\"height\":768}}"
+  # image_json = "{\"id\":\"6b2ac5bb949db46f470cb463791c6985.png\",\"storage\":\"cache\",\"metadata\":{\"filename\":\"Captura de ecra 2019-02-25, as 15.50.17.png\",\"size\":130178,\"mime_type\":\"image/png\",\"width\":1366,\"height\":768}}"
 
-  x = rand(1..5)
+  x = rand(1..3)
+  random_dates = [rand(90..120).days.ago, rand(60..90).days.ago, rand(30..60).days.ago, rand(7..30).days.ago, rand(1..6).days.ago]
+  date_counter = 0
+
   x.times do
-    doc_type = DOC_TYPES.sample
-    Document.create(topic: topic,
-                    user: user_array.sample,
-                    doc_title: "#{doc_type.capitalize} for #{topic.title} in #{hospitals.sample}",
-                    doc_type: doc_type,
-                    exam_type: doc_type == "Exam" ? EXAM_TYPES.sample : "",
-                    tags: ["Important", "Follow-up", "Contact Doctor", "Tommorrow", "To Delete"].sample(rand(1..5)).join(" "),
-                    file_type: file_types.sample,
-                    status: ['active', 'inactive'].sample,
-                    file: "https://photos.state.gov/libraries/portugal/231771/PDFs/C2S-LeWagon-Workshop-Program.pdf")
+    doc_calc = [DOC_TYPES.sample, 'Exam']
+    doc_type = doc_calc[rand(0..1)]
+    document = Document.new(topic: topic,
+                            user: user_array.sample,
+                            doc_title: "#{doc_type.capitalize} for #{topic.title} in #{hospitals.sample}",
+                            doc_type: doc_type,
+                            exam_type: doc_type == "Exam" ? EXAM_TYPES.sample : "",
+                            tags: ["Important", "Follow-up", "Contact Doctor", "Tomorrow", "To Delete"].sample(rand(1..3)).join(" "),
+                            file_type: file_types.sample,
+                            status: ['active', 'inactive'].sample,
+                            file: "https://photos.state.gov/libraries/portugal/231771/PDFs/C2S-LeWagon-Workshop-Program.pdf",
+                            read_at: Date.new,
+                            read_by: topic.patient.id)
+    document.created_at = random_dates[date_counter]
+    document.save!
+    date_counter += 1
   end
 
-  y = rand(1..5)
+  y = rand(1..3)
+  random_dates = [rand(90..120).days.ago, rand(60..90).days.ago, rand(30..60).days.ago, rand(7..30).days.ago, rand(1..6).days.ago]
+  date_counter = 0
+
   y.times do
     sch_type = SCHEDULE_TYPES.sample
     rand_date_start = Faker::Date.between(2.year.ago, 2.year.from_now)
-    Schedule.create(topic: topic,
-                    user: user_array.sample,
-                    sc_title: "#{sch_type.capitalize} for #{topic.title}",
-                    sc_type: sch_type,
-                    schedule: ["#{rand(1..5)} times a day", "Every #{rand(2..5)} days", "Everyday", "Every week", "Every #{rand(6..12)} hours"].sample,
-                    dosage: "#{rand(20..120).round(-1)} ml",
-                    notes: Faker::Quote.famous_last_words,
-                    date_start: rand_date_start,
-                    date_end: [rand_date_start + rand(30..360), Date.new(9999, 12, 31)].sample,
-                    status: ['active', 'inactive'].sample)
+    schedule = Schedule.new(topic: topic,
+                            user: user_array.sample,
+                            sc_title: "#{sch_type.capitalize} for #{topic.title}",
+                            sc_type: sch_type,
+                            schedule: ["#{rand(1..5)} times a day", "Every #{rand(2..5)} days", "Everyday", "Every week", "Every #{rand(6..12)} hours"].sample,
+                            dosage: "#{rand(20..120).round(-1)} ml",
+                            notes: Faker::Quote.famous_last_words,
+                            date_start: rand_date_start,
+                            date_end: [rand_date_start + rand(30..360), Date.new(9999, 12, 31)].sample,
+                            status: ['active', 'inactive'].sample,
+                            read_at: Date.new,
+                            read_by: topic.patient.id)
+    schedule.created_at = random_dates[date_counter]
+    schedule.save!
+    date_counter += 1
   end
 end
 
