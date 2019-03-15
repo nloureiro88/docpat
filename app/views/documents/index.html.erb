@@ -139,9 +139,11 @@
           </li>
 
           <li class="topic-title col col-xs-3">
-            <%= image_tag("category_icons_grey/#{document.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{document.topic.category.subject.capitalize}") %>
-            <p><%= document.topic.title %>
-            <span class="small code">(<%= document.topic.subcode %>)</span></p>
+            <%= link_to patient_topics_path(@patient, query: document.topic.title) do %>
+              <%= image_tag("category_icons_grey/#{document.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{document.topic.category.subject.capitalize}") %>
+              <p><%= document.topic.title %>
+              <span class="small code">(<%= document.topic.subcode %>)</span></p>
+            <% end %>
           </li>
         </ul>
 

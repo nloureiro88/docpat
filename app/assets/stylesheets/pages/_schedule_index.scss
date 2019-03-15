@@ -13,8 +13,24 @@
   .topic-title {
     align-items: center;
 
-     p {
+    p {
       padding-left: 0.6rem;
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      color: #797979;
+      font-size: 0.8rem;
+
+      .code {
+        font-size: 0.6rem;
+      }
+
+      &:hover {
+        color: $d-gray;
+      }
     }
   }
 
