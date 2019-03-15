@@ -11,6 +11,12 @@
     p {
       padding-left: 0.75rem;
     }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
   }
 
   .update-changes {

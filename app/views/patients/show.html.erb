@@ -102,7 +102,7 @@
             <% if topic.updates.last.topic_status == 'diagnosed' %>
               <% last_update = topic.updates.last %>
               <div class="dash-topic">
-                <%= link_to patient_updates_path(@patient, query: topic.title) do %>
+                <%= link_to patient_topics_path(@patient, query: topic.title) do %>
                   <ul style="width: 100%; min-width: 100%;">
                     <li style="width: 5%">
                       <i class="fas fa-circle fa-lg"></i>
@@ -128,7 +128,7 @@
             <% if topic.updates.last.topic_status == 'under treatment' %>
               <% last_update = topic.updates.last %>
               <div class="dash-topic">
-                <%= link_to patient_updates_path(@patient, query: topic.title) do %>
+                <%= link_to patient_topics_path(@patient, query: topic.title) do %>
                   <ul style="width: 100%; min-width: 100%;">
                     <li style="width: 5%">
                       <i class="fas fa-circle fa-lg"></i>
@@ -154,7 +154,7 @@
             <% last_update = topic.updates.last %>
             <% if topic.updates.last.topic_status == 'cured' %>
               <div class="dash-topic">
-                <%= link_to patient_updates_path(@patient, query: topic.title) do %>
+                <%= link_to patient_topics_path(@patient, query: topic.title) do %>
                   <ul style="width: 100%; min-width: 100%;">
                     <li style="width: 5%">
                       <i class="fas fa-circle fa-lg"></i>

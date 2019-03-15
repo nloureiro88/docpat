@@ -100,9 +100,11 @@
           </div>
 
           <li class="topic-title col col-xs-3">
-            <%= image_tag("category_icons/#{update.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{update.topic.category.subject.capitalize}") %>
-            <p><strong><%= update.topic.title %></strong>
-            <span class="small code">(<%= update.topic.subcode %>)</span></p>
+            <%= link_to patient_topics_path(@patient, query: update.topic.title) do %>
+              <%= image_tag("category_icons/#{update.topic.category.icon_url}", size: "40x40", class: "svg-icon", alt: "#{update.topic.category.subject.capitalize}") %>
+              <p><strong><%= update.topic.title %></strong>
+              <span class="small code">(<%= update.topic.subcode %>)</span></p>
+            <% end %>
           </li>
 
           <li class="topic-doctor col col-xs-3">
