@@ -10,10 +10,10 @@ module PatientActionsHelper
 
   def patientNewCount(pat)
     patientInfo = patientActions(pat)
-    patientInfo[:updates] = patientInfo[:updates].select { |item| item.read_by.nil? }.count
-    patientInfo[:documents] = patientInfo[:documents].select { |item| item.read_by.nil? }.count
-    patientInfo[:exams] = patientInfo[:exams].select { |item| item.read_by.nil? }.count
-    patientInfo[:schedules] = patientInfo[:schedules].select { |item| item.read_by.nil? }.count
+    patientInfo[:updates] = patientInfo[:updates].where(read_by: nil).count
+    patientInfo[:documents] = patientInfo[:documents].where(read_by: nil).count
+    patientInfo[:exams] = patientInfo[:exams].where(read_by: nil).count
+    patientInfo[:schedules] = patientInfo[:schedules].where(read_by: nil).count
     patientInfo[:total] = patientInfo[:updates] + patientInfo[:documents] + patientInfo[:exams] + patientInfo[:schedules]
     patientInfo
   end

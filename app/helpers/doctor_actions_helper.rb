@@ -11,10 +11,10 @@ module DoctorActionsHelper
 
   def doctorNew(doc, pat)
     doctorInfo = doctorActions(doc, pat)
-    doctorInfo[:updates] = doctorInfo[:updates].select { |item| item.read_by.nil? }.count.positive?
-    doctorInfo[:documents] = doctorInfo[:documents].select { |item| item.read_by.nil? }.count.positive?
-    doctorInfo[:exams] = doctorInfo[:exams].select { |item| item.read_by.nil? }.count.positive?
-    doctorInfo[:schedules] = doctorInfo[:schedules].select { |item| item.read_by.nil? }.count.positive?
+    doctorInfo[:updates] = doctorInfo[:updates].where(read_by: nil).count.positive?
+    doctorInfo[:documents] = doctorInfo[:documents].where(read_by: nil).count.positive?
+    doctorInfo[:exams] = doctorInfo[:exams].where(read_by: nil).count.positive?
+    doctorInfo[:schedules] = doctorInfo[:schedules].where(read_by: nil).count.positive?
     doctorInfo
   end
 end
