@@ -1,0 +1,28 @@
+.info-page {
+
+  max-width: 45%;
+
+  h2 {
+    color: $d-blue;
+  }
+
+  strong {
+    color: $l-orange;
+  }
+
+  img {
+    width: 50%;
+    height: 50%;
+    margin-bottom: 30px;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+
+    span {
+      font-weight: bolder;
+    }
+  }
+
+}

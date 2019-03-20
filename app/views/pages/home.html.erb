@@ -30,7 +30,7 @@
             <p>
               <span class="hero__text" id="banner-typed-text"></span>
             </p>
-            <%= link_to t(".sign_up", default: "Register"), new_user_registration_path, class: "button button__accent left-margin-none" %>
+            <%= link_to t(".sign_up", default: "Register"), subscribe_path, class: "button button__accent left-margin-none" %>
             <%= link_to t(".sign_in", default: "Sign In"), new_user_session_path, class: "button hero__button" %>
           </div>
         </div>
@@ -132,7 +132,7 @@
       <div class="cta__inner">
         <h2 class="cta__title">Get started now</h2>
         <p class="cta__sub cta__sub--center">Join DocPat today and be in control of your <br> family’s health history and documentation.</p>
-         <%= link_to t(".sign_up", default: "Join DocPat Now"), new_user_registration_path, class: "button button__accent" %>
+         <%= link_to t(".sign_up", default: "Join DocPat Now"), subscribe_path, class: "button button__accent" %>
         <!-- <a href="#" class="button button__accent">Join DocPat Now</a> -->
 
       </div>
