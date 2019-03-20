@@ -79,7 +79,7 @@
 
     <% button_counter = 1 %>
 
-    <% @topics.each do |topic| %>
+    <% @topics.order('id ASC').each do |topic| %>
       <% first_update = topic.updates.first %>
       <% last_update = topic.updates.last %>
 
