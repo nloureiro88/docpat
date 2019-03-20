@@ -2,13 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get :subscribe, to: "pages#subscribe"
+
   resources :doctors, only: [:index, :show]
 
   resources :family, only: [:show, :new, :create] do
     member do
       post :add_patient, to: "family#add_patient"
       get :rem_patient, to: "family#rem_patient"
-
     end
   end
 

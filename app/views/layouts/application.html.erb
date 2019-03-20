@@ -45,7 +45,7 @@
 
   </head>
   <body class="<%= controller_name %>_<%= action_name %>">
-    <%= render 'shared/navbar' unless controller_name == "pages" %>
+    <%= render 'shared/navbar' unless controller_name == "pages" && action_name == "home" %>
     <%= render 'shared/sidebar' if ['patients', 'topics', 'updates', 'documents', 'schedules'].include?(controller_name) %>
     <%= render 'shared/flashes' %>
     <div class="wrapper">
