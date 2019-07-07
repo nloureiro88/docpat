@@ -22,7 +22,7 @@ Update.destroy_all
 Topic.destroy_all
 User.destroy_all
 
-puts 'Cleaning up Cloudinary via API'
+puts 'Cleaning up Cloudinary via API...'
 Cloudinary::Api.delete_all_resources
 
 # Type lists:
@@ -280,7 +280,7 @@ MALE_DOCTOR_PHOTOS = ['http://s.plurielles.fr/mmdia/i/97/7/kevin-mckidd-3673977h
                       'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.uratex.com.ph%2Findustrial-institutional%2Fwp-content%2Fuploads%2F2015%2F02%2FJD-Dorian.jpg&f=1',
                       'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.tvtropes.org%2Fpmwiki%2Fpub%2Fimages%2Fscrubs_kelso_2493.jpg&f=1',
                       'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fimg3.wikia.nocookie.net%2F__cb20110924074716%2Fscrubs%2Fimages%2F9%2F92%2FSquare_Turk.png&f=1',
-                      'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.XWqupa8vZ9Kh9dpy2S86aAHaGt%26pid%3D15.1&f=1',
+                      'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F817931158356971520%2FXp5wdISk.jpg&f=1',
                       'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette.wikia.nocookie.net%2Fscrubs%2Fimages%2Fd%2Fd5%2FS6-HQ-Cox.jpg%2Frevision%2Flatest%2Ftop-crop%2Fwidth%2F320%2Fheight%2F320%3Fcb%3D20141103192935&f=1',
                       'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.comphealth.com%2Fresources%2Fwp-content%2Fuploads%2F2014%2F05%2Fdoctor-computer.jpg&f=1',
                       'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fblog.bulletproof.com%2Fwp-content%2Fuploads%2F2018%2F04%2FHeadshot2.jpg&f=1',
@@ -300,7 +300,7 @@ FEMALE_DOCTOR_PHOTOS = ['https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fhips.h
                         'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.popsugar-assets.com%2Ffiles%2Fthumbor%2FdKympnzvqnZOL1y92i65k6rftYE%2Ffit-in%2F550x550%2Ffilters%3Aformat_auto-!!-%3Astrip_icc-!!-%2F2011%2F05%2F20%2F2%2F192%2F1922283%2Ffff2604bb1f12af9_thumb%2Fi%2FLisa-Edelstein-Quitting-House.jpg&f=1',
                         'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.austinchronicle.com%2Fbinary%2F7a9a%2FThirteen.jpg&f=1',
                         'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fbrainsnorts.files.wordpress.com%2F2012%2F07%2Fjennifer-morrison-hq22.jpg&f=1',
-                        'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.yasamsifreleri.com%2Fwp-content%2Fuploads%2F2015%2F04%2Fgamze-topuz-doktorlar.jpg&f=1',
+                        'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.canarianweekly.com%2Fwp-content%2Fuploads%2F2014%2F10%2FHealth-1.jpg&f=1',
                         'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fstatic.tvtropes.org%2Fpmwiki%2Fpub%2Fimages%2Fscrubs_elliot_4536.jpg&f=1',
                         'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.canarianweekly.com%2Fwp-content%2Fuploads%2F2014%2F10%2FHealth-1.jpg&f=1',
                         'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Fd1%2Fba%2F0d%2Fd1ba0ddaacaaef4357a86f363eaaf718--greys-anatomy-season--lexie-grey.jpg&f=1',
