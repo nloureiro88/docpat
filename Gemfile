@@ -6,7 +6,7 @@ ruby '2.5.3'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'nokogiri'
 
-gem 'carrierwave', '~> 1.2'
+gem 'carrierwave', '~> 1.3'
 gem "pundit"
 gem "pg_search"
 gem 'cloudinary', '~> 1.9.1'
